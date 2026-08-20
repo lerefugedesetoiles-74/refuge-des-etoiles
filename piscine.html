@@ -1,0 +1,392 @@
+<style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f2ed;
+      color: #2f2f2f;
+    }
+
+    header {
+      background: linear-gradient(135deg, #2f6073, #71a8b8);
+      color: white;
+      text-align: center;
+      padding: 35px 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 30px;
+    }
+
+    header p {
+      margin-top: 10px;
+      font-size: 16px;
+    }
+
+    .language-selector {
+      margin-top: 18px;
+    }
+
+    .language-selector button {
+      border: none;
+      background: white;
+      padding: 9px 12px;
+      margin: 3px;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .container {
+      max-width: 750px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      padding: 22px;
+      margin-bottom: 16px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+    }
+
+    h2 {
+      color: #2f6073;
+      margin-top: 0;
+    }
+
+    .rule {
+      padding: 12px 0;
+      border-bottom: 1px solid #e5e5e5;
+      line-height: 1.5;
+    }
+
+    .rule:last-child {
+      border-bottom: none;
+    }
+
+    .important {
+      background: #fff4d8;
+      border-left: 5px solid #d6a23d;
+    }
+
+    .danger {
+      background: #ffe4e4;
+      border-left: 5px solid #c54b4b;
+    }
+
+    .home-button {
+      display: block;
+      width: fit-content;
+      margin: 25px auto;
+      padding: 13px 20px;
+      background: #2f6073;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px 20px;
+      color: #777;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🏊 <span data-key="title">Piscine</span></h1>
+  <p data-key="subtitle">Règles et conseils d'utilisation</p>
+
+  <div class="language-selector">
+    <button onclick="changeLanguage('fr')">🇫🇷</button>
+    <button onclick="changeLanguage('en')">🇬🇧</button>
+    <button onclick="changeLanguage('de')">🇩🇪</button>
+    <button onclick="changeLanguage('nl')">🇳🇱</button>
+  </div>
+</header>
+
+
+<div class="container">
+
+  <div class="card">
+    <h2 data-key="welcomeTitle">Profitez de la piscine</h2>
+
+    <p data-key="welcomeText">
+      Nous vous souhaitons de très bons moments dans la piscine.
+      Merci de respecter les quelques règles ci-dessous afin de garantir la sécurité et le confort de tous.
+    </p>
+  </div>
+
+
+  <div class="card danger">
+    <h2>⚠️ <span data-key="safetyTitle">Sécurité</span></h2>
+
+    <div class="rule" data-key="rule1">
+      Les enfants doivent rester sous la surveillance permanente d'un adulte.
+    </div>
+
+    <div class="rule" data-key="rule2">
+      Les plongeons sont interdits.
+    </div>
+
+    <div class="rule" data-key="rule3">
+      Il est interdit de courir autour de la piscine.
+    </div>
+
+    <div class="rule" data-key="rule4">
+      Après utilisation, merci de remettre l'échelle en position de sécurité lorsqu'aucun adulte ne surveille la piscine.
+    </div>
+  </div>
+
+
+  <div class="card">
+    <h2>👙 <span data-key="hygieneTitle">Hygiène</span></h2>
+
+    <div class="rule" data-key="rule5">
+      Le port d'un maillot de bain est obligatoire.
+    </div>
+
+    <div class="rule" data-key="rule6">
+      Merci d'utiliser le pédiluve avant d'entrer dans la piscine.
+    </div>
+
+    <div class="rule" data-key="rule7">
+      Les animaux sont interdits dans la piscine.
+    </div>
+  </div>
+
+
+  <div class="card important">
+    <h2>🍹 <span data-key="comfortTitle">Confort et propreté</span></h2>
+
+    <div class="rule" data-key="rule8">
+      La nourriture et les boissons sont interdites dans la piscine.
+    </div>
+
+    <div class="rule" data-key="rule9">
+      Merci de ne pas jeter d'objets, de papier ou de déchets dans l'eau.
+    </div>
+
+    <div class="rule" data-key="rule10">
+      Merci de respecter les autres voyageurs et d'éviter les nuisances sonores excessives.
+    </div>
+  </div>
+
+
+  <div class="card">
+    <h2>🌡️ <span data-key="infoTitle">Informations pratiques</span></h2>
+
+    <div class="rule" data-key="rule11">
+      La piscine est extérieure et sa température dépend des conditions météorologiques.
+    </div>
+
+    <div class="rule" data-key="rule12">
+      Merci de nous signaler tout problème ou dysfonctionnement.
+    </div>
+  </div>
+
+
+  <a class="home-button" href="index.html" data-key="home">
+    ← Retour au livret d'accueil
+  </a>
+
+</div>
+
+
+<footer>
+  ✨ Le Refuge des Étoiles ✨<br>
+  Le Sappey — Haute-Savoie
+</footer>
+
+
+<script>
+
+const translations = {
+
+  fr: {
+    title: "Piscine",
+    subtitle: "Règles et conseils d'utilisation",
+
+    welcomeTitle: "Profitez de la piscine",
+    welcomeText:
+      "Nous vous souhaitons de très bons moments dans la piscine. Merci de respecter les quelques règles ci-dessous afin de garantir la sécurité et le confort de tous.",
+
+    safetyTitle: "Sécurité",
+    hygieneTitle: "Hygiène",
+    comfortTitle: "Confort et propreté",
+    infoTitle: "Informations pratiques",
+
+    rule1: "Les enfants doivent rester sous la surveillance permanente d'un adulte.",
+    rule2: "Les plongeons sont interdits.",
+    rule3: "Il est interdit de courir autour de la piscine.",
+    rule4: "Après utilisation, merci de remettre l'échelle en position de sécurité lorsqu'aucun adulte ne surveille la piscine.",
+
+    rule5: "Le port d'un maillot de bain est obligatoire.",
+    rule6: "Merci d'utiliser le pédiluve avant d'entrer dans la piscine.",
+    rule7: "Les animaux sont interdits dans la piscine.",
+
+    rule8: "La nourriture et les boissons sont interdites dans la piscine.",
+    rule9: "Merci de ne pas jeter d'objets, de papier ou de déchets dans l'eau.",
+    rule10: "Merci de respecter les autres voyageurs et d'éviter les nuisances sonores excessives.",
+
+    rule11: "La piscine est extérieure et sa température dépend des conditions météorologiques.",
+    rule12: "Merci de nous signaler tout problème ou dysfonctionnement.",
+
+    home: "← Retour au livret d'accueil"
+  },
+
+
+  en: {
+    title: "Swimming pool",
+    subtitle: "Rules and instructions",
+
+    welcomeTitle: "Enjoy the swimming pool",
+    welcomeText:
+      "We hope you enjoy the swimming pool. Please follow the rules below to ensure everyone's safety and comfort.",
+
+    safetyTitle: "Safety",
+    hygieneTitle: "Hygiene",
+    comfortTitle: "Comfort and cleanliness",
+    infoTitle: "Useful information",
+
+    rule1: "Children must remain under the constant supervision of an adult.",
+    rule2: "Diving is prohibited.",
+    rule3: "Running around the swimming pool is prohibited.",
+    rule4: "After use, please place the ladder back in its safety position when no adult is supervising the pool.",
+
+    rule5: "Swimwear must be worn in the swimming pool.",
+    rule6: "Please use the footbath before entering the swimming pool.",
+    rule7: "Animals are not allowed in the swimming pool.",
+
+    rule8: "Food and drinks are not allowed in the swimming pool.",
+    rule9: "Please do not throw objects, paper or rubbish into the water.",
+    rule10: "Please respect other guests and avoid excessive noise.",
+
+    rule11: "The swimming pool is outdoors and its temperature depends on weather conditions.",
+    rule12: "Please let us know if you notice any problem or malfunction.",
+
+    home: "← Back to the guest guide"
+  },
+
+
+  de: {
+    title: "Pool",
+    subtitle: "Regeln und Nutzungshinweise",
+
+    welcomeTitle: "Genießen Sie den Pool",
+    welcomeText:
+      "Wir wünschen Ihnen viel Freude im Pool. Bitte beachten Sie die folgenden Regeln, um die Sicherheit und den Komfort aller Gäste zu gewährleisten.",
+
+    safetyTitle: "Sicherheit",
+    hygieneTitle: "Hygiene",
+    comfortTitle: "Komfort und Sauberkeit",
+    infoTitle: "Praktische Informationen",
+
+    rule1: "Kinder müssen ständig von einem Erwachsenen beaufsichtigt werden.",
+    rule2: "Springen und Tauchen sind verboten.",
+    rule3: "Das Laufen rund um den Pool ist verboten.",
+    rule4: "Bitte bringen Sie die Leiter nach der Nutzung wieder in die Sicherheitsposition, wenn kein Erwachsener den Pool beaufsichtigt.",
+
+    rule5: "Im Pool muss Badebekleidung getragen werden.",
+    rule6: "Bitte benutzen Sie vor dem Betreten des Pools das Fußbad.",
+    rule7: "Tiere sind im Pool nicht erlaubt.",
+
+    rule8: "Speisen und Getränke sind im Pool nicht erlaubt.",
+    rule9: "Bitte werfen Sie keine Gegenstände, Papier oder Abfälle ins Wasser.",
+    rule10: "Bitte nehmen Sie Rücksicht auf andere Gäste und vermeiden Sie übermäßigen Lärm.",
+
+    rule11: "Der Pool befindet sich im Freien und seine Temperatur hängt von den Wetterbedingungen ab.",
+    rule12: "Bitte informieren Sie uns über Probleme oder Störungen.",
+
+    home: "← Zurück zum Gästeführer"
+  },
+
+
+  nl: {
+    title: "Zwembad",
+    subtitle: "Regels en gebruiksinstructies",
+
+    welcomeTitle: "Geniet van het zwembad",
+    welcomeText:
+      "Wij wensen u veel plezier in het zwembad. Houd u aan de onderstaande regels voor de veiligheid en het comfort van iedereen.",
+
+    safetyTitle: "Veiligheid",
+    hygieneTitle: "Hygiëne",
+    comfortTitle: "Comfort en netheid",
+    infoTitle: "Praktische informatie",
+
+    rule1: "Kinderen moeten voortdurend onder toezicht van een volwassene staan.",
+    rule2: "Duiken is verboden.",
+    rule3: "Rennen rond het zwembad is verboden.",
+    rule4: "Plaats na gebruik de ladder terug in de veiligheidsstand wanneer er geen volwassene toezicht houdt.",
+
+    rule5: "Het dragen van zwemkleding is verplicht.",
+    rule6: "Gebruik het voetenbad voordat u het zwembad ingaat.",
+    rule7: "Dieren zijn niet toegestaan in het zwembad.",
+
+    rule8: "Eten en drinken zijn niet toegestaan in het zwembad.",
+    rule9: "Gooi geen voorwerpen, papier of afval in het water.",
+    rule10: "Respecteer andere gasten en vermijd overmatig lawaai.",
+
+    rule11: "Het zwembad bevindt zich buiten en de temperatuur is afhankelijk van de weersomstandigheden.",
+    rule12: "Laat het ons weten als u een probleem of storing opmerkt.",
+
+    home: "← Terug naar de gastenhandleiding"
+  }
+
+};
+
+
+function changeLanguage(lang) {
+
+  localStorage.setItem("language", lang);
+
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll("[data-key]").forEach(element => {
+
+    const key = element.dataset.key;
+
+    if (translations[lang][key]) {
+      element.textContent = translations[lang][key];
+    }
+
+  });
+
+}
+
+
+let savedLanguage = localStorage.getItem("language");
+
+if (savedLanguage && translations[savedLanguage]) {
+
+  changeLanguage(savedLanguage);
+
+} else {
+
+  let browserLanguage =
+    navigator.language ||
+    navigator.userLanguage ||
+    "fr";
+
+  browserLanguage =
+    browserLanguage.substring(0,2).toLowerCase();
+
+  if (!["fr","en","de","nl"].includes(browserLanguage)) {
+    browserLanguage = "en";
+  }
+
+  changeLanguage(browserLanguage);
+
+}
+
+</script>
+
+</body>
+</html>
