@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Le Refuge des Étoiles - Livret d'accueil</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f2ed;
+      color: #2f2f2f;
+    }
+
+    header {
+      background: linear-gradient(135deg, #2f4f3f, #6f8f78);
+      color: white;
+      padding: 35px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 32px;
+    }
+
+    header p {
+      margin-top: 10px;
+      font-size: 17px;
+    }
+
+    .language-selector {
+      margin-top: 20px;
+    }
+
+    .language-selector button {
+      border: none;
+      background: white;
+      padding: 9px 12px;
+      margin: 3px;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .container {
+      max-width: 750px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .welcome {
+      background: white;
+      padding: 22px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+      gap: 12px;
+    }
+
+    .menu button {
+      background: white;
+      border: none;
+      border-radius: 15px;
+      padding: 20px 10px;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+      transition: 0.2s;
+    }
+
+    .menu button:hover {
+      transform: scale(1.03);
+    }
+
+    .icon {
+      font-size: 32px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .section {
+      display: none;
+      background: white;
+      padding: 22px;
+      border-radius: 15px;
+      margin-top: 20px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+    }
+
+    .section h2 {
+      margin-top: 0;
+      color: #3f6651;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 15px;
+      background: #3f6651;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 14px;
+      color: #777;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>✨ Le Refuge des Étoiles ✨</h1>
+
+  <p id="subtitle">
+    Bienvenue dans votre livret d'accueil
+  </p>
+
+  <div class="language-selector">
+    <button onclick="changeLanguage('fr')">🇫🇷</button>
+    <button onclick="changeLanguage('en')">🇬🇧</button>
+    <button onclick="changeLanguage('de')">🇩🇪</button>
+    <button onclick="changeLanguage('nl')">🇳🇱</button>
+  </div>
+</header>
+
+
+<div class="container">
+
+  <div class="welcome">
+    <h2 id="welcome-title">Bienvenue !</h2>
+
+    <p id="welcome-text">
+      Nous sommes heureux de vous accueillir au Refuge des Étoiles.
+      Vous trouverez ici toutes les informations utiles pour profiter pleinement de votre séjour.
+    </p>
+  </div>
+
+
+  <div class="menu">
+
+    <button onclick="showSection('arrival')">
+      <span class="icon">🔑</span>
+      <span data-key="arrival">Arrivée & Départ</span>
+    </button>
+
+    <button onclick="showSection('wifi')">
+      <span class="icon">📶</span>
+      <span data-key="wifi">Wi-Fi</span>
+    </button>
+
+    <button onclick="showSection('house')">
+      <span class="icon">🏡</span>
+      <span data-key="house">La maison</span>
+    </button>
+
+    <button onclick="showSection('pool')">
+      <span class="icon">🏊</span>
+      <span data-key="pool">Piscine</span>
+    </button>
+
+    <button onclick="showSection('spa')">
+      <span class="icon">💦</span>
+      <span data-key="spa">Spa</span>
+    </button>
+
+    <button onclick="showSection('wood')">
+      <span class="icon">🔥</span>
+      <span data-key="wood">Poêle à bois</span>
+    </button>
+
+    <button onclick="showSection('waste')">
+      <span class="icon">♻️</span>
+      <span data-key="waste">Déchets & Tri</span>
+    </button>
+
+    <button onclick="showSection('kitchen')">
+      <span class="icon">🍽️</span>
+      <span data-key="kitchen">Cuisine</span>
+    </button>
+
+    <button onclick="showSection('games')">
+      <span class="icon">🎲</span>
+      <span data-key="games">Jeux</span>
+    </button>
+
+    <button onclick="showSection('places')">
+      <span class="icon">📍</span>
+      <span data-key="places">À découvrir</span>
+    </button>
+
+    <button onclick="showSection('distances')">
+      <span class="icon">🚗</span>
+      <span data-key="distances">Distances</span>
+    </button>
+
+    <button onclick="showSection('emergency')">
+      <span class="icon">🆘</span>
+      <span data-key="emergency">Infos utiles</span>
+    </button>
+
+  </div>
+
+
+  <div id="arrival" class="section">
+    <h2 data-key="arrival">Arrivée & Départ</h2>
+
+    <p class="section-text"
+       data-fr="Vous trouverez ici prochainement les informations concernant votre arrivée, la boîte à clés et votre départ."
+       data-en="You will find here all the information about your arrival, key box and departure."
+       data-de="Hier finden Sie alle Informationen zu Ihrer Ankunft, dem Schlüsselkasten und Ihrer Abreise."
+       data-nl="Hier vindt u alle informatie over uw aankomst, sleutelkluis en vertrek.">
+    </p>
+
+    <button class="back" onclick="hideSection()" data-key="back">← Retour</button>
+  </div>
+
+
+  <div id="wifi" class="section">
+    <h2>📶 Wi-Fi</h2>
+
+    <p class="section-text"
+       data-fr="Le nom du réseau et le mot de passe Wi-Fi seront indiqués ici."
+       data-en="The Wi-Fi network name and password will be displayed here."
+       data-de="Der WLAN-Name und das Passwort werden hier angezeigt."
+       data-nl="De Wi-Fi-netwerknaam en het wachtwoord worden hier weergegeven.">
+    </p>
+
+    <button class="back" onclick="hideSection()" data-key="back">← Retour</button>
+  </div>
+
+
+  <div id="house" class="section">
+    <h2>🏡 <span data-key="house">La maison</span></h2>
+
+    <p class="section-text"
+       data-fr="Vous trouverez ici toutes les informations concernant le fonctionnement et les équipements de la maison."
+       data-en="Here you will find all information about the house and its equipment."
+       data-de="Hier finden Sie alle Informationen über das Haus und seine Ausstattung."
+       data-nl="Hier vindt u alle informatie over het huis en de voorzieningen.">
+    </p>
+
+    <button class="back" onclick="hideSection()" data-key="back">← Retour</button>
+  </div>
+
+
+  <div id="pool" class="section">
+    <h2>🏊 <span data-key="pool">Piscine</span></h2>
+
+    <p class="section-text"
+       data-fr="Les règles et conseils d'utilisation de la piscine seront disponibles ici."
+       data-en="Pool rules and instructions will be available here."
+       data-de="Die Regeln und Hinweise zur Nutzung des Pools finden Sie hier."
+       data-nl="De regels en instructies voor het zwembad vindt u hier.">
+    </p>
+
+    <button class="back" onclick="hideSection()" data-key="back">← Retour</button>
+  </div>
+
+
+  <div id="spa" class="section">
+    <h2>💦 Spa</h2>
+
+    <p class="section-text"
+       data-fr="Les conseils et règles d'utilisation du spa seront disponibles ici."
+       data-en="Spa rules and instructions will be available here."
+       data-de="Die Regeln und Hinweise zur Nutzung des Whirlpools finden Sie hier."
+       data-nl="De regels en instructies voor de spa vindt u hier.">
+    </p>
+
+    <button class="back" onclick="hideSection()" data-key="back">← Retour</button>
+  </div>
+
+
+  <div id="wood" class="section">
+    <h2>🔥 <span data-key="wood">Poêle à bois</span></h2>
+
+    <p class="section-text"
+       data-fr="Vous trouverez ici les instructions pour utiliser le poêle à bois en toute sécurité."
+       data-en="Here you will find instructions for safely using the wood-burning stove."
+       data-de="Hier finden Sie Hinweise zur sicheren Nutzung des Holzofens."
+       data-nl="Hier vindt u instructies voor veilig gebruik van de houtkachel.">
+    </p>
+
+    <button class="back" onclick="hideSection()" data-key="back">← Retour</button>
+  </div>
+
+
+  <div id="waste" class="section">
+    <h2>♻️ <span data-key="waste">Déchets & Tri</span></h2>
+
+    <p class="section-text"
+       data-fr="Les ordures ménagères doivent être déposées dans les points de collecte situés au bord de la route. Un point de collecte est situé à proximité de la maison. Les conteneurs de tri sélectif se trouvent à moins d'un kilomètre."
+       data-en="Household waste must be deposited at the collection points located along the road. A collection point is located near the house. Recycling containers are less than one kilometre away."
+       data-de="Hausmüll muss zu den Sammelstellen am Straßenrand gebracht werden. Eine Sammelstelle befindet sich in der Nähe des Hauses. Recyclingcontainer befinden sich weniger als einen Kilometer entfernt."
+       data-nl="Huishoudelijk afval moet naar de inzamelpunten langs de weg worden gebracht. Een inzamelpunt bevindt zich vlak bij het huis. De recyclingcontainers bevinden zich op minder dan één kilometer afstand.">
+    </p>
+
+    <button class="back" onclick="hideSection()" data-key="back">← Retour</button>
+  </div>
+
+
+  <div id="kitchen" class="section">
+    <h2>🍽️ <span data-key="kitchen">Cuisine</span></h2>
+
+    <p class="section-text"
+       data-fr="Vous trouverez ici les informations concernant les équipements de cuisine, la plancha et les appareils électroménagers."
+       data-en="Here you will find information about kitchen equipment, the plancha and appliances."
+       data-de="Hier finden Sie Informationen über Küchengeräte, Plancha und Haushaltsgeräte."
+       data-nl="Hier vindt u informatie over de keukenapparatuur, plancha en huishoudelijke apparaten.">
+    </p>
+
+    <button class="back" onclick="hideSection()" data-key="back">← Retour</button>
+  </div>
+
+
+  <div id="games" class="section">
+    <h2>🎲 <span data-key="games">Jeux</span></h2>
+
+    <p class="section-text"
+       data-fr="Des jeux de société et du matériel de dessin sont à votre disposition dans le meuble du salon."
+       data-en="Board games and drawing materials are available in the living room cabinet."
+       data-de="Gesellschaftsspiele und Zeichenmaterial stehen Ihnen im Wohnzimmerschrank zur Verfügung."
+       data-nl="Bordspellen en tekenmateriaal zijn beschikbaar in de kast in de woonkamer.">
+    </p>
+
+    <button class="back" onclick="hideSection()" data-key="back">← Retour</button>
+  </div>
+
+
+  <div id="places" class="section">
+    <h2>📍 <span data-key="places">À découvrir</span></h2>
+
+    <p class="section-text"
+       data-fr="Annecy, Genève, Chamonix, Yvoire, La Clusaz, Le Grand-Bornand et bien d'autres destinations sont facilement accessibles."
+       data-en="Annecy, Geneva, Chamonix, Yvoire, La Clusaz, Le Grand-Bornand and many other destinations are easily accessible."
+       data-de="Annecy, Genf, Chamonix, Yvoire, La Clusaz, Le Grand-Bornand und viele weitere Ziele sind leicht erreichbar."
+       data-nl="Annecy, Genève, Chamonix, Yvoire, La Clusaz, Le Grand-Bornand en vele andere bestemmingen zijn gemakkelijk bereikbaar.">
+    </p>
+
+    <button class="back" onclick="hideSection()" data-key="back">← Retour</button>
+  </div>
+
+
+  <div id="distances" class="section">
+    <h2>🚗 <span data-key="distances">Distances</span></h2>
+
+    <p>
+      Cruseilles : 8 km — 12 min<br>
+      Genève : 24 km — 30 min<br>
+      Annecy : 29 km — 45 min<br>
+      Yvoire : 44 km — 50 min<br>
+      Le Grand-Bornand : 46 km — 1 h<br>
+      Thonon-les-Bains : 48 km — 1 h<br>
+      La Clusaz : 54 km — 1 h 02<br>
+      Évian-les-Bains : 58 km — 1 h 10<br>
+      Sixt-Fer-à-Cheval : 67 km — 1 h 15<br>
+      Chamonix : 89 km — 1 h 05
+    </p>
+
+    <button class="back" onclick="hideSection()" data-key="back">← Retour</button>
+  </div>
+
+
+  <div id="emergency" class="section">
+    <h2>🆘 <span data-key="emergency">Infos utiles</span></h2>
+
+    <p class="section-text"
+       data-fr="Vous trouverez ici les numéros d'urgence, les coordonnées utiles et les informations importantes concernant votre séjour."
+       data-en="Here you will find emergency numbers, useful contacts and important information about your stay."
+       data-de="Hier finden Sie Notrufnummern, nützliche Kontakte und wichtige Informationen zu Ihrem Aufenthalt."
+       data-nl="Hier vindt u noodnummers, nuttige contactgegevens en belangrijke informatie over uw verblijf.">
+    </p>
+
+    <button class="back" onclick="hideSection()" data-key="back">← Retour</button>
+  </div>
+
+</div>
+
+
+<footer>
+  ✨ Le Refuge des Étoiles ✨<br>
+  Le Sappey — Haute-Savoie
+</footer>
+
+
+<script>
+
+const translations = {
+
+  fr: {
+    subtitle: "Bienvenue dans votre livret d'accueil",
+    welcomeTitle: "Bienvenue !",
+    welcomeText:
+      "Nous sommes heureux de vous accueillir au Refuge des Étoiles. Vous trouverez ici toutes les informations utiles pour profiter pleinement de votre séjour.",
+
+    arrival: "Arrivée & Départ",
+    wifi: "Wi-Fi",
+    house: "La maison",
+    pool: "Piscine",
+    spa: "Spa",
+    wood: "Poêle à bois",
+    waste: "Déchets & Tri",
+    kitchen: "Cuisine",
+    games: "Jeux",
+    places: "À découvrir",
+    distances: "Distances",
+    emergency: "Infos utiles",
+    back: "← Retour"
+  },
+
+  en: {
+    subtitle: "Welcome to your digital guest guide",
+    welcomeTitle: "Welcome!",
+    welcomeText:
+      "We are delighted to welcome you to Le Refuge des Étoiles. Here you will find all the information you need to enjoy your stay.",
+
+    arrival: "Arrival & Departure",
+    wifi: "Wi-Fi",
+    house: "The house",
+    pool: "Swimming pool",
+    spa: "Hot tub",
+    wood: "Wood stove",
+    waste: "Waste & Recycling",
+    kitchen: "Kitchen",
+    games: "Games",
+    places: "Places to visit",
+    distances: "Distances",
+    emergency: "Useful information",
+    back: "← Back"
+  },
+
+  de: {
+    subtitle: "Willkommen in Ihrem digitalen Gästeführer",
+    welcomeTitle: "Willkommen!",
+    welcomeText:
+      "Wir freuen uns, Sie im Refuge des Étoiles begrüßen zu dürfen. Hier finden Sie alle wichtigen Informationen für Ihren Aufenthalt.",
+
+    arrival: "Ankunft & Abreise",
+    wifi: "WLAN",
+    house: "Das Haus",
+    pool: "Pool",
+    spa: "Whirlpool",
+    wood: "Holzofen",
+    waste: "Abfall & Recycling",
+    kitchen: "Küche",
+    games: "Spiele",
+    places: "Ausflugsziele",
+    distances: "Entfernungen",
+    emergency: "Nützliche Informationen",
+    back: "← Zurück"
+  },
+
+  nl: {
+    subtitle: "Welkom in uw digitale gastenboek",
+    welcomeTitle: "Welkom!",
+    welcomeText:
+      "Wij heten u van harte welkom bij Le Refuge des Étoiles. Hier vindt u alle nuttige informatie voor een aangenaam verblijf.",
+
+    arrival: "Aankomst & Vertrek",
+    wifi: "Wi-Fi",
+    house: "Het huis",
+    pool: "Zwembad",
+    spa: "Spa",
+    wood: "Houtkachel",
+    waste: "Afval & Recycling",
+    kitchen: "Keuken",
+    games: "Spellen",
+    places: "Te ontdekken",
+    distances: "Afstanden",
+    emergency: "Nuttige informatie",
+    back: "← Terug"
+  }
+
+};
+
+
+function changeLanguage(lang) {
+
+  localStorage.setItem("language", lang);
+
+  document.documentElement.lang = lang;
+
+  document.getElementById("subtitle").textContent =
+    translations[lang].subtitle;
+
+  document.getElementById("welcome-title").textContent =
+    translations[lang].welcomeTitle;
+
+  document.getElementById("welcome-text").textContent =
+    translations[lang].welcomeText;
+
+
+  document.querySelectorAll("[data-key]").forEach(element => {
+
+    const key = element.dataset.key;
+
+    if (translations[lang][key]) {
+      element.textContent = translations[lang][key];
+    }
+
+  });
+
+
+  document.querySelectorAll(".section-text").forEach(element => {
+
+    const translation = element.dataset[lang];
+
+    if (translation) {
+      element.textContent = translation;
+    }
+
+  });
+
+}
+
+
+function showSection(id) {
+
+  document.querySelectorAll(".section").forEach(section => {
+    section.style.display = "none";
+  });
+
+  document.getElementById(id).style.display = "block";
+
+  document.getElementById(id).scrollIntoView({
+    behavior: "smooth"
+  });
+
+}
+
+
+function hideSection() {
+
+  document.querySelectorAll(".section").forEach(section => {
+    section.style.display = "none";
+  });
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+/* Détection automatique de la langue */
+
+let savedLanguage = localStorage.getItem("language");
+
+if (savedLanguage) {
+
+  changeLanguage(savedLanguage);
+
+} else {
+
+  let browserLanguage =
+    navigator.language ||
+    navigator.userLanguage ||
+    "fr";
+
+  browserLanguage =
+    browserLanguage.substring(0,2).toLowerCase();
+
+  if (!["fr","en","de","nl"].includes(browserLanguage)) {
+    browserLanguage = "en";
+  }
+
+  changeLanguage(browserLanguage);
+
+}
+
+</script>
+
+</body>
+</html>
