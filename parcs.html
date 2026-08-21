@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Parcs & loisirs - Le Refuge des Étoiles</title>
+
+<style>
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f2ed;
+  color: #2f2f2f;
+}
+
+header {
+  background: linear-gradient(135deg, #5d4b73, #9c83b3);
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+header p {
+  max-width: 650px;
+  margin: 12px auto 0;
+  line-height: 1.5;
+}
+
+.language-selector {
+  margin-top: 18px;
+}
+
+.language-selector button {
+  border: none;
+  background: white;
+  padding: 9px 12px;
+  margin: 3px;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.container {
+  max-width: 850px;
+  margin: auto;
+  padding: 20px;
+}
+
+.filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.filter-button {
+  border: none;
+  background: white;
+  padding: 10px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 2px 7px rgba(0,0,0,0.08);
+  font-weight: bold;
+}
+
+.filter-button.active {
+  background: #5d4b73;
+  color: white;
+}
+
+.place-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+}
+
+.place-header {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+}
+
+.place-icon {
+  min-width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #eee7f3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+
+.place-info {
+  flex: 1;
+}
+
+.place-card h2 {
+  color: #5d4b73;
+  margin: 0 0 8px 0;
+  font-size: 21px;
+}
+
+.travel {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.address,
+.phone {
+  line-height: 1.5;
+  margin: 4px 0;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-top: 15px;
+}
+
+.action-button {
+  display: block;
+  text-align: center;
+  padding: 12px 8px;
+  border-radius: 9px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.map-button {
+  background: #5d4b73;
+  color: white;
+}
+
+.website-button {
+  background: #ece7f0;
+  color: #5d4b73;
+}
+
+.hidden {
+  display: none;
+}
+
+.back-button {
+  display: block;
+  width: fit-content;
+  margin: 25px auto 10px;
+  padding: 13px 20px;
+  background: #5d4b73;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.home-button {
+  display: block;
+  width: fit-content;
+  margin: 10px auto 25px;
+  padding: 11px 18px;
+  background: #777;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  padding: 25px 20px;
+  color: #777;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+
+  .container {
+    padding: 12px;
+  }
+
+  .place-card {
+    padding: 16px;
+  }
+
+  .buttons {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<header>
+
+<h1>🎢 <span id="pageTitle">Parcs & loisirs</span></h1>
+
+<p id="headerText">
+Découvrez une sélection d'activités et de parcs pour petits et grands.
+</p>
+
+<div class="language-selector">
+  <button onclick="changeLanguage('fr')">🇫🇷</button>
+  <button onclick="changeLanguage('en')">🇬🇧</button>
+  <button onclick="changeLanguage('de')">🇩🇪</button>
+  <button onclick="changeLanguage('nl')">🇳🇱</button>
+</div>
+
+</header>
+
+
+<div class="container">
+
+<div class="filters">
+
+<button class="filter-button active"
+        id="filterAll"
+        onclick="filterPlaces('all', this)">
+Tous
+</button>
+
+<button class="filter-button"
+        id="filterNear"
+        onclick="filterPlaces('near', this)">
+📍 Moins de 30 min
+</button>
+
+<button class="filter-button"
+        id="filterFamily"
+        onclick="filterPlaces('family', this)">
+👨‍👩‍👧‍👦 En famille
+</button>
+
+</div>
+
+
+<div id="placesContainer"></div>
+
+
+<a class="back-button"
+   href="sorties.html"
+   id="backButton">
+← Retour aux sorties
+</a>
+
+<a class="home-button"
+   href="index.html"
+   id="homeButton">
+🏡 Accueil du livret
+</a>
+
+</div>
+
+
+<footer>
+✨ Le Refuge des Étoiles ✨<br>
+Le Sappey — Haute-Savoie
+</footer>
+
+
+<script>
+
+/* =============================
+   DONNÉES DES SORTIES
+============================= */
+
+const places = [
+
+{
+  name: "Le lac des Dronières",
+  icon: "🌊",
+  km: 6,
+  minutes: 10,
+  timeText: "10 min",
+  address: "1050 Route des Dronières, 74350 Cruseilles",
+  phone: "+33 (0)4 50 32 10 33",
+  website: "https://www.cruseilles.fr",
+  family: true
+},
+
+{
+  name: "Le Grand Parc d’Andilly – été",
+  icon: "🎢",
+  km: 12,
+  minutes: 15,
+  timeText: "15 min",
+  address: "374 Chemin du Grand Parc, 74350 Andilly",
+  phone: "+33 (0)4 50 32 73 64",
+  website: "https://www.grandparc-andilly.com/le-parc-dandilly-en-ete",
+  family: true
+},
+
+{
+  name: "Le Grand Parc d’Andilly – Noël",
+  icon: "🎄",
+  km: 12,
+  minutes: 15,
+  timeText: "15 min",
+  address: "374 Chemin du Grand Parc, 74350 Andilly",
+  phone: "+33 (0)4 50 32 73 64",
+  website: "https://www.grandparc-andilly.com/le-grand-parc-de-noel",
+  family: true
+},
+
+{
+  name: "Le Hameau du Père Noël",
+  icon: "🎅",
+  km: 13,
+  minutes: 15,
+  timeText: "15 min",
+  address: "75 Allée des Alouettes, 74350 Saint-Blaise",
+  phone: "+33 (0)4 50 32 73 64",
+  website: "https://www.grandparc-andilly.com/le-hameau-du-pere-noel",
+  family: true
+},
+
+{
+  name: "Filenvol",
+  icon: "🌳",
+  km: 13,
+  minutes: 20,
+  timeText: "20 min",
+  address: "396 Chemin du Vallon, 74560 Monnetier-Mornex",
+  phone: "+33 (0)4 50 43 08 56",
+  website: "https://www.filenvol.com/",
+  family: true
+},
+
+{
+  name: "UCPA Vitam",
+  icon: "🌊",
+  km: 20,
+  minutes: 20,
+  timeText: "20 min",
+  address: "500 Route des Envignes, 74160 Neydens",
+  phone: "+33 (0)4 50 84 66 66",
+  website: "https://www.ucpavitam.fr/",
+  family: true
+},
+
+{
+  name: "L’Île de Tortuga",
+  icon: "🏴‍☠️",
+  km: 21,
+  minutes: 35,
+  timeText: "35 min",
+  address: "10 Allée des Chênes, 74100 Vétraz-Monthoux",
+  phone: "+33 (0)4 50 92 66 04",
+  website: "https://vetraz.parctortuga.fr/",
+  family: true
+},
+
+{
+  name: "Laser Game Evolution",
+  icon: "🔫",
+  km: 23,
+  minutes: 40,
+  timeText: "40 min",
+  address: "14 Rue des Deux Montagnes, 74100 Ville-la-Grand",
+  phone: "+33 (0)4 65 84 94 63",
+  website: "https://annemasse.lasergame-evolution.fr/",
+  family: true
+},
+
+{
+  name: "Aquaparc – Suisse",
+  icon: "🌊",
+  km: 81,
+  minutes: 125,
+  timeText: "2 h 05",
+  address: "122 Route de la Plage, 1897 Port-Valais, Suisse",
+  phone: "+41 24 482 00 00",
+  website: "https://www.aquaparc.ch/",
+  family: true
+},
+
+{
+  name: "Fantasticable",
+  icon: "🪂",
+  km: 111,
+  minutes: 135,
+  timeText: "2 h 15",
+  address: "Route du Pré la Joux, 74390 Châtel",
+  phone: "+33 (0)4 50 73 34 24",
+  website: "https://www.skipass-chatel.com/fr/forfaits-fantasticable",
+  family: false
+}
+
+];
+
+
+/* =============================
+   TRADUCTIONS
+============================= */
+
+const translations = {
+
+fr: {
+
+  pageTitle: "Parcs & loisirs",
+
+  headerText:
+  "Découvrez une sélection d'activités et de parcs pour petits et grands.",
+
+  filterAll: "Tous",
+
+  filterNear: "📍 Moins de 30 min",
+
+  filterFamily: "👨‍👩‍👧‍👦 En famille",
+
+  distance: "Distance",
+
+  travel: "environ",
+
+  address: "Adresse",
+
+  phone: "Téléphone",
+
+  map: "📍 Itinéraire",
+
+  website: "🌐 Site internet",
+
+  back: "← Retour aux sorties",
+
+  home: "🏡 Accueil du livret"
+
+},
+
+
+en: {
+
+  pageTitle: "Parks & activities",
+
+  headerText:
+  "Discover a selection of parks and activities for all ages.",
+
+  filterAll: "All",
+
+  filterNear: "📍 Less than 30 min",
+
+  filterFamily: "👨‍👩‍👧‍👦 Family",
+
+  distance: "Distance",
+
+  travel: "about",
+
+  address: "Address",
+
+  phone: "Phone",
+
+  map: "📍 Directions",
+
+  website: "🌐 Website",
+
+  back: "← Back to activities",
+
+  home: "🏡 Guest guide home"
+
+},
+
+
+de: {
+
+  pageTitle: "Freizeitparks & Aktivitäten",
+
+  headerText:
+  "Entdecken Sie Freizeitparks und Aktivitäten für Groß und Klein.",
+
+  filterAll: "Alle",
+
+  filterNear: "📍 Unter 30 Min.",
+
+  filterFamily: "👨‍👩‍👧‍👦 Familie",
+
+  distance: "Entfernung",
+
+  travel: "ca.",
+
+  address: "Adresse",
+
+  phone: "Telefon",
+
+  map: "📍 Route",
+
+  website: "🌐 Webseite",
+
+  back: "← Zurück zu den Ausflügen",
+
+  home: "🏡 Gästeführer"
+
+},
+
+
+nl: {
+
+  pageTitle: "Parken & activiteiten",
+
+  headerText:
+  "Ontdek leuke parken en activiteiten voor jong en oud.",
+
+  filterAll: "Alles",
+
+  filterNear: "📍 Minder dan 30 min",
+
+  filterFamily: "👨‍👩‍👧‍👦 Gezin",
+
+  distance: "Afstand",
+
+  travel: "ongeveer",
+
+  address: "Adres",
+
+  phone: "Telefoon",
+
+  map: "📍 Route",
+
+  website: "🌐 Website",
+
+  back: "← Terug naar uitstapjes",
+
+  home: "🏡 Gastenhandleiding"
+
+}
+
+};
+
+
+let currentLanguage = "fr";
+
+
+/* =============================
+   CREATION DES CARTES
+============================= */
+
+function renderPlaces(filter = "all") {
+
+  const container =
+    document.getElementById("placesContainer");
+
+  container.innerHTML = "";
+
+  const t = translations[currentLanguage];
+
+
+  places.forEach(place => {
+
+
+    if (
+      filter === "near" &&
+      place.minutes >= 30
+    ) {
+      return;
+    }
+
+
+    if (
+      filter === "family" &&
+      !place.family
+    ) {
+      return;
+    }
+
+
+    const card =
+      document.createElement("div");
+
+    card.className = "place-card";
+
+
+    const mapsUrl =
+      "https://www.google.com/maps/search/?api=1&query=" +
+      encodeURIComponent(place.address);
+
+
+    let websiteButton = "";
+
+
+    if (place.website) {
+
+      websiteButton = `
+
+      <a
+        class="action-button website-button"
+        href="${place.website}"
+        target="_blank">
+
+        ${t.website}
+
+      </a>
+
+      `;
+
+    }
+
+
+    card.innerHTML = `
+
+      <div class="place-header">
+
+        <div class="place-icon">
+          ${place.icon}
+        </div>
+
+
+        <div class="place-info">
+
+          <h2>
+            ${place.name}
+          </h2>
+
+
+          <div class="travel">
+
+            🚗 ${place.km} km
+            •
+            ${t.travel} ${place.timeText}
+
+          </div>
+
+
+          <div class="address">
+
+            📍 ${place.address}
+
+          </div>
+
+
+          <div class="phone">
+
+            ☎️
+            <a href="tel:${place.phone.replace(/\s/g,'')}">
+              ${place.phone}
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="buttons">
+
+        <a
+          class="action-button map-button"
+          href="${mapsUrl}"
+          target="_blank">
+
+          ${t.map}
+
+        </a>
+
+
+        ${websiteButton}
+
+      </div>
+
+    `;
+
+
+    container.appendChild(card);
+
+  });
+
+}
+
+
+/* =============================
+   FILTRES
+============================= */
+
+function filterPlaces(filter, button) {
+
+  document
+    .querySelectorAll(".filter-button")
+    .forEach(btn => {
+
+      btn.classList.remove("active");
+
+    });
+
+
+  button.classList.add("active");
+
+
+  renderPlaces(filter);
+
+}
+
+
+/* =============================
+   LANGUE
+============================= */
+
+function changeLanguage(lang) {
+
+  currentLanguage = lang;
+
+  localStorage.setItem(
+    "language",
+    lang
+  );
+
+
+  document.documentElement.lang =
+    lang;
+
+
+  const t =
+    translations[lang];
+
+
+  document.getElementById("pageTitle").textContent =
+    t.pageTitle;
+
+
+  document.getElementById("headerText").textContent =
+    t.headerText;
+
+
+  document.getElementById("filterAll").textContent =
+    t.filterAll;
+
+
+  document.getElementById("filterNear").textContent =
+    t.filterNear;
+
+
+  document.getElementById("filterFamily").textContent =
+    t.filterFamily;
+
+
+  document.getElementById("backButton").textContent =
+    t.back;
+
+
+  document.getElementById("homeButton").textContent =
+    t.home;
+
+
+  renderPlaces();
+
+}
+
+
+/* =============================
+   DETECTION LANGUE
+============================= */
+
+let savedLanguage =
+  localStorage.getItem("language");
+
+
+if (
+  savedLanguage &&
+  translations[savedLanguage]
+) {
+
+  changeLanguage(savedLanguage);
+
+}
+
+else {
+
+  let browserLanguage =
+
+    navigator.language ||
+
+    navigator.userLanguage ||
+
+    "fr";
+
+
+  browserLanguage =
+
+    browserLanguage
+    .substring(0,2)
+    .toLowerCase();
+
+
+  if (
+    !["fr","en","de","nl"]
+    .includes(browserLanguage)
+  ) {
+
+    browserLanguage = "en";
+
+  }
+
+
+  changeLanguage(browserLanguage);
+
+}
+
+</script>
+
+</body>
+
+</html>
