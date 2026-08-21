@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>La maison - Le Refuge des Étoiles</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f2ed;
+      color: #2f2f2f;
+    }
+
+    header {
+      background: linear-gradient(135deg, #2f4f3f, #6f8f78);
+      color: white;
+      text-align: center;
+      padding: 35px 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 30px;
+    }
+
+    .language-selector {
+      margin-top: 18px;
+    }
+
+    .language-selector button {
+      border: none;
+      background: white;
+      padding: 9px 12px;
+      margin: 3px;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      padding: 22px;
+      margin-bottom: 18px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      color: #3f6651;
+    }
+
+    .card p {
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+
+    .important {
+      background: #fff4d8;
+      border-left: 5px solid #d6a23d;
+    }
+
+    .button {
+      display: block;
+      width: fit-content;
+      margin: 25px auto;
+      padding: 13px 20px;
+      background: #3f6651;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px 20px;
+      color: #777;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🏡 <span id="pageTitle">La maison</span></h1>
+
+  <div class="language-selector">
+    <button onclick="changeLanguage('fr')">🇫🇷</button>
+    <button onclick="changeLanguage('en')">🇬🇧</button>
+    <button onclick="changeLanguage('de')">🇩🇪</button>
+    <button onclick="changeLanguage('nl')">🇳🇱</button>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="card">
+    <h2 id="welcomeTitle">Bienvenue chez vous</h2>
+    <p id="welcomeText">
+      Nous espérons que vous vous sentirez rapidement chez vous au Refuge des Étoiles.
+      Vous trouverez ci-dessous les principales informations utiles pour profiter confortablement du logement.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2 id="heatingTitle">🌡️ Chauffage</h2>
+    <p id="heatingText">
+      Le logement est équipé d'un chauffage central. Merci d'utiliser les réglages prévus et de ne pas modifier les paramètres techniques de l'installation.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2 id="waterTitle">🚿 Eau chaude</h2>
+    <p id="waterText">
+      L'eau chaude est disponible dans l'ensemble du logement. Afin d'assurer le confort de tous, merci d'éviter les consommations excessives lors des périodes de forte occupation.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2 id="tvTitle">📺 Télévision & services connectés</h2>
+    <p id="tvText">
+      Les téléviseurs permettent d'utiliser différents services et applications connectés. Vous pouvez vous connecter à vos comptes personnels. Pensez à vous déconnecter avant votre départ.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2 id="equipmentTitle">🍽️ Équipements</h2>
+    <p id="equipmentText">
+      La maison dispose de nombreux équipements pour votre séjour. Merci de les utiliser avec soin et de nous signaler tout problème ou dysfonctionnement.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2 id="gamesTitle">🎲 Jeux & détente</h2>
+    <p id="gamesText">
+      Des jeux de société et du matériel de dessin sont à votre disposition dans le meuble du salon. Merci de les ranger après utilisation.
+    </p>
+  </div>
+
+  <div class="card important">
+    <h2 id="rulesTitle">🏠 Quelques règles</h2>
+    <p id="rulesText">
+      Il est interdit de fumer à l'intérieur de la maison. Merci de respecter le logement, le voisinage et les équipements mis à votre disposition.
+    </p>
+  </div>
+
+  <a class="button" href="index.html" id="homeButton">
+    ← Retour au livret d'accueil
+  </a>
+
+</div>
+
+<footer>
+  ✨ Le Refuge des Étoiles ✨<br>
+  Le Sappey — Haute-Savoie
+</footer>
+
+<script>
+
+const translations = {
+
+  fr: {
+    pageTitle: "La maison",
+
+    welcomeTitle: "Bienvenue chez vous",
+    welcomeText:
+      "Nous espérons que vous vous sentirez rapidement chez vous au Refuge des Étoiles. Vous trouverez ci-dessous les principales informations utiles pour profiter confortablement du logement.",
+
+    heatingTitle: "🌡️ Chauffage",
+    heatingText:
+      "Le logement est équipé d'un chauffage central. Merci d'utiliser les réglages prévus et de ne pas modifier les paramètres techniques de l'installation.",
+
+    waterTitle: "🚿 Eau chaude",
+    waterText:
+      "L'eau chaude est disponible dans l'ensemble du logement. Afin d'assurer le confort de tous, merci d'éviter les consommations excessives lors des périodes de forte occupation.",
+
+    tvTitle: "📺 Télévision & services connectés",
+    tvText:
+      "Le téléviseur permet d'utiliser différents services et applications connectés. Vous pouvez vous connecter à vos comptes personnels. Pensez à vous déconnecter avant votre départ.",
+
+    equipmentTitle: "🍽️ Équipements",
+    equipmentText:
+      "La maison dispose de nombreux équipements pour votre séjour. Merci de les utiliser avec soin et de nous signaler tout problème ou dysfonctionnement.",
+
+    gamesTitle: "🎲 Jeux & détente",
+    gamesText:
+      "Des jeux de société et du matériel de dessin sont à votre disposition dans le meuble du salon. Merci de les ranger après utilisation.",
+
+    rulesTitle: "🏠 Quelques règles",
+    rulesText:
+      "Il est interdit de fumer à l'intérieur de la maison. Merci de respecter le logement, le voisinage et les équipements mis à votre disposition.",
+
+    home: "← Retour au livret d'accueil"
+  },
+
+  en: {
+    pageTitle: "The house",
+
+    welcomeTitle: "Make yourself at home",
+    welcomeText:
+      "We hope you quickly feel at home at Le Refuge des Étoiles. Below you will find the main information you need to enjoy the house comfortably.",
+
+    heatingTitle: "🌡️ Heating",
+    heatingText:
+      "The house is equipped with central heating. Please use the provided settings and do not change the technical settings of the system.",
+
+    waterTitle: "🚿 Hot water",
+    waterText:
+      "Hot water is available throughout the house. To ensure everyone's comfort, please avoid excessive use during periods of high occupancy.",
+
+    tvTitle: "📺 TV & connected services",
+    tvText:
+      "The television provide access to various connected services and apps. You may sign in with your personal accounts. Please remember to sign out before departure.",
+
+    equipmentTitle: "🍽️ Equipment",
+    equipmentText:
+      "The house offers a wide range of equipment for your stay. Please use it carefully and let us know if you notice any problem or malfunction.",
+
+    gamesTitle: "🎲 Games & relaxation",
+    gamesText:
+      "Board games and drawing materials are available in the living room cabinet. Please put them away after use.",
+
+    rulesTitle: "🏠 A few house rules",
+    rulesText:
+      "Smoking is not permitted inside the house. Please respect the property, the neighbourhood and the equipment provided.",
+
+    home: "← Back to the guest guide"
+  },
+
+  de: {
+    pageTitle: "Das Haus",
+
+    welcomeTitle: "Fühlen Sie sich wie zu Hause",
+    welcomeText:
+      "Wir hoffen, dass Sie sich im Refuge des Étoiles schnell wie zu Hause fühlen. Nachfolgend finden Sie die wichtigsten Informationen für einen angenehmen Aufenthalt.",
+
+    heatingTitle: "🌡️ Heizung",
+    heatingText:
+      "Das Haus verfügt über eine Zentralheizung. Bitte verwenden Sie die vorgesehenen Einstellungen und verändern Sie keine technischen Parameter der Anlage.",
+
+    waterTitle: "🚿 Warmwasser",
+    waterText:
+      "Warmwasser steht im gesamten Haus zur Verfügung. Bitte vermeiden Sie bei hoher Belegung einen übermäßigen Verbrauch.",
+
+    tvTitle: "📺 Fernseher & Streaming-Dienste",
+    tvText:
+      "Über die Fernseher können verschiedene Apps und Streaming-Dienste genutzt werden. Sie können sich mit Ihren persönlichen Konten anmelden. Bitte melden Sie sich vor der Abreise wieder ab.",
+
+    equipmentTitle: "🍽️ Ausstattung",
+    equipmentText:
+      "Das Haus verfügt über zahlreiche Ausstattungen für Ihren Aufenthalt. Bitte gehen Sie sorgfältig damit um und informieren Sie uns bei Problemen oder Störungen.",
+
+    gamesTitle: "🎲 Spiele & Entspannung",
+    gamesText:
+      "Gesellschaftsspiele und Zeichenmaterial befinden sich im Schrank im Wohnzimmer. Bitte räumen Sie alles nach der Nutzung wieder auf.",
+
+    rulesTitle: "🏠 Einige Hausregeln",
+    rulesText:
+      "Das Rauchen im Haus ist nicht gestattet. Bitte respektieren Sie das Haus, die Nachbarschaft und die bereitgestellten Einrichtungen.",
+
+    home: "← Zurück zum Gästeführer"
+  },
+
+  nl: {
+    pageTitle: "Het huis",
+
+    welcomeTitle: "Voel u thuis",
+    welcomeText:
+      "Wij hopen dat u zich snel thuis voelt bij Le Refuge des Étoiles. Hieronder vindt u de belangrijkste informatie voor een comfortabel verblijf.",
+
+    heatingTitle: "🌡️ Verwarming",
+    heatingText:
+      "De woning is voorzien van centrale verwarming. Gebruik de voorziene instellingen en wijzig de technische instellingen van de installatie niet.",
+
+    waterTitle: "🚿 Warm water",
+    waterText:
+      "Warm water is beschikbaar in de hele woning. Om het comfort van iedereen te garanderen, vragen wij u overmatig gebruik te vermijden wanneer de woning volledig bezet is.",
+
+    tvTitle: "📺 Televisie & verbonden diensten",
+    tvText:
+      "Via de televisie kunt u verschillende apps en streamingdiensten gebruiken. U kunt inloggen met uw persoonlijke accounts. Vergeet niet uit te loggen voordat u vertrekt.",
+
+    equipmentTitle: "🍽️ Voorzieningen",
+    equipmentText:
+      "De woning beschikt over verschillende voorzieningen voor uw verblijf. Gebruik ze zorgvuldig en laat het ons weten als u een probleem of storing opmerkt.",
+
+    gamesTitle: "🎲 Spellen & ontspanning",
+    gamesText:
+      "Bordspellen en tekenmateriaal zijn beschikbaar in de kast in de woonkamer. Berg ze na gebruik weer op.",
+
+    rulesTitle: "🏠 Enkele huisregels",
+    rulesText:
+      "Roken in de woning is niet toegestaan. Respecteer de woning, de buurt en de beschikbare voorzieningen.",
+
+    home: "← Terug naar de gastenhandleiding"
+  }
+
+};
+
+function changeLanguage(lang) {
+
+  localStorage.setItem("language", lang);
+
+  document.documentElement.lang = lang;
+
+  document.getElementById("pageTitle").textContent =
+    translations[lang].pageTitle;
+
+  document.getElementById("welcomeTitle").textContent =
+    translations[lang].welcomeTitle;
+
+  document.getElementById("welcomeText").textContent =
+    translations[lang].welcomeText;
+
+  document.getElementById("heatingTitle").textContent =
+    translations[lang].heatingTitle;
+
+  document.getElementById("heatingText").textContent =
+    translations[lang].heatingText;
+
+  document.getElementById("waterTitle").textContent =
+    translations[lang].waterTitle;
+
+  document.getElementById("waterText").textContent =
+    translations[lang].waterText;
+
+  document.getElementById("tvTitle").textContent =
+    translations[lang].tvTitle;
+
+  document.getElementById("tvText").textContent =
+    translations[lang].tvText;
+
+  document.getElementById("equipmentTitle").textContent =
+    translations[lang].equipmentTitle;
+
+  document.getElementById("equipmentText").textContent =
+    translations[lang].equipmentText;
+
+  document.getElementById("gamesTitle").textContent =
+    translations[lang].gamesTitle;
+
+  document.getElementById("gamesText").textContent =
+    translations[lang].gamesText;
+
+  document.getElementById("rulesTitle").textContent =
+    translations[lang].rulesTitle;
+
+  document.getElementById("rulesText").textContent =
+    translations[lang].rulesText;
+
+  document.getElementById("homeButton").textContent =
+    translations[lang].home;
+}
+
+
+let savedLanguage = localStorage.getItem("language");
+
+if (savedLanguage && translations[savedLanguage]) {
+
+  changeLanguage(savedLanguage);
+
+} else {
+
+  let browserLanguage =
+    navigator.language ||
+    navigator.userLanguage ||
+    "fr";
+
+  browserLanguage =
+    browserLanguage.substring(0,2).toLowerCase();
+
+  if (!["fr","en","de","nl"].includes(browserLanguage)) {
+    browserLanguage = "en";
+  }
+
+  changeLanguage(browserLanguage);
+
+}
+
+</script>
+
+</body>
+</html>
