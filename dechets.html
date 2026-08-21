@@ -107,7 +107,22 @@ footer {
   color: #777;
   font-size: 14px;
 }
+.map-button {
+  display: block;
+  padding: 15px 18px;
+  margin: 12px 0;
+  background: #4f6b4f;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.4;
+}
 
+.map-button:hover {
+  opacity: 0.9;
+}
 </style>
 
 </head>
@@ -165,6 +180,36 @@ Les ordures ménagères doivent être déposées dans les points de collecte sit
 <h2 id="recyclingTitle">
 ♻️ Tri sélectif
 </h2>
+  </div>
+  <!-- POINTS DE COLLECTE -->
+
+<div class="card">
+
+  <h2 id="mapTitle">
+    📍 Trouver les points de collecte
+  </h2>
+
+  <p id="mapText">
+    Cliquez sur le point de collecte souhaité pour l'afficher directement dans Google Maps.
+  </p>
+
+  <a
+    class="map-button"
+    href="https://www.google.fr/maps/@46.0785076,6.1553129,21z?entry=ttu"
+    target="_blank"
+    id="householdMapButton">
+    🗑️ Ordures ménagères – à proximité
+  </a>
+
+  <a
+    class="map-button"
+    href="https://www.google.fr/maps/@46.0830035,6.1584139,18z?entry=ttu"
+    target="_blank"
+    id="recyclingMapButton">
+    ♻️ Tri sélectif + ordures ménagères
+  </a>
+
+</div>
 
 <p id="recyclingText">
 Le tri sélectif se fait également dans des points de collecte dédiés. Les conteneurs pour le verre, le plastique, le papier et les cartons se trouvent à moins d'un kilomètre de la maison.
@@ -236,8 +281,19 @@ reminderText:
 "Nous vous remercions de respecter les consignes de tri et de ne pas laisser de sacs-poubelle à l'extérieur de la maison ou à proximité des conteneurs lorsqu'ils sont pleins.",
 
 home:
-"← Retour au livret d'accueil"
+"← Retour au livret d'accueil",
 
+mapTitle:
+"📍 Trouver les points de collecte",
+
+mapText:
+"Cliquez sur le point de collecte souhaité pour l'afficher directement dans Google Maps.",
+
+householdMap:
+"🗑️ Ordures ménagères – à proximité",
+
+recyclingMap:
+"♻️ Tri sélectif + ordures ménagères",
 },
 
 en: {
@@ -267,7 +323,19 @@ reminderText:
 "Thank you for following the recycling instructions and for not leaving rubbish bags outside the house or next to full collection containers.",
 
 home:
-"← Back to the guest guide"
+"← Back to the guest guide",
+
+mapTitle:
+"📍 Find the collection points",
+
+mapText:
+"Select a collection point to open its location directly in Google Maps.",
+
+householdMap:
+"🗑️ Household waste – nearby",
+
+recyclingMap:
+"♻️ Recycling + household waste",
 
 },
 
@@ -298,7 +366,19 @@ reminderText:
 "Vielen Dank, dass Sie die Hinweise zur Mülltrennung beachten und keine Müllsäcke vor dem Haus oder neben vollen Sammelcontainern abstellen.",
 
 home:
-"← Zurück zum Gästeführer"
+"← Zurück zum Gästeführer",
+
+mapTitle:
+"📍 Sammelstellen finden",
+
+mapText:
+"Wählen Sie eine Sammelstelle aus, um den Standort direkt in Google Maps zu öffnen.",
+
+householdMap:
+"🗑️ Hausmüll – in der Nähe",
+
+recyclingMap:
+"♻️ Recycling + Hausmüll",
 
 },
 
@@ -329,7 +409,19 @@ reminderText:
 "Bedankt dat u de sorteervoorschriften respecteert en geen vuilniszakken buiten de woning of naast volle containers achterlaat.",
 
 home:
-"← Terug naar de gastenhandleiding"
+"← Terug naar de gastenhandleiding",
+
+mapTitle:
+"📍 Inzamelpunten vinden",
+
+mapText:
+"Kies een inzamelpunt om de locatie rechtstreeks in Google Maps te openen.",
+
+householdMap:
+"🗑️ Huishoudelijk afval – dichtbij",
+
+recyclingMap:
+"♻️ Recycling + huishoudelijk afval",
 
 }
 
@@ -367,6 +459,18 @@ translations[lang].reminderText;
 
 document.getElementById("homeButton").textContent =
 translations[lang].home;
+
+document.getElementById("mapTitle").textContent =
+translations[lang].mapTitle;
+
+document.getElementById("mapText").textContent =
+translations[lang].mapText;
+
+document.getElementById("householdMapButton").textContent =
+translations[lang].householdMap;
+
+document.getElementById("recyclingMapButton").textContent =
+translations[lang].recyclingMap;
 
 }
 
