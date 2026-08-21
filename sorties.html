@@ -1,0 +1,392 @@
+<title>Sorties & bonnes adresses - Le Refuge des Étoiles</title>
+
+<style>
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f2ed;
+  color: #2f2f2f;
+}
+
+header {
+  background: linear-gradient(135deg, #4b6655, #8aa28c);
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+header p {
+  margin: 12px auto 0;
+  max-width: 650px;
+  line-height: 1.5;
+}
+
+.language-selector {
+  margin-top: 18px;
+}
+
+.language-selector button {
+  border: none;
+  background: white;
+  padding: 9px 12px;
+  margin: 3px;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+.intro {
+  background: white;
+  border-radius: 15px;
+  padding: 22px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+}
+
+.intro h2 {
+  color: #4b6655;
+  margin-top: 0;
+}
+
+.intro p {
+  line-height: 1.6;
+}
+
+.category {
+  display: block;
+  background: white;
+  text-decoration: none;
+  color: #2f2f2f;
+  border-radius: 16px;
+  padding: 22px;
+  margin-bottom: 15px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+  transition: 0.2s;
+}
+
+.category:hover {
+  transform: translateY(-2px);
+}
+
+.category-icon {
+  font-size: 38px;
+  margin-bottom: 8px;
+}
+
+.category h2 {
+  margin: 0 0 7px 0;
+  color: #4b6655;
+}
+
+.category p {
+  margin: 0;
+  line-height: 1.5;
+  color: #666;
+}
+
+.home-button {
+  display: block;
+  width: fit-content;
+  margin: 25px auto;
+  padding: 13px 20px;
+  background: #4b6655;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+  padding: 25px 20px;
+  color: #777;
+  font-size: 14px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>🗺️ <span id="pageTitle">Sorties & bonnes adresses</span></h1>
+
+<p id="headerText">
+Découvrez quelques idées de sorties, visites et bonnes adresses autour du Refuge des Étoiles.
+</p>
+
+<div class="language-selector">
+  <button onclick="changeLanguage('fr')">🇫🇷</button>
+  <button onclick="changeLanguage('en')">🇬🇧</button>
+  <button onclick="changeLanguage('de')">🇩🇪</button>
+  <button onclick="changeLanguage('nl')">🇳🇱</button>
+</div>
+
+</header>
+
+<div class="container">
+
+<div class="intro">
+  <h2 id="introTitle">Que souhaitez-vous découvrir ?</h2>
+
+  <p id="introText">
+    Choisissez une catégorie pour retrouver nos idées de sorties, avec les distances, temps de trajet et informations utiles.
+  </p>
+</div>
+
+
+<a class="category" href="parcs.html">
+  <div class="category-icon">🎢</div>
+  <h2 id="parksTitle">Parcs & loisirs</h2>
+  <p id="parksText">
+    Parcs de loisirs, activités familiales et sorties pour petits et grands.
+  </p>
+</a>
+
+
+<a class="category" href="animaux.html">
+  <div class="category-icon">🦅</div>
+  <h2 id="animalsTitle">Animaux</h2>
+  <p id="animalsText">
+    Fermes, parcs animaliers, oiseaux et découvertes autour des animaux.
+  </p>
+</a>
+
+
+<a class="category" href="nature.html">
+  <div class="category-icon">🌿</div>
+  <h2 id="natureTitle">Nature</h2>
+  <p id="natureText">
+    Lacs, montagnes, gorges, jardins et paysages à découvrir.
+  </p>
+</a>
+
+
+<a class="category" href="lieux.html">
+  <div class="category-icon">🏔️</div>
+  <h2 id="placesTitle">Lieux à découvrir</h2>
+  <p id="placesText">
+    Villes, villages et sites incontournables de Haute-Savoie et des environs.
+  </p>
+</a>
+
+
+<a class="category" href="restaurants.html">
+  <div class="category-icon">🍽️</div>
+  <h2 id="restaurantsTitle">Restaurants</h2>
+  <p id="restaurantsText">
+    Restaurants à proximité, restauration rapide et spécialités savoyardes.
+  </p>
+</a>
+
+
+<a class="home-button" href="index.html" id="homeButton">
+  ← Retour au livret d'accueil
+</a>
+
+</div>
+
+<footer>
+✨ Le Refuge des Étoiles ✨<br>
+Le Sappey — Haute-Savoie
+</footer>
+
+
+<script>
+
+const translations = {
+
+fr: {
+  pageTitle: "Sorties & bonnes adresses",
+  headerText:
+    "Découvrez quelques idées de sorties, visites et bonnes adresses autour du Refuge des Étoiles.",
+
+  introTitle: "Que souhaitez-vous découvrir ?",
+  introText:
+    "Choisissez une catégorie pour retrouver nos idées de sorties, avec les distances, temps de trajet et informations utiles.",
+
+  parksTitle: "Parcs & loisirs",
+  parksText:
+    "Parcs de loisirs, activités familiales et sorties pour petits et grands.",
+
+  animalsTitle: "Animaux",
+  animalsText:
+    "Fermes, parcs animaliers, oiseaux et découvertes autour des animaux.",
+
+  natureTitle: "Nature",
+  natureText:
+    "Lacs, montagnes, gorges, jardins et paysages à découvrir.",
+
+  placesTitle: "Lieux à découvrir",
+  placesText:
+    "Villes, villages et sites incontournables de Haute-Savoie et des environs.",
+
+  restaurantsTitle: "Restaurants",
+  restaurantsText:
+    "Restaurants à proximité, restauration rapide et spécialités savoyardes.",
+
+  home: "← Retour au livret d'accueil"
+},
+
+en: {
+  pageTitle: "Things to do & local recommendations",
+  headerText:
+    "Discover ideas for activities, sightseeing and places to eat around Le Refuge des Étoiles.",
+
+  introTitle: "What would you like to discover?",
+  introText:
+    "Choose a category to explore our suggestions, including distances, travel times and useful information.",
+
+  parksTitle: "Parks & activities",
+  parksText:
+    "Leisure parks, family activities and outings for all ages.",
+
+  animalsTitle: "Animals",
+  animalsText:
+    "Farms, wildlife parks, birds and animal-related activities.",
+
+  natureTitle: "Nature",
+  natureText:
+    "Lakes, mountains, gorges, gardens and beautiful landscapes.",
+
+  placesTitle: "Places to visit",
+  placesText:
+    "Towns, villages and must-see places in Haute-Savoie and the surrounding area.",
+
+  restaurantsTitle: "Restaurants",
+  restaurantsText:
+    "Nearby restaurants, quick meals and Savoyard specialities.",
+
+  home: "← Back to the guest guide"
+},
+
+de: {
+  pageTitle: "Ausflüge & Empfehlungen",
+  headerText:
+    "Entdecken Sie Ausflugsziele, Sehenswürdigkeiten und Restaurants rund um das Refuge des Étoiles.",
+
+  introTitle: "Was möchten Sie entdecken?",
+  introText:
+    "Wählen Sie eine Kategorie und entdecken Sie unsere Empfehlungen mit Entfernungen, Fahrzeiten und nützlichen Informationen.",
+
+  parksTitle: "Freizeitparks & Aktivitäten",
+  parksText:
+    "Freizeitparks, Familienaktivitäten und Ausflüge für Groß und Klein.",
+
+  animalsTitle: "Tiere",
+  animalsText:
+    "Bauernhöfe, Tierparks, Vögel und Aktivitäten rund um Tiere.",
+
+  natureTitle: "Natur",
+  natureText:
+    "Seen, Berge, Schluchten, Gärten und schöne Landschaften.",
+
+  placesTitle: "Sehenswerte Orte",
+  placesText:
+    "Städte, Dörfer und sehenswerte Orte in Haute-Savoie und Umgebung.",
+
+  restaurantsTitle: "Restaurants",
+  restaurantsText:
+    "Restaurants in der Nähe, schnelle Küche und savoyische Spezialitäten.",
+
+  home: "← Zurück zum Gästeführer"
+},
+
+nl: {
+  pageTitle: "Uitstapjes & goede adressen",
+  headerText:
+    "Ontdek leuke uitstapjes, bezienswaardigheden en eetgelegenheden rond Le Refuge des Étoiles.",
+
+  introTitle: "Wat wilt u ontdekken?",
+  introText:
+    "Kies een categorie en bekijk onze suggesties met afstanden, reistijden en nuttige informatie.",
+
+  parksTitle: "Parken & activiteiten",
+  parksText:
+    "Pretparken, gezinsactiviteiten en uitstapjes voor jong en oud.",
+
+  animalsTitle: "Dieren",
+  animalsText:
+    "Boerderijen, dierenparken, vogels en activiteiten rond dieren.",
+
+  natureTitle: "Natuur",
+  natureText:
+    "Meren, bergen, kloven, tuinen en prachtige landschappen.",
+
+  placesTitle: "Plaatsen om te ontdekken",
+  placesText:
+    "Steden, dorpen en bijzondere plaatsen in Haute-Savoie en omgeving.",
+
+  restaurantsTitle: "Restaurants",
+  restaurantsText:
+    "Restaurants in de buurt, snelle maaltijden en Savoyaardse specialiteiten.",
+
+  home: "← Terug naar de gastenhandleiding"
+}
+
+};
+
+
+function changeLanguage(lang) {
+
+  localStorage.setItem("language", lang);
+  document.documentElement.lang = lang;
+
+  Object.keys(translations[lang]).forEach(key => {
+
+    const element = document.getElementById(key);
+
+    if (element) {
+      element.textContent = translations[lang][key];
+    }
+
+  });
+
+}
+
+
+let savedLanguage =
+  localStorage.getItem("language");
+
+if (
+  savedLanguage &&
+  translations[savedLanguage]
+) {
+
+  changeLanguage(savedLanguage);
+
+} else {
+
+  let browserLanguage =
+    navigator.language ||
+    navigator.userLanguage ||
+    "fr";
+
+  browserLanguage =
+    browserLanguage.substring(0,2).toLowerCase();
+
+  if (!["fr","en","de","nl"].includes(browserLanguage)) {
+    browserLanguage = "en";
+  }
+
+  changeLanguage(browserLanguage);
+}
+
+</script>
+
+</body>
+</html>
