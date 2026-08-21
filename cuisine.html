@@ -301,9 +301,6 @@ intro:
 home:
 "← Retour au livret d'accueil",
 
-open:
-"Voir les consignes",
-
 coffee:{
  name:"Cafetière Senseo",
  text:`
@@ -395,15 +392,13 @@ intro:
 home:
 "← Back to the guest guide",
 
-open:"View instructions",
-
 coffee:{
  name:"Senseo coffee machine",
  text:`
 <p>☕ Use soft coffee pods compatible with Senseo machines.</p>
 <p>💧 Make sure there is enough water in the tank.</p>
 <p>🔘 Place the coffee pod in the pod holder, then select your coffee.</p>
-<p>🧹 After use, remove the used pod and please leave the machine clean.</p>
+<p>🧹 After use, remove the used pod and leave the machine clean.</p>
 `
 },
 
@@ -487,8 +482,6 @@ intro:
 
 home:
 "← Zurück zum Gästeführer",
-
-open:"Hinweise anzeigen",
 
 coffee:{
  name:"Senseo-Kaffeemaschine",
@@ -581,8 +574,6 @@ intro:
 home:
 "← Terug naar de gastenhandleiding",
 
-open:"Instructies bekijken",
-
 coffee:{
  name:"Senseo-koffiezetapparaat",
  text:`
@@ -634,7 +625,7 @@ dishwasher:{
  name:"Vaatwasser",
  text:`
 <p>🍽️ Verwijder grote etensresten voordat u de vaatwasser inruimt.</p>
-<p>🧴 Gebruik uitsluitend een vaatwasmiddel dat geschikt is voor vaatwassers.</p>
+<p>🧴 Gebruik uitsluitend vaatwasmiddel dat geschikt is voor vaatwassers.</p>
 <p>⚠️ Gebruik nooit gewoon handafwasmiddel in de vaatwasser.</p>
 <p>✨ Ruim de schone vaat na afloop van het programma uit.</p>
 `
@@ -660,6 +651,7 @@ toaster:{
 
 }
 
+};
 
 let currentLanguage = "fr";
 
@@ -695,7 +687,9 @@ t[appliance.type];
 let name =
 translated.name;
 
-let instructions = translated.text;
+let instructions =
+translated.text ||
+translations.fr[appliance.type].text;
 
 
 card.innerHTML = `
