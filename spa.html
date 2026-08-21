@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Spa - Le Refuge des Étoiles</title>
+
+<style>
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f2ed;
+  color: #2f2f2f;
+}
+
+header {
+  background: linear-gradient(135deg, #197d88, #5baab1);
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+.language-selector {
+  margin-top: 18px;
+}
+
+.language-selector button {
+  border: none;
+  background: white;
+  padding: 9px 12px;
+  margin: 3px;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+}
+
+.card h2 {
+  margin-top: 0;
+  color: #197d88;
+}
+
+.card p {
+  line-height: 1.65;
+}
+
+#documentViewer {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+.info {
+  background: #eaf7f8;
+  border-left: 5px solid #197d88;
+}
+
+.warning {
+  background: #fff4d8;
+  border-left: 5px solid #d6a23d;
+}
+
+.problem {
+  background: #ffeaea;
+  border-left: 5px solid #c95757;
+}
+
+.home-button {
+  display: block;
+  width: fit-content;
+  margin: 25px auto;
+  padding: 13px 20px;
+  background: #197d88;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+  padding: 25px 20px;
+  color: #777;
+  font-size: 14px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h1>
+💦 <span id="pageTitle">Spa</span>
+</h1>
+
+
+<div class="language-selector">
+
+<button onclick="changeLanguage('fr')">🇫🇷</button>
+
+<button onclick="changeLanguage('en')">🇬🇧</button>
+
+<button onclick="changeLanguage('de')">🇩🇪</button>
+
+<button onclick="changeLanguage('nl')">🇳🇱</button>
+
+</div>
+
+</header>
+
+
+<div class="container">
+
+
+<!-- AFFICHE -->
+
+<div class="card">
+
+<img
+id="documentViewer"
+src="spa-fr.jpg"
+alt="Consignes de sécurité du spa">
+
+</div>
+
+
+<!-- INTRODUCTION -->
+
+<div class="card">
+
+<h2 id="relaxTitle">
+🫧 Profitez de votre moment de détente
+</h2>
+
+<p id="relaxText">
+Le spa est à votre disposition pour profiter d'un agréable moment de détente pendant votre séjour. Merci de respecter les consignes indiquées sur l'affiche afin de préserver votre sécurité, la qualité de l'eau et le matériel.
+</p>
+
+</div>
+
+
+<!-- UTILISATION -->
+
+<div class="card info">
+
+<h2 id="useTitle">
+🌡️ Utilisation du spa
+</h2>
+
+<p id="useText">
+Le cycle de massage dure 30 minutes. Une douche est obligatoire avant chaque utilisation et le port du maillot de bain est obligatoire.
+</p>
+
+</div>
+
+
+<!-- APRES UTILISATION -->
+
+<div class="card warning">
+
+<h2 id="coverTitle">
+🛡️ Après votre baignade
+</h2>
+
+<p id="coverText">
+Après chaque utilisation, merci de remettre correctement la couverture du spa. Cela permet de conserver la température de l'eau et de protéger le bassin des feuilles, insectes et autres impuretés.
+</p>
+
+</div>
+
+
+<!-- PROBLEME -->
+
+<div class="card problem">
+
+<h2 id="problemTitle">
+🆘 Un problème avec le spa ?
+</h2>
+
+<p id="problemText">
+En cas de message d'erreur, de problème de chauffage, de filtration ou de qualité de l'eau, merci de ne pas démonter ou modifier l'équipement. Contactez-nous afin que nous puissions intervenir ou vous guider.
+</p>
+
+</div>
+
+
+<a
+class="home-button"
+href="index.html"
+id="homeButton">
+
+← Retour au livret d'accueil
+
+</a>
+
+
+</div>
+
+
+<footer>
+
+✨ Le Refuge des Étoiles ✨
+
+<br>
+
+Le Sappey — Haute-Savoie
+
+</footer>
+
+
+<script>
+
+
+const translations = {
+
+
+fr: {
+
+pageTitle:
+"Spa",
+
+image:
+"spa-fr.jpg",
+
+relaxTitle:
+"🫧 Profitez de votre moment de détente",
+
+relaxText:
+"Le spa est à votre disposition pour profiter d'un agréable moment de détente pendant votre séjour. Merci de respecter les consignes indiquées sur l'affiche afin de préserver votre sécurité, la qualité de l'eau et le matériel.",
+
+useTitle:
+"🌡️ Utilisation du spa",
+
+useText:
+"Le cycle de massage dure 30 minutes. Une douche est obligatoire avant chaque utilisation et le port du maillot de bain est obligatoire.",
+
+coverTitle:
+"🛡️ Après votre baignade",
+
+coverText:
+"Après chaque utilisation, merci de remettre correctement la couverture du spa. Cela permet de conserver la température de l'eau et de protéger le bassin des feuilles, insectes et autres impuretés.",
+
+problemTitle:
+"🆘 Un problème avec le spa ?",
+
+problemText:
+"En cas de message d'erreur, de problème de chauffage, de filtration ou de qualité de l'eau, merci de ne pas démonter ou modifier l'équipement. Contactez-nous afin que nous puissions intervenir ou vous guider.",
+
+home:
+"← Retour au livret d'accueil"
+
+},
+
+
+en: {
+
+pageTitle:
+"Hot tub",
+
+image:
+"spa-en.jpg",
+
+relaxTitle:
+"🫧 Enjoy a relaxing moment",
+
+relaxText:
+"The hot tub is available for you to enjoy a relaxing moment during your stay. Please follow the safety instructions shown above to protect yourself, maintain the water quality and preserve the equipment.",
+
+useTitle:
+"🌡️ Using the hot tub",
+
+useText:
+"The massage cycle lasts 30 minutes. Please shower before each use and always wear swimwear.",
+
+coverTitle:
+"🛡️ After using the hot tub",
+
+coverText:
+"After each use, please replace the hot tub cover correctly. This helps maintain the water temperature and protects the water from leaves, insects and other debris.",
+
+problemTitle:
+"🆘 Problem with the hot tub?",
+
+problemText:
+"If you see an error message or experience a heating, filtration or water-quality problem, please do not dismantle or modify the equipment. Contact us so that we can assist you.",
+
+home:
+"← Back to the guest guide"
+
+},
+
+
+de: {
+
+pageTitle:
+"Whirlpool",
+
+image:
+"spa-de.jpg",
+
+relaxTitle:
+"🫧 Genießen Sie einen Moment der Entspannung",
+
+relaxText:
+"Der Whirlpool steht Ihnen während Ihres Aufenthalts für entspannende Momente zur Verfügung. Bitte beachten Sie die Sicherheitshinweise, um Ihre Sicherheit, die Wasserqualität und die Ausstattung zu schützen.",
+
+useTitle:
+"🌡️ Nutzung des Whirlpools",
+
+useText:
+"Der Massagezyklus dauert 30 Minuten. Bitte duschen Sie vor jeder Nutzung. Das Tragen von Badebekleidung ist obligatorisch.",
+
+coverTitle:
+"🛡️ Nach der Nutzung",
+
+coverText:
+"Bitte legen Sie die Abdeckung nach jeder Nutzung wieder korrekt auf den Whirlpool. Dadurch bleibt die Wassertemperatur erhalten und das Wasser wird vor Blättern, Insekten und anderen Verunreinigungen geschützt.",
+
+problemTitle:
+"🆘 Problem mit dem Whirlpool?",
+
+problemText:
+"Bei einer Fehlermeldung oder Problemen mit Heizung, Filterung oder Wasserqualität demontieren oder verändern Sie bitte nichts. Kontaktieren Sie uns, damit wir Ihnen helfen können.",
+
+home:
+"← Zurück zum Gästeführer"
+
+},
+
+
+nl: {
+
+pageTitle:
+"Spa",
+
+image:
+"spa-nl.jpg",
+
+relaxTitle:
+"🫧 Geniet van een ontspannen moment",
+
+relaxText:
+"De spa staat tijdens uw verblijf tot uw beschikking voor een heerlijk moment van ontspanning. Volg de veiligheidsinstructies om uw veiligheid, de waterkwaliteit en de apparatuur te beschermen.",
+
+useTitle:
+"🌡️ Gebruik van de spa",
+
+useText:
+"De massagecyclus duurt 30 minuten. Neem voor elk gebruik een douche. Het dragen van zwemkleding is verplicht.",
+
+coverTitle:
+"🛡️ Na gebruik",
+
+coverText:
+"Plaats na elk gebruik de afdekking correct terug op de spa. Zo blijft de watertemperatuur behouden en wordt het water beschermd tegen bladeren, insecten en ander vuil.",
+
+problemTitle:
+"🆘 Probleem met de spa?",
+
+problemText:
+"Bij een foutmelding of problemen met de verwarming, filtering of waterkwaliteit verzoeken wij u niets te demonteren of te wijzigen. Neem contact met ons op zodat wij u kunnen helpen.",
+
+home:
+"← Terug naar de gastenhandleiding"
+
+}
+
+};
+
+
+function changeLanguage(lang) {
+
+localStorage.setItem("language", lang);
+
+document.documentElement.lang = lang;
+
+
+document.getElementById("pageTitle").textContent =
+translations[lang].pageTitle;
+
+
+document.getElementById("documentViewer").src =
+translations[lang].image;
+
+
+document.getElementById("relaxTitle").textContent =
+translations[lang].relaxTitle;
+
+
+document.getElementById("relaxText").textContent =
+translations[lang].relaxText;
+
+
+document.getElementById("useTitle").textContent =
+translations[lang].useTitle;
+
+
+document.getElementById("useText").textContent =
+translations[lang].useText;
+
+
+document.getElementById("coverTitle").textContent =
+translations[lang].coverTitle;
+
+
+document.getElementById("coverText").textContent =
+translations[lang].coverText;
+
+
+document.getElementById("problemTitle").textContent =
+translations[lang].problemTitle;
+
+
+document.getElementById("problemText").textContent =
+translations[lang].problemText;
+
+
+document.getElementById("homeButton").textContent =
+translations[lang].home;
+
+}
+
+
+/* LANGUE MÉMORISÉE */
+
+let savedLanguage =
+localStorage.getItem("language");
+
+
+if (
+savedLanguage &&
+translations[savedLanguage]
+) {
+
+changeLanguage(savedLanguage);
+
+}
+
+else {
+
+let browserLanguage =
+navigator.language ||
+navigator.userLanguage ||
+"fr";
+
+
+browserLanguage =
+browserLanguage.substring(0,2).toLowerCase();
+
+
+if (
+!["fr","en","de","nl"].includes(browserLanguage)
+) {
+
+browserLanguage = "en";
+
+}
+
+
+changeLanguage(browserLanguage);
+
+}
+
+
+</script>
+
+</body>
+
+</html>
