@@ -122,6 +122,33 @@
       📄 Ouvrir en plein écran
     </a>
 
+    <div class="card" style="margin-top:20px;">
+
+  <h2 id="arrivalInfoTitle">🔑 Votre arrivée</h2>
+
+  <p id="arrivalInfoText" style="line-height:1.6;">
+    Nous sommes ravis de vous accueillir au Refuge des Étoiles.
+    Les arrivées sont possibles à partir de 17h.
+    En cas d’arrivée après 19h, l’arrivée se fait de manière autonome.
+    Merci de nous prévenir afin que nous puissions vous transmettre toutes les informations nécessaires.
+  </p>
+
+  <h2 id="departureInfoTitle" style="margin-top:30px;">
+    🕙 Avant votre départ
+  </h2>
+
+  <p id="departureInfoText" style="line-height:1.6;">
+    Avant de quitter le Refuge des Étoiles, pensez à faire un dernier tour de la maison afin de vérifier que vous n’avez rien oublié.
+    Merci de déposer les clés à l’endroit prévu, de vous déconnecter de vos comptes personnels sur les appareils connectés et de déposer vos déchets dans les points de collecte prévus.
+  </p>
+
+  <p id="goodbyeText"
+     style="line-height:1.6; text-align:center; font-weight:bold; margin-top:25px;">
+    Nous vous souhaitons un excellent séjour ! ✨
+  </p>
+
+</div>
+
   </div>
 
   <a class="button" href="index.html" id="homeButton">
@@ -145,7 +172,13 @@ const translations = {
     image: "arrivee-fr.jpg",
     pdf: "arrivee-fr.pdf",
     open: "📄 Ouvrir en plein écran",
-    home: "← Retour au livret d'accueil"
+    home: "← Retour au livret d'accueil",
+    
+    arrivalInfoTitle: "🔑 Votre arrivée",
+    arrivalInfoText: "Nous sommes ravis de vous accueillir au Refuge des Étoiles. Les arrivées sont possibles à partir de 17h. En cas d’arrivée après 19h, l’arrivée se fait de manière autonome. Merci de nous prévenir afin que nous puissions vous transmettre toutes les informations nécessaires.",
+    departureInfoTitle: "🕙 Avant votre départ",
+    departureInfoText: "Avant de quitter le Refuge des Étoiles, pensez à faire un dernier tour de la maison afin de vérifier que vous n’avez rien oublié. Merci de déposer les clés à l’endroit prévu, de vous déconnecter de vos comptes personnels sur les appareils connectés et de déposer vos déchets dans les points de collecte prévus.",
+    goodbyeText: "Nous vous souhaitons un excellent séjour ! ✨"
   },
 
   en: {
@@ -154,7 +187,13 @@ const translations = {
     image: "arrivee-en.jpg",
     pdf: "arrivee-en.pdf",
     open: "📄 Open full screen",
-    home: "← Back to the guest guide"
+    home: "← Back to the guest guide",
+    
+    arrivalInfoTitle: "🔑 Your arrival",
+    arrivalInfoText: "We are delighted to welcome you to Le Refuge des Étoiles. Check-in is available from 5:00 pm. If you arrive after 7:00 pm, check-in will be self-service. Please let us know in advance so that we can provide you with all the necessary information.",
+    departureInfoTitle: "🕙 Before you leave",
+    departureInfoText: "Before leaving Le Refuge des Étoiles, please take a final look around the house to make sure you have not forgotten anything. Please return the keys to the designated place, sign out of your personal accounts on connected devices and dispose of your waste at the designated collection points.",
+    goodbyeText: "We wish you a wonderful stay! ✨"
   },
 
   de: {
@@ -163,7 +202,13 @@ const translations = {
     image: "arrivee-de.jpg",
     pdf: "arrivee-de.pdf",
     open: "📄 Im Vollbild öffnen",
-    home: "← Zurück zum Gästeführer"
+    home: "← Zurück zum Gästeführer",
+    
+    arrivalInfoTitle: "🔑 Ihre Ankunft",
+    arrivalInfoText: "Wir freuen uns, Sie im Refuge des Étoiles begrüßen zu dürfen. Der Check-in ist ab 17:00 Uhr möglich. Bei einer Ankunft nach 19:00 Uhr erfolgt der Check-in selbstständig. Bitte informieren Sie uns im Voraus, damit wir Ihnen alle notwendigen Informationen zukommen lassen können.",
+    departureInfoTitle: "🕙 Vor Ihrer Abreise",
+    departureInfoText: "Bevor Sie das Refuge des Étoiles verlassen, schauen Sie bitte noch einmal im Haus nach, ob Sie nichts vergessen haben. Bitte hinterlegen Sie die Schlüssel am vorgesehenen Ort, melden Sie sich von Ihren persönlichen Konten auf den verbundenen Geräten ab und bringen Sie Ihren Abfall zu den vorgesehenen Sammelstellen.",
+    goodbyeText: "Wir wünschen Ihnen einen wunderschönen Aufenthalt! ✨"
   },
 
   nl: {
@@ -172,7 +217,13 @@ const translations = {
     image: "arrivee-nl.jpg",
     pdf: "arrivee-nl.pdf",
     open: "📄 Volledig scherm openen",
-    home: "← Terug naar de gastenhandleiding"
+    home: "← Terug naar de gastenhandleiding",
+    
+    arrivalInfoTitle: "🔑 Uw aankomst",
+    arrivalInfoText: "Wij heten u van harte welkom bij Le Refuge des Étoiles. Inchecken is mogelijk vanaf 17.00 uur. Bij aankomst na 19.00 uur kunt u zelfstandig inchecken. Laat het ons vooraf weten, zodat wij u alle nodige informatie kunnen bezorgen.",
+    departureInfoTitle: "🕙 Voor uw vertrek",
+    departureInfoText: "Loop voordat u Le Refuge des Étoiles verlaat nog even door het huis om te controleren of u niets bent vergeten. Leg de sleutels terug op de afgesproken plaats, log uit bij uw persoonlijke accounts op de aangesloten apparaten en breng uw afval naar de daarvoor bestemde inzamelpunten.",
+    goodbyeText: "Wij wensen u een heerlijk verblijf! ✨"
   }
 
 };
@@ -201,6 +252,21 @@ function changeLanguage(lang) {
 
   document.getElementById("homeButton").textContent =
     translations[lang].home;
+  
+  document.getElementById("arrivalInfoTitle").textContent =
+    translations[lang].arrivalInfoTitle;
+
+  document.getElementById("arrivalInfoText").textContent =
+    translations[lang].arrivalInfoText;
+
+  document.getElementById("departureInfoTitle").textContent =
+    translations[lang].departureInfoTitle;
+
+  document.getElementById("departureInfoText").textContent =
+    translations[lang].departureInfoText;
+
+  document.getElementById("goodbyeText").textContent =
+    translations[lang].goodbyeText;
 }
 
 
