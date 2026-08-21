@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Restaurants - Le Refuge des Étoiles</title>
+
+<style>
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f2ed;
+  color: #2f2f2f;
+}
+
+header {
+  background: linear-gradient(135deg, #7b5b43, #b99a7d);
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+header p {
+  max-width: 650px;
+  margin: 12px auto 0;
+  line-height: 1.5;
+}
+
+.language-selector {
+  margin-top: 18px;
+}
+
+.language-selector button {
+  border: none;
+  background: white;
+  padding: 9px 12px;
+  margin: 3px;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.container {
+  max-width: 850px;
+  margin: auto;
+  padding: 20px;
+}
+
+.filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.filter-button {
+  border: none;
+  background: white;
+  padding: 10px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 2px 7px rgba(0,0,0,0.08);
+  font-weight: bold;
+}
+
+.filter-button.active {
+  background: #7b5b43;
+  color: white;
+}
+
+.place-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+}
+
+.place-header {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+}
+
+.place-icon {
+  min-width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #f1e8df;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+
+.place-info {
+  flex: 1;
+}
+
+.place-card h2 {
+  color: #7b5b43;
+  margin: 0 0 8px 0;
+  font-size: 21px;
+}
+
+.description {
+  line-height: 1.5;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.address,
+.phone,
+.price {
+  line-height: 1.5;
+  margin: 4px 0;
+}
+
+.price {
+  font-weight: bold;
+  color: #7b5b43;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 9px;
+  margin-top: 15px;
+}
+
+.action-button {
+  display: block;
+  text-align: center;
+  padding: 12px 8px;
+  border-radius: 9px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.map-button {
+  background: #7b5b43;
+  color: white;
+}
+
+.back-button {
+  display: block;
+  width: fit-content;
+  margin: 25px auto 10px;
+  padding: 13px 20px;
+  background: #7b5b43;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.home-button {
+  display: block;
+  width: fit-content;
+  margin: 10px auto 25px;
+  padding: 11px 18px;
+  background: #777;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  padding: 25px 20px;
+  color: #777;
+  font-size: 14px;
+}
+
+@media (max-width:600px) {
+
+  .container {
+    padding: 12px;
+  }
+
+  .place-card {
+    padding: 16px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>🍽️ <span id="pageTitle">Restaurants</span></h1>
+
+<p id="headerText">
+Découvrez une sélection de restaurants autour du Refuge des Étoiles.
+</p>
+
+<div class="language-selector">
+  <button onclick="changeLanguage('fr')">🇫🇷</button>
+  <button onclick="changeLanguage('en')">🇬🇧</button>
+  <button onclick="changeLanguage('de')">🇩🇪</button>
+  <button onclick="changeLanguage('nl')">🇳🇱</button>
+</div>
+
+</header>
+
+<div class="container">
+
+<div class="filters">
+
+<button
+class="filter-button active"
+id="filterAll"
+onclick="filterPlaces('all', this)">
+Tous
+</button>
+
+<button
+class="filter-button"
+id="filterNearby"
+onclick="filterPlaces('nearby', this)">
+🍽️ À proximité
+</button>
+
+<button
+class="filter-button"
+id="filterFast"
+onclick="filterPlaces('fast', this)">
+🍕 Restauration rapide
+</button>
+
+<button
+class="filter-button"
+id="filterSavoy"
+onclick="filterPlaces('savoy', this)">
+🧀 Spécialités savoyardes
+</button>
+
+</div>
+
+<div id="placesContainer"></div>
+
+<a
+class="back-button"
+href="sorties.html"
+id="backButton">
+← Retour aux sorties
+</a>
+
+<a
+class="home-button"
+href="index.html"
+id="homeButton">
+🏡 Accueil du livret
+</a>
+
+</div>
+
+<footer>
+✨ Le Refuge des Étoiles ✨<br>
+Le Sappey — Haute-Savoie
+</footer>
+
+<script>
+
+const places = [
+
+{
+  name: "L’Arborescence",
+  icon: "🍽️",
+  category: "nearby",
+  address: "175 Route du Lac, 74350 Cruseilles",
+  phone: "+33 (0)9 56 02 68 96",
+  price: "€€€€",
+  descriptions: {
+    fr: "Hôtel & restaurant gastronomique au bord du lac des Dronières, cuisine créative et instinctive au rythme des saisons.",
+    en: "Gastronomic hotel and restaurant by Lake Dronières, with creative seasonal cuisine.",
+    de: "Gourmet-Hotel und Restaurant am Lac des Dronières mit kreativer saisonaler Küche.",
+    nl: "Gastronomisch hotel en restaurant aan het Lac des Dronières met creatieve seizoenskeuken."
+  }
+},
+
+{
+  name: "L’Observatoire",
+  icon: "🍴",
+  category: "nearby",
+  address: "8200 Route des 3 Lacs, 74560 Monnetier-Mornex",
+  phone: "+33 (0)4 50 39 60 57",
+  price: "€€ - €€€",
+  descriptions: {
+    fr: "Cuisine simple et savoureuse dans un cadre chaleureux.",
+    en: "Simple and tasty cuisine in a warm setting.",
+    de: "Einfache und schmackhafte Küche in gemütlicher Atmosphäre.",
+    nl: "Eenvoudige en smaakvolle keuken in een gezellige sfeer."
+  }
+},
+
+{
+  name: "Le M des Avenières",
+  icon: "🍷",
+  category: "nearby",
+  address: "1060 Route du Château, La Chenaz, 74350 Cruseilles",
+  phone: "+33 (0)4 50 44 02 23",
+  price: "€€€",
+  descriptions: {
+    fr: "Restaurant gourmand avec une cuisine terroir raffinée et élégante.",
+    en: "Refined local cuisine in an elegant setting.",
+    de: "Raffinierte regionale Küche in elegantem Ambiente.",
+    nl: "Verfijnde streekkeuken in een elegante omgeving."
+  }
+},
+
+{
+  name: "Chez Les Jumelles",
+  icon: "🥗",
+  category: "nearby",
+  address: "185 Grand Rue, 74350 Cruseilles",
+  phone: "+33 (0)4 50 11 61 33",
+  price: "€€ - €€€",
+  descriptions: {
+    fr: "Cuisine chaleureuse, authentique et traditionnelle avec des produits frais et de saison.",
+    en: "Warm, authentic and traditional cuisine using fresh seasonal products.",
+    de: "Herzhafte, authentische und traditionelle Küche mit frischen saisonalen Produkten.",
+    nl: "Warme, authentieke en traditionele keuken met verse seizoensproducten."
+  }
+},
+
+{
+  name: "L’Auberge de Pelloux",
+  icon: "🍲",
+  category: "nearby",
+  address: "Route du Chef-Lieu, 74350 Villy-le-Pelloux",
+  phone: "+33 (0)4 50 08 72 62",
+  price: "€€ - €€€",
+  descriptions: {
+    fr: "Cuisine simple mais raffinée, élaborée avec des produits frais.",
+    en: "Simple yet refined cuisine prepared with fresh ingredients.",
+    de: "Einfache, aber raffinierte Küche mit frischen Zutaten.",
+    nl: "Eenvoudige maar verfijnde keuken met verse ingrediënten."
+  }
+},
+
+{
+  name: "L’Auberge des Bornes",
+  icon: "🥘",
+  category: "nearby",
+  address: "625 Route de la Roche, 74350 Menthonnex-en-Bornes",
+  phone: "+33 (0)4 50 77 18 61",
+  price: "€€ - €€€",
+  descriptions: {
+    fr: "Cuisine traditionnelle et savoyarde privilégiant les producteurs locaux.",
+    en: "Traditional and Savoyard cuisine highlighting local producers.",
+    de: "Traditionelle savoyische Küche mit Schwerpunkt auf lokalen Produzenten.",
+    nl: "Traditionele Savoyaardse keuken met lokale producten."
+  }
+},
+
+{
+  name: "Crêperie B’Belette",
+  icon: "🥞",
+  category: "fast",
+  address: "26 Rue des Remparts, 74350 Cruseilles",
+  phone: "+33 (0)4 50 33 85 05",
+  price: "€",
+  descriptions: {
+    fr: "Crêperie dans un cadre chaleureux et convivial.",
+    en: "Friendly and cosy crêperie.",
+    de: "Gemütliche und freundliche Crêperie.",
+    nl: "Gezellige crêperie met een warme sfeer."
+  }
+},
+
+{
+  name: "La Dolce Serata",
+  icon: "🍕",
+  category: "fast",
+  address: "18 Place de la Fontaine, 74350 Cruseilles",
+  phone: "+33 (0)4 50 44 87 69",
+  price: "€€",
+  descriptions: {
+    fr: "Pizzas artisanales, ingrédients frais et ambiance conviviale.",
+    en: "Artisan pizzas with fresh ingredients and a friendly atmosphere.",
+    de: "Handgemachte Pizza mit frischen Zutaten.",
+    nl: "Ambachtelijke pizza’s met verse ingrediënten."
+  }
+},
+
+{
+  name: "La Loge",
+  icon: "🍔",
+  category: "fast",
+  address: "63 Place de la Fontaine, 74350 Cruseilles",
+  phone: "+33 (0)4 50 44 12 01",
+  price: "€€",
+  descriptions: {
+    fr: "Brasserie avec produits frais et locaux, burgers et bières artisanales.",
+    en: "Brasserie with fresh local products, burgers and craft beers.",
+    de: "Brasserie mit frischen regionalen Produkten, Burgern und Craft-Bieren.",
+    nl: "Brasserie met verse lokale producten, burgers en ambachtelijke bieren."
+  }
+},
+
+{
+  name: "Kebab Plaisir",
+  icon: "🥙",
+  category: "fast",
+  address: "325 Grand Rue, 74350 Cruseilles",
+  phone: "+33 (0)4 50 45 20 41",
+  price: "€€",
+  descriptions: {
+    fr: "Fast-food, grec et cuisine moyen-orientale.",
+    en: "Fast food, Greek and Middle Eastern cuisine.",
+    de: "Fast Food, griechische und nahöstliche Küche.",
+    nl: "Fastfood, Grieks en Midden-Oosterse keuken."
+  }
+},
+
+{
+  name: "Suko Sushi",
+  icon: "🍣",
+  category: "fast",
+  address: "7 Grand Rue, 74350 Cruseilles",
+  phone: "+33 (0)4 50 08 72 62",
+  price: "€€",
+  descriptions: {
+    fr: "Sushis, makis et spécialités japonaises préparés avec des ingrédients frais.",
+    en: "Sushi, maki and Japanese specialities prepared with fresh ingredients.",
+    de: "Sushi, Maki und japanische Spezialitäten mit frischen Zutaten.",
+    nl: "Sushi, maki en Japanse specialiteiten met verse ingrediënten."
+  }
+},
+
+{
+  name: "Marco Sancho Pizza",
+  icon: "🍕",
+  category: "fast",
+  address: "Chef-lieu, 74930 Arbusigny",
+  phone: "+33 (0)6 28 80 28 24",
+  price: "€€",
+  descriptions: {
+    fr: "Camion à pizza, vente à emporter, présent du jeudi au dimanche soir.",
+    en: "Pizza truck, takeaway service, available Thursday to Sunday evenings.",
+    de: "Pizza-Truck zum Mitnehmen, Donnerstag bis Sonntag abends.",
+    nl: "Pizzawagen voor afhalen, aanwezig van donderdag tot zondagavond."
+  }
+},
+
+{
+  name: "Café des Crêts",
+  icon: "🧀",
+  category: "savoy",
+  address: "Chemin du Crêt, 74560 La Muraz",
+  phone: "+33 (0)4 50 85 04 29",
+  price: "€€ - €€€",
+  descriptions: {
+    fr: "Spécialités savoyardes revisitées avec modernité.",
+    en: "Modern interpretations of Savoyard specialities.",
+    de: "Modern interpretierte savoyische Spezialitäten.",
+    nl: "Savoyaardse specialiteiten in een moderne stijl."
+  }
+},
+
+{
+  name: "La Ferme de la Charbonnière",
+  icon: "🫕",
+  category: "savoy",
+  address: "1539 Route de Thônes, 74290 Menthon-Saint-Bernard",
+  phone: "+33 (0)4 50 02 82 59",
+  price: "€€",
+  descriptions: {
+    fr: "Restaurant de spécialités savoyardes dans un cadre atypique.",
+    en: "Savoyard specialities in an unusual and authentic setting.",
+    de: "Savoyische Spezialitäten in außergewöhnlichem Ambiente.",
+    nl: "Savoyaardse specialiteiten in een bijzondere setting."
+  }
+},
+
+{
+  name: "L’Évidence",
+  icon: "🍽️",
+  category: "savoy",
+  address: "165 Avenue Marais, 74350 Allonzier-la-Caille",
+  phone: "+33 (0)9 73 36 87 25",
+  price: "€€",
+  descriptions: {
+    fr: "Cuisine traditionnelle.",
+    en: "Traditional cuisine.",
+    de: "Traditionelle Küche.",
+    nl: "Traditionele keuken."
+  }
+},
+
+{
+  name: "Auberge de Charly & ses filles",
+  icon: "🥘",
+  category: "savoy",
+  address: "37 Chemin des Sons, 74350 Andilly",
+  phone: "+33 (0)4 50 77 35 19",
+  price: "€€",
+  descriptions: {
+    fr: "Cuisine gourmande et attachante mettant à l’honneur les produits locaux.",
+    en: "Generous local cuisine highlighting regional products.",
+    de: "Herzhafte regionale Küche mit lokalen Produkten.",
+    nl: "Gulle streekkeuken met lokale producten."
+  }
+},
+
+{
+  name: "Le Ramoneur Savoyard",
+  icon: "🧀",
+  category: "savoy",
+  address: "7 Rue Grenette, 74000 Annecy",
+  phone: "+33 (0)4 50 51 99 99",
+  price: "€€",
+  descriptions: {
+    fr: "Spécialités savoyardes : fondue, tartiflette, raclette et cuisine du terroir.",
+    en: "Savoyard specialities including fondue, tartiflette and raclette.",
+    de: "Savoyische Spezialitäten wie Fondue, Tartiflette und Raclette.",
+    nl: "Savoyaardse specialiteiten zoals fondue, tartiflette en raclette."
+  }
+},
+
+{
+  name: "Le Freti",
+  icon: "🫕",
+  category: "savoy",
+  address: "10 Rue de la Gare, 74000 Annecy",
+  phone: "+33 (0)4 50 51 29 52",
+  price: "€€",
+  descriptions: {
+    fr: "Spécialités fromagères, fondue, raclette et plats traditionnels.",
+    en: "Cheese specialities, fondue, raclette and traditional dishes.",
+    de: "Käsespezialitäten, Fondue, Raclette und traditionelle Gerichte.",
+    nl: "Kaasspecialiteiten, fondue, raclette en traditionele gerechten."
+  }
+}
+
+];
+
+const translations = {
+
+fr: {
+  pageTitle: "Restaurants",
+  headerText: "Découvrez une sélection de restaurants autour du Refuge des Étoiles.",
+  filterAll: "Tous",
+  filterNearby: "🍽️ À proximité",
+  filterFast: "🍕 Restauration rapide",
+  filterSavoy: "🧀 Spécialités savoyardes",
+  map: "📍 Itinéraire",
+  back: "← Retour aux sorties",
+  home: "🏡 Accueil du livret"
+},
+
+en: {
+  pageTitle: "Restaurants",
+  headerText: "Discover a selection of restaurants around Le Refuge des Étoiles.",
+  filterAll: "All",
+  filterNearby: "🍽️ Nearby",
+  filterFast: "🍕 Quick meals",
+  filterSavoy: "🧀 Savoyard specialities",
+  map: "📍 Directions",
+  back: "← Back to activities",
+  home: "🏡 Guest guide home"
+},
+
+de: {
+  pageTitle: "Restaurants",
+  headerText: "Entdecken Sie Restaurants rund um das Refuge des Étoiles.",
+  filterAll: "Alle",
+  filterNearby: "🍽️ In der Nähe",
+  filterFast: "🍕 Schnelle Küche",
+  filterSavoy: "🧀 Savoyische Spezialitäten",
+  map: "📍 Route",
+  back: "← Zurück zu den Ausflügen",
+  home: "🏡 Gästeführer"
+},
+
+nl: {
+  pageTitle: "Restaurants",
+  headerText: "Ontdek restaurants rond Le Refuge des Étoiles.",
+  filterAll: "Alles",
+  filterNearby: "🍽️ In de buurt",
+  filterFast: "🍕 Snelle maaltijd",
+  filterSavoy: "🧀 Savoyaardse specialiteiten",
+  map: "📍 Route",
+  back: "← Terug naar uitstapjes",
+  home: "🏡 Gastenhandleiding"
+}
+
+};
+
+let currentLanguage = "fr";
+
+function renderPlaces(filter = "all") {
+
+  const container =
+  document.getElementById("placesContainer");
+
+  container.innerHTML = "";
+
+  const t =
+  translations[currentLanguage];
+
+  places.forEach(place => {
+
+    if (
+      filter !== "all" &&
+      place.category !== filter
+    ) {
+      return;
+    }
+
+    const card =
+    document.createElement("div");
+
+    card.className =
+    "place-card";
+
+    const mapsUrl =
+    "https://www.google.com/maps/search/?api=1&query=" +
+    encodeURIComponent(place.address);
+
+    card.innerHTML = `
+
+    <div class="place-header">
+
+      <div class="place-icon">
+        ${place.icon}
+      </div>
+
+      <div class="place-info">
+
+        <h2>${place.name}</h2>
+
+        <div class="description">
+          ${place.descriptions[currentLanguage]}
+        </div>
+
+        <div class="address">
+          📍 ${place.address}
+        </div>
+
+        <div class="phone">
+          ☎️
+          <a href="tel:${place.phone.replace(/\s/g,'')}">
+            ${place.phone}
+          </a>
+        </div>
+
+        <div class="price">
+          ${place.price}
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="buttons">
+
+      <a
+      class="action-button map-button"
+      href="${mapsUrl}"
+      target="_blank">
+
+        ${t.map}
+
+      </a>
+
+    </div>
+
+    `;
+
+    container.appendChild(card);
+
+  });
+
+}
+
+function filterPlaces(filter, button) {
+
+  document
+  .querySelectorAll(".filter-button")
+  .forEach(btn => {
+    btn.classList.remove("active");
+  });
+
+  button.classList.add("active");
+
+  renderPlaces(filter);
+
+}
+
+function changeLanguage(lang) {
+
+  currentLanguage = lang;
+
+  localStorage.setItem(
+  "language",
+  lang
+  );
+
+  document.documentElement.lang =
+  lang;
+
+  const t =
+  translations[lang];
+
+  document.getElementById("pageTitle").textContent =
+  t.pageTitle;
+
+  document.getElementById("headerText").textContent =
+  t.headerText;
+
+  document.getElementById("filterAll").textContent =
+  t.filterAll;
+
+  document.getElementById("filterNearby").textContent =
+  t.filterNearby;
+
+  document.getElementById("filterFast").textContent =
+  t.filterFast;
+
+  document.getElementById("filterSavoy").textContent =
+  t.filterSavoy;
+
+  document.getElementById("backButton").textContent =
+  t.back;
+
+  document.getElementById("homeButton").textContent =
+  t.home;
+
+  renderPlaces();
+
+}
+
+let savedLanguage =
+localStorage.getItem("language");
+
+if (
+savedLanguage &&
+translations[savedLanguage]
+) {
+
+  changeLanguage(savedLanguage);
+
+} else {
+
+  let browserLanguage =
+  navigator.language ||
+  navigator.userLanguage ||
+  "fr";
+
+  browserLanguage =
+  browserLanguage.substring(0,2).toLowerCase();
+
+  if (
+  !["fr","en","de","nl"].includes(browserLanguage)
+  ) {
+    browserLanguage = "en";
+  }
+
+  changeLanguage(browserLanguage);
+
+}
+
+</script>
+
+</body>
+</html>
