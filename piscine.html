@@ -1,390 +1,660 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Piscine - Le Refuge des Étoiles</title>
+
 <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f2ed;
-      color: #2f2f2f;
-    }
 
-    header {
-      background: linear-gradient(135deg, #2f6073, #71a8b8);
-      color: white;
-      text-align: center;
-      padding: 35px 20px;
-    }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f2ed;
+  color: #2f2f2f;
+}
 
-    header h1 {
-      margin: 0;
-      font-size: 30px;
-    }
+header {
+  background: linear-gradient(135deg, #087fa5, #52b9d3);
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+}
 
-    header p {
-      margin-top: 10px;
-      font-size: 16px;
-    }
+header h1 {
+  margin: 0;
+  font-size: 30px;
+}
 
-    .language-selector {
-      margin-top: 18px;
-    }
+.language-selector {
+  margin-top: 18px;
+}
 
-    .language-selector button {
-      border: none;
-      background: white;
-      padding: 9px 12px;
-      margin: 3px;
-      border-radius: 8px;
-      font-size: 18px;
-      cursor: pointer;
-    }
+.language-selector button {
+  border: none;
+  background: white;
+  padding: 9px 12px;
+  margin: 3px;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+}
 
-    .container {
-      max-width: 750px;
-      margin: auto;
-      padding: 20px;
-    }
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
 
-    .card {
-      background: white;
-      border-radius: 15px;
-      padding: 22px;
-      margin-bottom: 16px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.07);
-    }
+.card {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+}
 
-    h2 {
-      color: #2f6073;
-      margin-top: 0;
-    }
+.card h2 {
+  margin-top: 0;
+  color: #087fa5;
+  text-align: center;
+}
 
-    .rule {
-      padding: 12px 0;
-      border-bottom: 1px solid #e5e5e5;
-      line-height: 1.5;
-    }
+.card p {
+  line-height: 1.65;
+}
 
-    .rule:last-child {
-      border-bottom: none;
-    }
+.pool-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
 
-    .important {
-      background: #fff4d8;
-      border-left: 5px solid #d6a23d;
-    }
 
-    .danger {
-      background: #ffe4e4;
-      border-left: 5px solid #c54b4b;
-    }
-    
-    .hygiene {
-      background: #C7D3B5;
-      border-left: 5px solid #c54b4b;
-    }
+/* INFORMATION SAISON */
 
-    .home-button {
-      display: block;
-      width: fit-content;
-      margin: 25px auto;
-      padding: 13px 20px;
-      background: #2f6073;
-      color: white;
-      text-decoration: none;
-      border-radius: 10px;
-      font-weight: bold;
-    }
+.season {
+  background: #e8f7fb;
+  border-left: 5px solid #087fa5;
+}
 
-    footer {
-      text-align: center;
-      padding: 25px 20px;
-      color: #777;
-      font-size: 14px;
-    }
-  </style>
+
+/* ATTENTION */
+
+.warning {
+  background: #fff4d8;
+  border-left: 5px solid #d6a23d;
+}
+
+
+/* SECURITE */
+
+.safety {
+  background: #ffeaea;
+  border-left: 5px solid #c95757;
+}
+
+
+/* BOUTON RETOUR */
+
+.home-button {
+  display: block;
+  width: fit-content;
+  margin: 25px auto;
+  padding: 13px 20px;
+  background: #087fa5;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+  padding: 25px 20px;
+  color: #777;
+  font-size: 14px;
+}
+
+
+/* SMARTPHONE */
+
+@media (max-width: 600px) {
+
+  .container {
+    padding: 12px;
+  }
+
+  .card {
+    padding: 12px;
+  }
+
+  header h1 {
+    font-size: 27px;
+  }
+
+}
+
+</style>
+
 </head>
+
 
 <body>
 
-<header>
-  <h1>🏊 <span data-key="title">Piscine</span></h1>
-  <p data-key="subtitle">Règles et conseils d'utilisation</p>
 
-  <div class="language-selector">
-    <button onclick="changeLanguage('fr')">🇫🇷</button>
-    <button onclick="changeLanguage('en')">🇬🇧</button>
-    <button onclick="changeLanguage('de')">🇩🇪</button>
-    <button onclick="changeLanguage('nl')">🇳🇱</button>
-  </div>
+<header>
+
+<h1>
+🏊 <span id="pageTitle">Piscine</span>
+</h1>
+
+<div class="language-selector">
+
+<button onclick="changeLanguage('fr')">🇫🇷</button>
+<button onclick="changeLanguage('en')">🇬🇧</button>
+<button onclick="changeLanguage('de')">🇩🇪</button>
+<button onclick="changeLanguage('nl')">🇳🇱</button>
+
+</div>
+
 </header>
 
 
 <div class="container">
 
-  <div class="card">
-    <h2 data-key="welcomeTitle">Profitez de la piscine</h2>
 
-    <p data-key="welcomeText">
-      Nous vous souhaitons de très bons moments dans la piscine.
-      Merci de respecter les quelques règles ci-dessous afin de garantir la sécurité et le confort de tous.
-    </p>
-  </div>
+<!-- INTRODUCTION -->
 
-    <div class="card">
-  <h2>📄 Consignes de sécurité</h2>
+<div class="card season">
 
-  <iframe
-    src="Affiche Sécurité Piscine Français-Anglais.pdf"
-    width="100%"
-    height="700"
-    style="border:none; border-radius:12px;">
-  </iframe>
+<h2 id="welcomeTitle">
+☀️ Profitez de la piscine
+</h2>
+
+<p id="welcomeText">
+La piscine est à votre disposition pendant la période d'ouverture. Merci de prendre connaissance des consignes et règles de sécurité avant votre première baignade.
+</p>
+
 </div>
-    <a href="Affiche Sécurité Piscine Français-Anglais.pdf" target="_blank" class="home-button">
-  📄 Ouvrir le PDF en plein écran
+
+
+
+<!-- AFFICHE GENERALE -->
+
+<div class="card">
+
+<h2 id="generalTitle">
+🏊 Informations générales
+</h2>
+
+<img
+id="generalImage"
+class="pool-image"
+src="piscine-fr.png"
+alt="Informations générales piscine">
+
+</div>
+
+
+
+<!-- REGLEMENT -->
+
+<div class="card">
+
+<h2 id="rulesTitle">
+📋 Règlement de la piscine
+</h2>
+
+<img
+id="rulesImage"
+class="pool-image"
+src="regles-fr.png"
+alt="Règlement de la piscine">
+
+</div>
+
+
+
+<!-- SECURITE ECHELLE -->
+
+<div class="card">
+
+<h2 id="safetyTitle">
+⚠️ Sécurité de la piscine
+</h2>
+
+<img
+id="safetyImage"
+class="pool-image"
+src="securite-fr.png"
+alt="Sécurité de la piscine">
+
+</div>
+
+
+
+<!-- RAPPEL ECHELLE -->
+
+<div class="card safety">
+
+<h2 id="ladderTitle">
+🚨 Important – Sécurité des enfants
+</h2>
+
+<p id="ladderText">
+Après chaque baignade, les marches amovibles de l'échelle doivent impérativement être retirées et rangées hors de portée des enfants. Ne laissez jamais un enfant accéder seul à la piscine.
+</p>
+
+</div>
+
+
+
+<!-- CONDITIONS METEO -->
+
+<div class="card warning">
+
+<h2 id="weatherTitle">
+☀️ Ouverture de la piscine
+</h2>
+
+<p id="weatherText">
+Les dates d'ouverture sont indicatives et peuvent varier en fonction des conditions météorologiques ainsi que des arrêtés locaux en vigueur.
+</p>
+
+</div>
+
+
+
+<a
+class="home-button"
+href="index.html"
+id="homeButton">
+
+← Retour au livret d'accueil
+
 </a>
 
-  <div class="card danger">
-    <h2>⚠️ <span data-key="safetyTitle">Sécurité</span></h2>
-
-    <div class="rule" data-key="rule1">
-      Les enfants doivent rester sous la surveillance permanente d'un adulte.
-    </div>
-
-    <div class="rule" data-key="rule2">
-      Les plongeons, la nourriture, les boissons, ainsi que les animaux sont interdits.
-    </div>
-
-    <div class="rule" data-key="rule3">
-      Ne pas courir autour de la piscine. Ne rien jeter dans la piscine. Merci de respecter le voisinage en limitant les nuisances sonores.
-    </div>
-
-    <div class="rule" data-key="rule4">
-      Après utilisation, merci de remettre l'échelle en position de sécurité lorsqu'aucun adulte ne surveille la piscine.
-    </div>
-  </div>
-
-
-  <div class="card hygiene">
-    <h2>👙 <span data-key="hygieneTitle">Hygiène</span></h2>
-
-    <div class="rule" data-key="rule5">
-      Le port d'un maillot de bain est obligatoire.
-    </div>
-
-    <div class="rule" data-key="rule6">
-      Merci d'utiliser le pédiluve avant d'entrer dans la piscine.
-    </div>
-  </div>
-
-   
-  <div class="card">
-    <h2>🌡️ <span data-key="infoTitle">Informations pratiques</span></h2>
-
-    <div class="rule" data-key="rule7">
-      La piscine est extérieure et sa température dépend des conditions météorologiques. Les températures peuvent varier avec un minimum 20°C et un maximum 30°C.
-    </div>
-
-    <div class="rule" data-key="rule8">
-      Merci de nous signaler tout problème ou dysfonctionnement.
-    </div>
-
-    <div class="rule" data-key="rule9">
-      Merci de ne pas toucher au système de filtration (pompe, skimmer, etc.), seul le robot doit être enlevé et remis en dehors des baignades.
-    </div>
-
-    <div class="rule" data-key="rule10">
-      La piscine est accéssible durant la période estivale, sous réserve des conditions météorologiques et des éventuelles restrictions locales en vigueur.
-    En période de forte chaleurs, de sécheresse ou de restrictions d'eau, son utilisation ou son maintient en service peut être temporairement limité ou suspendu afin de respecter les arrêtés et recommandations des autorités locales.
-    Nous faisons notre maximum pour maintenir la piscine accessible et dans les meilleures conditions possibles, mais son accès ne peut être garanti en cas de circonstances indépendantes de notre volonté.
-    Merci de votre compréhension et de votre contribution à une utilisation responsable de l'eau.
-    </div>
-  </div>
-
-  <a class="home-button" href="index.html" data-key="home">
-    ← Retour au livret d'accueil
-  </a>
 
 </div>
+
 
 
 <footer>
-  ✨ Le Refuge des Étoiles ✨<br>
-  Le Sappey — Haute-Savoie
+
+✨ Le Refuge des Étoiles ✨
+
+<br>
+
+Le Sappey — Haute-Savoie
+
 </footer>
+
 
 
 <script>
 
+
 const translations = {
 
-  fr: {
-    title: "Piscine",
-    subtitle: "Règles et conseils d'utilisation",
 
-    welcomeTitle: "Profitez de la piscine",
-    welcomeText:
-      "Nous vous souhaitons de très bons moments dans la piscine. Merci de respecter les quelques règles ci-dessous afin de garantir la sécurité et le confort de tous.",
+/* =========================
+   FRANÇAIS
+========================= */
 
-    safetyTitle: "Sécurité",
-    hygieneTitle: "Hygiène",
-    comfortTitle: "Confort et propreté",
-    infoTitle: "Informations pratiques",
+fr: {
 
-    rule1: "Les enfants doivent rester sous la surveillance permanente d'un adulte.",
-    rule2: "Les plongeons, la nourriture, les boissons, ainsi que les animaux sont interdits.",
-    rule3: "Ne pas courir autour de la piscine. Ne rien jeter dans la piscine. Merci de respecter le voisinage en limitant les nuisances sonores.",
-    rule4: "Après utilisation, merci de remettre l'échelle en position de sécurité lorsqu'aucun adulte ne surveille la piscine.",
+pageTitle:
+"Piscine",
 
-    rule5: "Le port d'un maillot de bain est obligatoire.",
-    rule6: "Merci d'utiliser le pédiluve avant d'entrer dans la piscine.",
+generalImage:
+"piscine-fr.png",
 
+rulesImage:
+"regles-fr.png",
 
-    rule7: "La piscine est extérieure et sa température dépend des conditions météorologiques.  Les températures peuvent varier avec un minimum 20°C et un maximum 30°C.",
-    rule8: "Merci de nous signaler tout problème ou dysfonctionnement.",
-    rule9: "Merci de ne pas toucher au système de filtration (pompe, skimmer, etc.), seul le robot doit être enlevé et remis en dehors des baignades.",
+safetyImage:
+"securite-fr.png",
 
-    rule10: "La piscine est accéssible durant la période estivale, sous réserve des conditions météorologiques et des éventuelles restrictions locales en vigueur. En période de forte chaleurs, de sécheresse ou de restrictions d'eau, son utilisation ou son maintient en service peut être temporairement limité ou suspendu afin de respecter les arrêtés et recommandations des autorités locales. Nous faisons notre maximum pour maintenir la piscine accessible et dans les meilleures conditions possibles, mais son accès ne peut être garanti en cas de circonstances indépendantes de notre volonté. Merci de votre compréhension et de votre contribution à une utilisation responsable de l'eau.",
+welcomeTitle:
+"☀️ Profitez de la piscine",
 
-    home: "← Retour au livret d'accueil"
-  },
+welcomeText:
+"La piscine est à votre disposition pendant la période d'ouverture. Merci de prendre connaissance des consignes et règles de sécurité avant votre première baignade.",
 
+generalTitle:
+"🏊 Informations générales",
 
-  en: {
-    title: "Swimming pool",
-    subtitle: "Rules and instructions",
+rulesTitle:
+"📋 Règlement de la piscine",
 
-    welcomeTitle: "Enjoy the swimming pool",
-    welcomeText:
-      "We hope you enjoy the swimming pool. Please follow the rules below to ensure everyone's safety and comfort.",
+safetyTitle:
+"⚠️ Sécurité de la piscine",
 
-    safetyTitle: "Safety",
-    hygieneTitle: "Hygiene",
-    comfortTitle: "Comfort and cleanliness",
-    infoTitle: "Useful information",
+ladderTitle:
+"🚨 Important – Sécurité des enfants",
 
-    rule1: "Children must remain under the constant supervision of an adult.",
-    rule2: "Diving, food, drinks, and animals is prohibited.",
-    rule3: "Do not run around the pool. Do not throw anything into the pool. Please respect the neighbors by keeping noise to a minimum.",
-    rule4: "After use, please place the ladder back in its safety position when no adult is supervising the pool.",
+ladderText:
+"Après chaque baignade, les marches amovibles de l'échelle doivent impérativement être retirées et rangées hors de portée des enfants. Ne laissez jamais un enfant accéder seul à la piscine.",
 
-    rule5: "Swimwear must be worn in the swimming pool.",
-    rule6: "Please use the footbath before entering the swimming pool.",
+weatherTitle:
+"☀️ Ouverture de la piscine",
 
-    rule7: "The swimming pool is outdoors and its temperature depends on weather conditions. Temperatures can vary with a minimum of 20°C and a maximum of 30°C.",
-    rule8: "Please let us know if you notice any problem or malfunction.",
+weatherText:
+"Les dates d'ouverture sont indicatives et peuvent varier en fonction des conditions météorologiques ainsi que des arrêtés locaux en vigueur.",
 
-    rule9: "Please do not touch the filtration system (pump, skimmer, etc.); only the robot should be removed and put back outside of swim times.",
-    rule10: "The pool is accessible during the summer season, subject to weather conditions and any local restrictions in place. During periods of extreme heat, drought, or water restrictions, its use or operation may be temporarily limited or suspended to comply with local authority orders and recommendations. We do our best to keep the pool accessible and in the best possible condition, but access cannot be guaranteed in circumstances beyond our control. Thank you for your understanding and for helping us use water responsibly.",
-      
-    home: "← Back to the guest guide"
-  },
+home:
+"← Retour au livret d'accueil"
+
+},
 
 
-  de: {
-    title: "Pool",
-    subtitle: "Regeln und Nutzungshinweise",
 
-    welcomeTitle: "Genießen Sie den Pool",
-    welcomeText:
-      "Wir wünschen Ihnen viel Freude im Pool. Bitte beachten Sie die folgenden Regeln, um die Sicherheit und den Komfort aller Gäste zu gewährleisten.",
+/* =========================
+   ANGLAIS
+========================= */
 
-    safetyTitle: "Sicherheit",
-    hygieneTitle: "Hygiene",
-    comfortTitle: "Komfort und Sauberkeit",
-    infoTitle: "Praktische Informationen",
+en: {
 
-    rule1: "Kinder müssen ständig von einem Erwachsenen beaufsichtigt werden.",
-    rule2: "Sprünge, Essen, Getränke sowie Tiere sind verboten.",
-    rule3: "Nicht um den Pool herumrennen. Werfen Sie nichts in den Pool. Bitte respektieren Sie die Nachbarn, indem Sie Lärm vermeiden.",
-    rule4: "Bitte bringen Sie die Leiter nach der Nutzung wieder in die Sicherheitsposition, wenn kein Erwachsener den Pool beaufsichtigt.",
+pageTitle:
+"Swimming pool",
 
-    rule5: "Im Pool muss Badebekleidung getragen werden.",
-    rule6: "Bitte benutzen Sie vor dem Betreten des Pools das Fußbad.",
-    rule7: "Der Pool ist im Freien und seine Temperatur hängt von den Wetterbedingungen ab. Die Temperaturen können variieren, mit einem Minimum von 20°C und einem Maximum von 30°C.",
+generalImage:
+"piscine-en.png",
 
-    rule8: "Danke, dass du uns auf jegliche Probleme oder Störungen aufmerksam machst.",
-    rule9: "Bitte nicht am Filtersystem (Pumpe, Skimmer, etc.) herumhantieren, nur der Roboter soll herausgenommen und außerhalb des Badens wieder eingesetzt werden.",
-    rule10: "Das Schwimmbad ist während der Sommerzeit zugänglich, vorbehaltlich der Wetterbedingungen und möglicher lokaler Einschränkungen. Bei großer Hitze, Trockenheit oder Wasserbeschränkungen kann die Nutzung oder der Betrieb vorübergehend eingeschränkt oder ausgesetzt werden, um die Anordnungen und Empfehlungen der lokalen Behörden einzuhalten. Wir tun unser Bestes, um das Schwimmbad zugänglich und in bestem Zustand zu halten, aber der Zugang kann bei Umständen, die außerhalb unserer Kontrolle liegen, nicht garantiert werden. Vielen Dank für Ihr Verständnis und dafür, dass Sie zu einem verantwortungsvollen Umgang mit Wasser beitragen.",
+rulesImage:
+"regles-en.png",
 
-    home: "← Zurück zum Gästeführer"
-  },
+safetyImage:
+"securite-en.png",
+
+welcomeTitle:
+"☀️ Enjoy the swimming pool",
+
+welcomeText:
+"The swimming pool is available during the opening season. Please read the instructions and safety rules before using the pool for the first time.",
+
+generalTitle:
+"🏊 General information",
+
+rulesTitle:
+"📋 Pool rules",
+
+safetyTitle:
+"⚠️ Pool safety",
+
+ladderTitle:
+"🚨 Important – Child safety",
+
+ladderText:
+"After each swim, the removable ladder steps must be removed and stored out of children's reach. Never allow a child to access the swimming pool alone.",
+
+weatherTitle:
+"☀️ Pool opening",
+
+weatherText:
+"Opening dates are indicative and may vary depending on weather conditions and applicable local regulations.",
+
+home:
+"← Back to the guest guide"
+
+},
 
 
-  nl: {
-    title: "Zwembad",
-    subtitle: "Regels en gebruiksinstructies",
 
-    welcomeTitle: "Geniet van het zwembad",
-    welcomeText:
-      "Wij wensen u veel plezier in het zwembad. Houd u aan de onderstaande regels voor de veiligheid en het comfort van iedereen.",
+/* =========================
+   ALLEMAND
+========================= */
 
-    safetyTitle: "Veiligheid",
-    hygieneTitle: "Hygiëne",
-    comfortTitle: "Comfort en netheid",
-    infoTitle: "Praktische informatie",
+de: {
 
-    rule1: "Kinderen moeten voortdurend onder toezicht van een volwassene staan.",
-    rule2: "Duiken, eten, drinken en dieren zijn verboden.",
-    rule3: "Niet rond de zwembad rennen. Gooi niets in het zwembad. Bedankt dat je rekening houdt met de buren door het geluid beperkt te houden.",
-    rule4: "Plaats na gebruik de ladder terug in de veiligheidsstand wanneer er geen volwassene toezicht houdt.",
+pageTitle:
+"Swimmingpool",
 
-    rule5: "Het dragen van zwemkleding is verplicht.",
-    rule6: "Gebruik het voetenbad voordat u het zwembad ingaat.",
-    rule7: "Het zwembad is buiten en de temperatuur hangt af van de weersomstandigheden. De temperaturen kunnen variëren van minimaal 20°C tot maximaal 30°C.",
+generalImage:
+"piscine-de.png",
 
-    rule8: "Bedankt dat je ons op de hoogte brengt van eventuele problemen of storingen.",
-    rule9: "Bedankt dat je het filtersysteem (pomp, skimmer, enz.) niet aanraakt, alleen de robot mag worden verwijderd en weer teruggezet buiten het zwemmen.",
-    rule10: "Het zwembad is tijdens de zomerperiode toegankelijk, mits de weersomstandigheden en eventuele lokale beperkingen dit toelaten. Bij hittegolven, droogte of waterschaarste kan het gebruik of de openstelling tijdelijk worden beperkt of opgeschort om de besluiten en aanbevelingen van de lokale autoriteiten na te leven. We doen ons uiterste best om het zwembad toegankelijk te houden en in zo goed mogelijke staat, maar toegang kan niet gegarandeerd worden bij omstandigheden buiten onze macht. Bedankt voor je begrip en voor je bijdrage aan verantwoord watergebruik.",
+rulesImage:
+"regles-de.png",
 
-    home: "← Terug naar de gastenhandleiding"
-  }
+safetyImage:
+"securite-de.png",
+
+welcomeTitle:
+"☀️ Genießen Sie den Pool",
+
+welcomeText:
+"Der Pool steht Ihnen während der Öffnungszeit zur Verfügung. Bitte lesen Sie vor der ersten Nutzung die Hinweise und Sicherheitsregeln.",
+
+generalTitle:
+"🏊 Allgemeine Informationen",
+
+rulesTitle:
+"📋 Poolregeln",
+
+safetyTitle:
+"⚠️ Poolsicherheit",
+
+ladderTitle:
+"🚨 Wichtig – Sicherheit der Kinder",
+
+ladderText:
+"Nach jedem Baden müssen die abnehmbaren Leiterstufen entfernt und außerhalb der Reichweite von Kindern aufbewahrt werden. Lassen Sie niemals ein Kind allein zum Pool gelangen.",
+
+weatherTitle:
+"☀️ Öffnung des Pools",
+
+weatherText:
+"Die Öffnungszeiten sind Richtwerte und können je nach Wetterbedingungen und geltenden örtlichen Vorschriften variieren.",
+
+home:
+"← Zurück zum Gästeführer"
+
+},
+
+
+
+/* =========================
+   NÉERLANDAIS
+========================= */
+
+nl: {
+
+pageTitle:
+"Zwembad",
+
+generalImage:
+"piscine-nl.png",
+
+rulesImage:
+"regles-nl.png",
+
+safetyImage:
+"securite-nl.png",
+
+welcomeTitle:
+"☀️ Geniet van het zwembad",
+
+welcomeText:
+"Het zwembad is tijdens de openingsperiode beschikbaar. Lees voor uw eerste zwembeurt de instructies en veiligheidsregels.",
+
+generalTitle:
+"🏊 Algemene informatie",
+
+rulesTitle:
+"📋 Zwembadregels",
+
+safetyTitle:
+"⚠️ Veiligheid van het zwembad",
+
+ladderTitle:
+"🚨 Belangrijk – Veiligheid van kinderen",
+
+ladderText:
+"Na elke zwembeurt moeten de verwijderbare treden van de ladder worden verwijderd en buiten het bereik van kinderen worden opgeborgen. Laat een kind nooit alleen toegang krijgen tot het zwembad.",
+
+weatherTitle:
+"☀️ Opening van het zwembad",
+
+weatherText:
+"De openingsdata zijn indicatief en kunnen variëren afhankelijk van de weersomstandigheden en de geldende lokale voorschriften.",
+
+home:
+"← Terug naar de gastenhandleiding"
+
+}
 
 };
 
 
+
+/* =========================
+   CHANGEMENT DE LANGUE
+========================= */
+
+
 function changeLanguage(lang) {
 
-  localStorage.setItem("language", lang);
 
-  document.documentElement.lang = lang;
+localStorage.setItem(
+"language",
+lang
+);
 
-  document.querySelectorAll("[data-key]").forEach(element => {
 
-    const key = element.dataset.key;
+document.documentElement.lang =
+lang;
 
-    if (translations[lang][key]) {
-      element.textContent = translations[lang][key];
-    }
 
-  });
+/* TITRE */
+
+document.getElementById("pageTitle").textContent =
+translations[lang].pageTitle;
+
+
+/* IMAGES */
+
+document.getElementById("generalImage").src =
+translations[lang].generalImage;
+
+
+document.getElementById("rulesImage").src =
+translations[lang].rulesImage;
+
+
+document.getElementById("safetyImage").src =
+translations[lang].safetyImage;
+
+
+/* TEXTES */
+
+document.getElementById("welcomeTitle").textContent =
+translations[lang].welcomeTitle;
+
+
+document.getElementById("welcomeText").textContent =
+translations[lang].welcomeText;
+
+
+document.getElementById("generalTitle").textContent =
+translations[lang].generalTitle;
+
+
+document.getElementById("rulesTitle").textContent =
+translations[lang].rulesTitle;
+
+
+document.getElementById("safetyTitle").textContent =
+translations[lang].safetyTitle;
+
+
+document.getElementById("ladderTitle").textContent =
+translations[lang].ladderTitle;
+
+
+document.getElementById("ladderText").textContent =
+translations[lang].ladderText;
+
+
+document.getElementById("weatherTitle").textContent =
+translations[lang].weatherTitle;
+
+
+document.getElementById("weatherText").textContent =
+translations[lang].weatherText;
+
+
+document.getElementById("homeButton").textContent =
+translations[lang].home;
+
 
 }
 
 
-let savedLanguage = localStorage.getItem("language");
 
-if (savedLanguage && translations[savedLanguage]) {
+/* =========================
+   LANGUE AUTOMATIQUE
+========================= */
 
-  changeLanguage(savedLanguage);
 
-} else {
+let savedLanguage =
+localStorage.getItem("language");
 
-  let browserLanguage =
-    navigator.language ||
-    navigator.userLanguage ||
-    "fr";
 
-  browserLanguage =
-    browserLanguage.substring(0,2).toLowerCase();
+if (
+savedLanguage &&
+translations[savedLanguage]
+) {
 
-  if (!["fr","en","de","nl"].includes(browserLanguage)) {
-    browserLanguage = "en";
-  }
-
-  changeLanguage(browserLanguage);
+changeLanguage(savedLanguage);
 
 }
+
+else {
+
+
+let browserLanguage =
+
+navigator.language ||
+
+navigator.userLanguage ||
+
+"fr";
+
+
+browserLanguage =
+
+browserLanguage
+
+.substring(0,2)
+
+.toLowerCase();
+
+
+if (
+!["fr","en","de","nl"]
+.includes(browserLanguage)
+) {
+
+browserLanguage = "en";
+
+}
+
+
+changeLanguage(browserLanguage);
+
+
+}
+
 
 </script>
 
+
 </body>
+
 </html>
