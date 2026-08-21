@@ -1,0 +1,1066 @@
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Poêle à bois - Le Refuge des Étoiles</title>
+
+<style>
+
+body {
+
+  margin: 0;
+
+  font-family: Arial, sans-serif;
+
+  background: #f4f2ed;
+
+  color: #2f2f2f;
+
+}
+
+
+/* EN-TÊTE */
+
+header {
+
+  background: linear-gradient(135deg, #6b3d27, #a96c43);
+
+  color: white;
+
+  text-align: center;
+
+  padding: 35px 20px;
+
+}
+
+
+header h1 {
+
+  margin: 0;
+
+  font-size: 30px;
+
+}
+
+
+/* LANGUES */
+
+.language-selector {
+
+  margin-top: 18px;
+
+}
+
+
+.language-selector button {
+
+  border: none;
+
+  background: white;
+
+  padding: 9px 12px;
+
+  margin: 3px;
+
+  border-radius: 8px;
+
+  font-size: 18px;
+
+  cursor: pointer;
+
+}
+
+
+/* CONTENU */
+
+.container {
+
+  max-width: 800px;
+
+  margin: auto;
+
+  padding: 20px;
+
+}
+
+
+.card {
+
+  background: white;
+
+  border-radius: 15px;
+
+  padding: 20px;
+
+  margin-bottom: 20px;
+
+  box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+
+}
+
+
+h2 {
+
+  color: #7c4a2d;
+
+  text-align: center;
+
+}
+
+
+p {
+
+  line-height: 1.6;
+
+}
+
+
+/* AFFICHE */
+
+#documentViewer {
+
+  width: 100%;
+
+  height: auto;
+
+  display: block;
+
+  border-radius: 12px;
+
+}
+
+
+/* PACKS DE BOIS */
+
+.pack-container {
+
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 12px;
+
+  margin-top: 20px;
+
+}
+
+
+.pack {
+
+  background: #f7efe4;
+
+  border: 2px solid #d7bea2;
+
+  border-radius: 15px;
+
+  padding: 20px 10px;
+
+  text-align: center;
+
+}
+
+
+.pack-title {
+
+  font-size: 18px;
+
+  font-weight: bold;
+
+  margin-bottom: 8px;
+
+}
+
+
+.price {
+
+  font-size: 28px;
+
+  font-weight: bold;
+
+  color: #7c4a2d;
+
+  margin: 12px 0;
+
+}
+
+
+.order-button {
+
+  border: none;
+
+  background: #7c4a2d;
+
+  color: white;
+
+  font-size: 15px;
+
+  font-weight: bold;
+
+  padding: 12px 14px;
+
+  border-radius: 9px;
+
+  cursor: pointer;
+
+  width: 100%;
+
+}
+
+
+.order-button:hover {
+
+  opacity: 0.9;
+
+}
+
+
+/* INFO */
+
+.info {
+
+  background: #fff4d8;
+
+  border-left: 5px solid #d6a23d;
+
+}
+
+
+/* RETOUR */
+
+.home-button {
+
+  display: block;
+
+  width: fit-content;
+
+  margin: 25px auto;
+
+  padding: 13px 20px;
+
+  background: #6b3d27;
+
+  color: white;
+
+  text-decoration: none;
+
+  border-radius: 10px;
+
+  font-weight: bold;
+
+  text-align: center;
+
+}
+
+
+/* FENÊTRE DE COMMANDE */
+
+.modal {
+
+  display: none;
+
+  position: fixed;
+
+  z-index: 1000;
+
+  left: 0;
+
+  top: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  background: rgba(0,0,0,0.65);
+
+  padding: 15px;
+
+  box-sizing: border-box;
+
+}
+
+
+.modal-content {
+
+  background: white;
+
+  max-width: 450px;
+
+  margin: 12vh auto;
+
+  padding: 25px;
+
+  border-radius: 15px;
+
+  text-align: center;
+
+}
+
+
+.modal-content h2 {
+
+  margin-top: 0;
+
+}
+
+
+.airbnb-button {
+
+  display: block;
+
+  background: #ff385c;
+
+  color: white;
+
+  text-decoration: none;
+
+  padding: 14px;
+
+  border-radius: 10px;
+
+  margin-top: 20px;
+
+  font-weight: bold;
+
+}
+
+
+.close-button {
+
+  border: none;
+
+  background: #eeeeee;
+
+  padding: 12px 18px;
+
+  border-radius: 9px;
+
+  margin-top: 12px;
+
+  cursor: pointer;
+
+}
+
+
+footer {
+
+  text-align: center;
+
+  padding: 25px 20px;
+
+  color: #777;
+
+  font-size: 14px;
+
+}
+
+
+/* SMARTPHONE */
+
+@media (max-width: 600px) {
+
+  .pack-container {
+
+    grid-template-columns: 1fr;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h1>🔥 <span id="pageTitle">Poêle à bois</span></h1>
+
+
+<div class="language-selector">
+
+<button onclick="changeLanguage('fr')">🇫🇷</button>
+
+<button onclick="changeLanguage('en')">🇬🇧</button>
+
+<button onclick="changeLanguage('de')">🇩🇪</button>
+
+<button onclick="changeLanguage('nl')">🇳🇱</button>
+
+</div>
+
+</header>
+
+
+
+<div class="container">
+
+
+<!-- AFFICHE -->
+
+<div class="card">
+
+<img
+id="documentViewer"
+src="poele-fr.png"
+alt="Règles d'utilisation du poêle à bois">
+
+</div>
+
+
+
+<!-- COMMANDER DU BOIS -->
+
+<div class="card">
+
+<h2 id="orderTitle">
+🪵 Commander du bois
+</h2>
+
+
+<p id="orderText">
+
+Pour vos soirées au coin du feu, choisissez simplement la formule qui vous convient.
+
+</p>
+
+
+<div class="pack-container">
+
+
+<div class="pack">
+
+<div class="pack-title" id="pack10">
+10 bûches
+</div>
+
+<div class="price">
+10 €
+</div>
+
+<button
+class="order-button"
+id="button10"
+onclick="openOrder(10,10)">
+
+Choisir
+
+</button>
+
+</div>
+
+
+
+<div class="pack">
+
+<div class="pack-title" id="pack20">
+20 bûches
+</div>
+
+<div class="price">
+18 €
+</div>
+
+<button
+class="order-button"
+id="button20"
+onclick="openOrder(20,18)">
+
+Choisir
+
+</button>
+
+</div>
+
+
+
+<div class="pack">
+
+<div class="pack-title" id="pack30">
+30 bûches
+</div>
+
+<div class="price">
+25 €
+</div>
+
+<button
+class="order-button"
+id="button30"
+onclick="openOrder(30,25)">
+
+Choisir
+
+</button>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- INFO CONSOMMATION -->
+
+<div class="card info">
+
+<h2 id="consumptionTitle">
+🔥 Bon à savoir
+</h2>
+
+<p id="consumptionText">
+
+La consommation moyenne est d'environ 10 bûches par jour. Le bois proposé est sec et prêt à l'emploi.
+
+</p>
+
+</div>
+
+
+
+<a
+class="home-button"
+href="index.html"
+id="homeButton">
+
+← Retour au livret d'accueil
+
+</a>
+
+
+</div>
+
+
+
+<!-- FENÊTRE DE COMMANDE -->
+
+<div id="orderModal" class="modal">
+
+
+<div class="modal-content">
+
+
+<h2 id="modalTitle">
+🔥 Votre pack de bois
+</h2>
+
+
+<p id="modalSelection"></p>
+
+
+<p id="modalInstructions">
+
+Pour régler votre pack, ouvrez Airbnb puis sélectionnez votre réservation et envoyez le montant indiqué via le Centre de résolution.
+
+</p>
+
+
+<a
+id="airbnbButton"
+class="airbnb-button"
+href="https://www.airbnb.fr/resolutions"
+target="_blank">
+
+Payer via Airbnb
+
+</a>
+
+
+<button
+class="close-button"
+onclick="closeOrder()"
+id="closeButton">
+
+Fermer
+
+</button>
+
+
+</div>
+
+</div>
+
+
+
+<footer>
+
+✨ Le Refuge des Étoiles ✨
+
+<br>
+
+Le Sappey — Haute-Savoie
+
+</footer>
+
+
+
+<script>
+
+
+const translations = {
+
+
+fr: {
+
+pageTitle:
+"Poêle à bois",
+
+image:
+"poele-fr.png",
+
+orderTitle:
+"🪵 Commander du bois",
+
+orderText:
+"Pour vos soirées au coin du feu, choisissez simplement la formule qui vous convient.",
+
+pack10:
+"10 bûches",
+
+pack20:
+"20 bûches",
+
+pack30:
+"30 bûches",
+
+choose:
+"Choisir",
+
+consumptionTitle:
+"🔥 Bon à savoir",
+
+consumptionText:
+"La consommation moyenne est d'environ 10 bûches par jour. Le bois proposé est sec et prêt à l'emploi.",
+
+modalTitle:
+"🔥 Votre pack de bois",
+
+modalIntro:
+"Vous avez choisi",
+
+logs:
+"bûches",
+
+amount:
+"Montant à envoyer",
+
+modalInstructions:
+"Pour régler votre pack, ouvrez Airbnb puis sélectionnez votre réservation et envoyez le montant indiqué via le Centre de résolution. Vous pouvez indiquer « Pack bois » dans le motif du paiement.",
+
+airbnb:
+"💳 Payer via Airbnb",
+
+close:
+"Fermer",
+
+home:
+"← Retour au livret d'accueil"
+
+},
+
+
+
+en: {
+
+pageTitle:
+"Wood-burning stove",
+
+image:
+"poele-en.png",
+
+orderTitle:
+"🪵 Order firewood",
+
+orderText:
+"For your cosy evenings by the fire, simply choose the package that suits you.",
+
+pack10:
+"10 logs",
+
+pack20:
+"20 logs",
+
+pack30:
+"30 logs",
+
+choose:
+"Choose",
+
+consumptionTitle:
+"🔥 Good to know",
+
+consumptionText:
+"Average consumption is approximately 10 logs per day. The firewood provided is dry and ready to use.",
+
+modalTitle:
+"🔥 Your firewood package",
+
+modalIntro:
+"You have selected",
+
+logs:
+"logs",
+
+amount:
+"Amount to send",
+
+modalInstructions:
+"To pay for your firewood, open Airbnb, select your reservation and send the indicated amount through the Resolution Center. You can write “Firewood package” as the payment note.",
+
+airbnb:
+"💳 Pay via Airbnb",
+
+close:
+"Close",
+
+home:
+"← Back to the guest guide"
+
+},
+
+
+
+de: {
+
+pageTitle:
+"Holzofen",
+
+image:
+"poele-de.png",
+
+orderTitle:
+"🪵 Brennholz bestellen",
+
+orderText:
+"Für gemütliche Abende am Feuer wählen Sie einfach das passende Brennholzpaket.",
+
+pack10:
+"10 Scheite",
+
+pack20:
+"20 Scheite",
+
+pack30:
+"30 Scheite",
+
+choose:
+"Auswählen",
+
+consumptionTitle:
+"🔥 Gut zu wissen",
+
+consumptionText:
+"Der durchschnittliche Verbrauch beträgt etwa 10 Holzscheite pro Tag. Das Brennholz ist trocken und sofort einsatzbereit.",
+
+modalTitle:
+"🔥 Ihr Brennholzpaket",
+
+modalIntro:
+"Sie haben gewählt",
+
+logs:
+"Holzscheite",
+
+amount:
+"Zu zahlender Betrag",
+
+modalInstructions:
+"Um Ihr Brennholz zu bezahlen, öffnen Sie Airbnb, wählen Sie Ihre Reservierung und senden Sie den angegebenen Betrag über das Mediations-Center. Als Zahlungsgrund können Sie „Brennholzpaket“ angeben.",
+
+airbnb:
+"💳 Über Airbnb bezahlen",
+
+close:
+"Schließen",
+
+home:
+"← Zurück zum Gästeführer"
+
+},
+
+
+
+nl: {
+
+pageTitle:
+"Houtkachel",
+
+image:
+"poele-nl.png",
+
+orderTitle:
+"🪵 Brandhout bestellen",
+
+orderText:
+"Kies voor uw gezellige avonden bij het vuur eenvoudig het pakket dat het beste bij u past.",
+
+pack10:
+"10 blokken",
+
+pack20:
+"20 blokken",
+
+pack30:
+"30 blokken",
+
+choose:
+"Kiezen",
+
+consumptionTitle:
+"🔥 Goed om te weten",
+
+consumptionText:
+"Het gemiddelde verbruik is ongeveer 10 houtblokken per dag. Het brandhout is droog en direct klaar voor gebruik.",
+
+modalTitle:
+"🔥 Uw brandhoutpakket",
+
+modalIntro:
+"U heeft gekozen voor",
+
+logs:
+"houtblokken",
+
+amount:
+"Te betalen bedrag",
+
+modalInstructions:
+"Om uw brandhout te betalen, opent u Airbnb, selecteert u uw reservering en stuurt u het aangegeven bedrag via het Resolutiecentrum. U kunt 'Brandhoutpakket' als betalingsomschrijving vermelden.",
+
+airbnb:
+"💳 Betalen via Airbnb",
+
+close:
+"Sluiten",
+
+home:
+"← Terug naar de gastenhandleiding"
+
+}
+
+};
+
+
+
+let currentLanguage = "fr";
+
+
+
+function changeLanguage(lang) {
+
+
+currentLanguage = lang;
+
+
+localStorage.setItem(
+"language",
+lang
+);
+
+
+document.documentElement.lang =
+lang;
+
+
+document.getElementById("pageTitle").textContent =
+translations[lang].pageTitle;
+
+
+document.getElementById("documentViewer").src =
+translations[lang].image;
+
+
+document.getElementById("orderTitle").textContent =
+translations[lang].orderTitle;
+
+
+document.getElementById("orderText").textContent =
+translations[lang].orderText;
+
+
+document.getElementById("pack10").textContent =
+translations[lang].pack10;
+
+
+document.getElementById("pack20").textContent =
+translations[lang].pack20;
+
+
+document.getElementById("pack30").textContent =
+translations[lang].pack30;
+
+
+document.getElementById("button10").textContent =
+translations[lang].choose;
+
+
+document.getElementById("button20").textContent =
+translations[lang].choose;
+
+
+document.getElementById("button30").textContent =
+translations[lang].choose;
+
+
+document.getElementById("consumptionTitle").textContent =
+translations[lang].consumptionTitle;
+
+
+document.getElementById("consumptionText").textContent =
+translations[lang].consumptionText;
+
+
+document.getElementById("modalTitle").textContent =
+translations[lang].modalTitle;
+
+
+document.getElementById("modalInstructions").textContent =
+translations[lang].modalInstructions;
+
+
+document.getElementById("airbnbButton").textContent =
+translations[lang].airbnb;
+
+
+document.getElementById("closeButton").textContent =
+translations[lang].close;
+
+
+document.getElementById("homeButton").textContent =
+translations[lang].home;
+
+
+}
+
+
+
+function openOrder(logs, price) {
+
+
+const t =
+translations[currentLanguage];
+
+
+document.getElementById("modalSelection").innerHTML =
+
+"<strong>" +
+
+t.modalIntro +
+
+" " +
+
+logs +
+
+" " +
+
+t.logs +
+
+"</strong><br><br>" +
+
+t.amount +
+
+" : <strong>" +
+
+price +
+
+" €</strong>";
+
+
+document.getElementById("orderModal").style.display =
+"block";
+
+}
+
+
+
+function closeOrder() {
+
+document.getElementById("orderModal").style.display =
+"none";
+
+}
+
+
+
+/* Ferme la fenêtre si on clique autour */
+
+window.onclick =
+function(event) {
+
+const modal =
+document.getElementById("orderModal");
+
+if (event.target === modal) {
+
+closeOrder();
+
+}
+
+};
+
+
+
+/* LANGUE AUTOMATIQUE */
+
+let savedLanguage =
+localStorage.getItem("language");
+
+
+if (
+savedLanguage &&
+translations[savedLanguage]
+) {
+
+changeLanguage(savedLanguage);
+
+}
+
+
+else {
+
+
+let browserLanguage =
+
+navigator.language ||
+
+navigator.userLanguage ||
+
+"fr";
+
+
+browserLanguage =
+
+browserLanguage
+
+.substring(0,2)
+
+.toLowerCase();
+
+
+if (
+!["fr","en","de","nl"]
+.includes(browserLanguage)
+) {
+
+browserLanguage = "en";
+
+}
+
+
+changeLanguage(browserLanguage);
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
