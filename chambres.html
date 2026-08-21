@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Chambres - Le Refuge des Étoiles</title>
+
+<style>
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f2ed;
+  color: #2f2f2f;
+}
+
+header {
+  background: linear-gradient(135deg, #675b55, #a8968b);
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+header p {
+  max-width: 650px;
+  margin: 12px auto 0;
+  line-height: 1.5;
+}
+
+.language-selector {
+  margin-top: 18px;
+}
+
+.language-selector button {
+  border: none;
+  background: white;
+  padding: 9px 12px;
+  margin: 3px;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+.intro {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+  line-height: 1.6;
+}
+
+/* CARTES */
+
+.item {
+  background: white;
+  border-radius: 16px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+}
+
+.item-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 18px;
+  cursor: pointer;
+}
+
+.item-header:hover {
+  background: #faf8f6;
+}
+
+.icon {
+  min-width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #f0ebe8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+
+.item-info {
+  flex: 1;
+}
+
+.item-info h2 {
+  color: #675b55;
+  margin: 0 0 5px;
+  font-size: 20px;
+}
+
+.subtitle {
+  color: #777;
+  font-size: 14px;
+}
+
+.arrow {
+  font-size: 20px;
+  color: #675b55;
+  transition: transform 0.25s;
+}
+
+.item.open .arrow {
+  transform: rotate(180deg);
+}
+
+.instructions {
+  display: none;
+  padding: 0 20px 20px 93px;
+  line-height: 1.65;
+  color: #555;
+}
+
+.item.open .instructions {
+  display: block;
+}
+
+.instructions p {
+  margin: 8px 0;
+}
+
+/* LIT BEBE */
+
+.baby-box {
+  background: #eef3f0;
+  border-left: 5px solid #708b7b;
+  border-radius: 12px;
+  padding: 18px;
+  margin-top: 20px;
+  line-height: 1.6;
+}
+
+.baby-box strong {
+  color: #536c5c;
+  font-size: 18px;
+}
+
+/* RETOUR */
+
+.home-button {
+  display: block;
+  width: fit-content;
+  margin: 25px auto;
+  padding: 13px 20px;
+  background: #675b55;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  padding: 25px 20px;
+  color: #777;
+  font-size: 14px;
+}
+
+@media(max-width:600px) {
+
+  .container {
+    padding: 12px;
+  }
+
+  .instructions {
+    padding: 0 18px 18px 18px;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<header>
+
+<h1>🛏️ <span id="pageTitle">Chambres</span></h1>
+
+<p id="headerText">
+Tout est prévu pour que vous puissiez profiter confortablement de votre séjour.
+</p>
+
+<div class="language-selector">
+
+<button onclick="changeLanguage('fr')">🇫🇷</button>
+<button onclick="changeLanguage('en')">🇬🇧</button>
+<button onclick="changeLanguage('de')">🇩🇪</button>
+<button onclick="changeLanguage('nl')">🇳🇱</button>
+
+</div>
+
+</header>
+
+
+<div class="container">
+
+<div class="intro" id="intro">
+👆 Sélectionnez une rubrique pour découvrir les couchages et les équipements à votre disposition.
+</div>
+
+<div id="itemsContainer"></div>
+
+
+<div class="baby-box">
+
+<strong id="babyTitle">
+👶 Vous voyagez avec un bébé ?
+</strong>
+
+<p id="babyText">
+Un lit bébé peut être mis à votre disposition sur simple demande. Pensez à nous prévenir avant votre arrivée afin que nous puissions le préparer pour votre séjour.
+</p>
+
+</div>
+
+
+<a
+href="index.html"
+class="home-button"
+id="homeButton">
+
+← Retour au livret d'accueil
+
+</a>
+
+</div>
+
+
+<footer>
+
+✨ Le Refuge des Étoiles ✨<br>
+Le Sappey — Haute-Savoie
+
+</footer>
+
+
+<script>
+
+/* =========================
+   RUBRIQUES
+========================= */
+
+const items = [
+
+{
+  icon:"🛌",
+  type:"bedroom1"
+},
+
+{
+  icon:"🛏️",
+  type:"bedroom2"
+},
+
+{
+  icon:"🧺",
+  type:"linen"
+},
+
+{
+  icon:"👕",
+  type:"storage"
+}
+
+];
+
+
+/* =========================
+   TRADUCTIONS
+========================= */
+
+const translations = {
+
+
+/* FRANÇAIS */
+
+fr: {
+
+pageTitle:
+"Chambres",
+
+headerText:
+"Tout est prévu pour que vous puissiez profiter confortablement de votre séjour.",
+
+intro:
+"👆 Sélectionnez une rubrique pour découvrir les couchages et les équipements à votre disposition.",
+
+babyTitle:
+"👶 Vous voyagez avec un bébé ?",
+
+babyText:
+"Un lit bébé peut être mis à votre disposition sur simple demande. Pensez à nous prévenir avant votre arrivée afin que nous puissions le préparer pour votre séjour.",
+
+home:
+"← Retour au livret d'accueil",
+
+
+bedroom1: {
+
+name:
+"Chambre Queen Size",
+
+subtitle:
+"Lit double 160 × 200 cm",
+
+text:`
+
+<p>
+🛌 Cette chambre est équipée d'un lit Queen Size de 160 × 200 cm.
+</p>
+
+<p>
+🧺 Tout le linge de lit nécessaire est fourni et le couchage est préparé pour votre arrivée.
+</p>
+
+<p>
+👕 Des rangements sont également à votre disposition dans la chambre.
+</p>
+
+`
+
+},
+
+
+bedroom2: {
+
+name:
+"Chambre familiale",
+
+subtitle:
+"Lit superposé + lit d'appoint",
+
+text:`
+
+<p>
+🛏️ Cette chambre dispose d'un lit superposé avec couchages de 90 × 190 cm.
+</p>
+
+<p>
+➕ Un lit d'appoint de 90 × 190 cm est également disponible.
+</p>
+
+<p>
+🧺 Les couchages disposent du linge de lit nécessaire.
+</p>
+
+<p>
+👕 Des rangements sont à votre disposition dans la chambre.
+</p>
+
+`
+
+},
+
+
+linen: {
+
+name:
+"Linge de lit",
+
+subtitle:
+"Tout le nécessaire est fourni",
+
+text:`
+
+<p>
+✨ Tout le linge de lit nécessaire est fourni pour votre séjour.
+</p>
+
+<p>
+🛡️ Les matelas sont équipés d'alèses.
+</p>
+
+<p>
+🛏️ Les couchages disposent de draps-housses et de draps plats.
+</p>
+
+<p>
+☁️ Les couettes et leurs housses sont également fournies.
+</p>
+
+<p>
+😴 Des oreillers avec leurs taies sont à votre disposition.
+</p>
+
+<p>
+🏡 Vous n'avez donc pas besoin d'apporter votre propre linge de lit.
+</p>
+
+`
+
+},
+
+
+storage: {
+
+name:
+"Rangements",
+
+subtitle:
+"Dans chaque chambre",
+
+text:`
+
+<p>
+👕 Des espaces de rangement sont disponibles dans chacune des chambres.
+</p>
+
+<p>
+🧳 Vous pouvez ainsi ranger vos vêtements et vos affaires personnelles pendant votre séjour.
+</p>
+
+<p>
+😊 Avant votre départ, pensez simplement à vérifier que vous n'avez rien oublié.
+</p>
+
+`
+
+}
+
+},
+
+
+/* ANGLAIS */
+
+en: {
+
+pageTitle:
+"Bedrooms",
+
+headerText:
+"Everything is provided to make your stay as comfortable as possible.",
+
+intro:
+"👆 Select a section to discover the sleeping arrangements and equipment available.",
+
+babyTitle:
+"👶 Travelling with a baby?",
+
+babyText:
+"A baby cot can be provided on request. Please let us know before your arrival so that we can prepare it for your stay.",
+
+home:
+"← Back to the guest guide",
+
+
+bedroom1: {
+
+name:
+"Queen Size bedroom",
+
+subtitle:
+"160 × 200 cm double bed",
+
+text:`
+
+<p>
+🛌 This bedroom is equipped with a 160 × 200 cm Queen Size bed.
+</p>
+
+<p>
+🧺 All necessary bed linen is provided and the bed is prepared for your arrival.
+</p>
+
+<p>
+👕 Storage space is also available in the bedroom.
+</p>
+
+`
+
+},
+
+
+bedroom2: {
+
+name:
+"Family bedroom",
+
+subtitle:
+"Bunk bed + extra bed",
+
+text:`
+
+<p>
+🛏️ This bedroom has a bunk bed with 90 × 190 cm sleeping areas.
+</p>
+
+<p>
+➕ An additional 90 × 190 cm extra bed is also available.
+</p>
+
+<p>
+🧺 All necessary bed linen is provided.
+</p>
+
+<p>
+👕 Storage space is available in the bedroom.
+</p>
+
+`
+
+},
+
+
+linen: {
+
+name:
+"Bed linen",
+
+subtitle:
+"Everything you need is provided",
+
+text:`
+
+<p>
+✨ All the necessary bed linen is provided for your stay.
+</p>
+
+<p>
+🛡️ The mattresses are fitted with mattress protectors.
+</p>
+
+<p>
+🛏️ Fitted sheets and flat sheets are provided.
+</p>
+
+<p>
+☁️ Duvets and duvet covers are also provided.
+</p>
+
+<p>
+😴 Pillows and pillowcases are available for each sleeping area.
+</p>
+
+<p>
+🏡 There is no need to bring your own bed linen.
+</p>
+
+`
+
+},
+
+
+storage: {
+
+name:
+"Storage",
+
+subtitle:
+"Available in every bedroom",
+
+text:`
+
+<p>
+👕 Storage space is available in each bedroom.
+</p>
+
+<p>
+🧳 You can store your clothes and personal belongings during your stay.
+</p>
+
+<p>
+😊 Before departure, please remember to check that you have not left anything behind.
+</p>
+
+`
+
+}
+
+},
+
+
+/* ALLEMAND */
+
+de: {
+
+pageTitle:
+"Schlafzimmer",
+
+headerText:
+"Alles ist für einen komfortablen Aufenthalt vorbereitet.",
+
+intro:
+"👆 Wählen Sie eine Rubrik aus, um die Schlafplätze und verfügbaren Ausstattungen zu entdecken.",
+
+babyTitle:
+"👶 Reisen Sie mit einem Baby?",
+
+babyText:
+"Ein Babybett kann auf Anfrage zur Verfügung gestellt werden. Bitte informieren Sie uns vor Ihrer Anreise, damit wir es für Ihren Aufenthalt vorbereiten können.",
+
+home:
+"← Zurück zum Gästeführer",
+
+
+bedroom1: {
+
+name:
+"Queen-Size-Schlafzimmer",
+
+subtitle:
+"Doppelbett 160 × 200 cm",
+
+text:`
+
+<p>
+🛌 Dieses Schlafzimmer verfügt über ein Queen-Size-Bett mit 160 × 200 cm.
+</p>
+
+<p>
+🧺 Die benötigte Bettwäsche wird vollständig bereitgestellt und das Bett ist bei Ihrer Ankunft vorbereitet.
+</p>
+
+<p>
+👕 Im Schlafzimmer stehen Ihnen außerdem Aufbewahrungsmöglichkeiten zur Verfügung.
+</p>
+
+`
+
+},
+
+
+bedroom2: {
+
+name:
+"Familienzimmer",
+
+subtitle:
+"Etagenbett + Zusatzbett",
+
+text:`
+
+<p>
+🛏️ Dieses Schlafzimmer verfügt über ein Etagenbett mit Liegeflächen von 90 × 190 cm.
+</p>
+
+<p>
+➕ Zusätzlich steht ein Bett mit 90 × 190 cm zur Verfügung.
+</p>
+
+<p>
+🧺 Die benötigte Bettwäsche wird bereitgestellt.
+</p>
+
+<p>
+👕 Im Schlafzimmer stehen Ihnen Aufbewahrungsmöglichkeiten zur Verfügung.
+</p>
+
+`
+
+},
+
+
+linen: {
+
+name:
+"Bettwäsche",
+
+subtitle:
+"Alles Notwendige wird bereitgestellt",
+
+text:`
+
+<p>
+✨ Die gesamte benötigte Bettwäsche wird für Ihren Aufenthalt bereitgestellt.
+</p>
+
+<p>
+🛡️ Die Matratzen sind mit Matratzenschonern ausgestattet.
+</p>
+
+<p>
+🛏️ Spannbettlaken und Bettlaken sind vorhanden.
+</p>
+
+<p>
+☁️ Bettdecken und Bettbezüge werden ebenfalls bereitgestellt.
+</p>
+
+<p>
+😴 Kissen und Kissenbezüge stehen für die Schlafplätze zur Verfügung.
+</p>
+
+<p>
+🏡 Sie müssen daher keine eigene Bettwäsche mitbringen.
+</p>
+
+`
+
+},
+
+
+storage: {
+
+name:
+"Stauraum",
+
+subtitle:
+"In jedem Schlafzimmer",
+
+text:`
+
+<p>
+👕 In jedem Schlafzimmer stehen Aufbewahrungsmöglichkeiten zur Verfügung.
+</p>
+
+<p>
+🧳 Dort können Sie Ihre Kleidung und persönlichen Sachen während Ihres Aufenthalts verstauen.
+</p>
+
+<p>
+😊 Denken Sie vor Ihrer Abreise daran zu überprüfen, ob Sie nichts vergessen haben.
+</p>
+
+`
+
+}
+
+},
+
+
+/* NÉERLANDAIS */
+
+nl: {
+
+pageTitle:
+"Slaapkamers",
+
+headerText:
+"Alles is voorzien voor een comfortabel verblijf.",
+
+intro:
+"👆 Selecteer een onderdeel om de slaapplaatsen en beschikbare voorzieningen te bekijken.",
+
+babyTitle:
+"👶 Reist u met een baby?",
+
+babyText:
+"Op verzoek kan een babybedje ter beschikking worden gesteld. Laat het ons vóór uw aankomst weten, zodat wij het voor uw verblijf kunnen klaarmaken.",
+
+home:
+"← Terug naar de gastenhandleiding",
+
+
+bedroom1: {
+
+name:
+"Queen Size slaapkamer",
+
+subtitle:
+"Tweepersoonsbed 160 × 200 cm",
+
+text:`
+
+<p>
+🛌 Deze slaapkamer is uitgerust met een Queen Size bed van 160 × 200 cm.
+</p>
+
+<p>
+🧺 Al het benodigde beddengoed wordt voorzien en het bed is klaargemaakt voor uw aankomst.
+</p>
+
+<p>
+👕 Er is ook opbergruimte beschikbaar in de slaapkamer.
+</p>
+
+`
+
+},
+
+
+bedroom2: {
+
+name:
+"Familiekamer",
+
+subtitle:
+"Stapelbed + extra bed",
+
+text:`
+
+<p>
+🛏️ Deze slaapkamer beschikt over een stapelbed met slaapplaatsen van 90 × 190 cm.
+</p>
+
+<p>
+➕ Er is ook een extra bed van 90 × 190 cm beschikbaar.
+</p>
+
+<p>
+🧺 Het benodigde beddengoed wordt voorzien.
+</p>
+
+<p>
+👕 Er is opbergruimte beschikbaar in de slaapkamer.
+</p>
+
+`
+
+},
+
+
+linen: {
+
+name:
+"Beddengoed",
+
+subtitle:
+"Alles wat u nodig heeft is voorzien",
+
+text:`
+
+<p>
+✨ Al het benodigde beddengoed wordt tijdens uw verblijf voorzien.
+</p>
+
+<p>
+🛡️ De matrassen zijn voorzien van matrasbeschermers.
+</p>
+
+<p>
+🛏️ Hoeslakens en platte lakens zijn aanwezig.
+</p>
+
+<p>
+☁️ Dekbedden en dekbedovertrekken worden eveneens voorzien.
+</p>
+
+<p>
+😴 Kussens en kussenslopen zijn beschikbaar.
+</p>
+
+<p>
+🏡 U hoeft dus geen eigen beddengoed mee te brengen.
+</p>
+
+`
+
+},
+
+
+storage: {
+
+name:
+"Opbergruimte",
+
+subtitle:
+"In elke slaapkamer",
+
+text:`
+
+<p>
+👕 In elke slaapkamer is opbergruimte beschikbaar.
+</p>
+
+<p>
+🧳 U kunt er tijdens uw verblijf uw kleding en persoonlijke spullen opbergen.
+</p>
+
+<p>
+😊 Controleer voor vertrek of u niets heeft achtergelaten.
+</p>
+
+`
+
+}
+
+}
+
+};
+
+
+/* =========================
+   AFFICHAGE
+========================= */
+
+let currentLanguage = "fr";
+
+
+function renderItems() {
+
+const container =
+document.getElementById("itemsContainer");
+
+container.innerHTML = "";
+
+const t =
+translations[currentLanguage];
+
+
+items.forEach((item,index) => {
+
+const content =
+t[item.type];
+
+const card =
+document.createElement("div");
+
+card.className =
+"item";
+
+card.id =
+"item-" + index;
+
+
+card.innerHTML = `
+
+<div
+class="item-header"
+onclick="toggleItem(${index})">
+
+<div class="icon">
+${item.icon}
+</div>
+
+<div class="item-info">
+
+<h2>
+${content.name}
+</h2>
+
+<div class="subtitle">
+${content.subtitle}
+</div>
+
+</div>
+
+<div class="arrow">
+⌄
+</div>
+
+</div>
+
+
+<div class="instructions">
+
+${content.text}
+
+</div>
+
+`;
+
+
+container.appendChild(card);
+
+});
+
+}
+
+
+/* =========================
+   OUVERTURE DES CARTES
+========================= */
+
+function toggleItem(index) {
+
+const selected =
+document.getElementById(
+"item-" + index
+);
+
+const wasOpen =
+selected.classList.contains("open");
+
+
+document
+.querySelectorAll(".item")
+.forEach(card => {
+
+card.classList.remove("open");
+
+});
+
+
+if (!wasOpen) {
+
+selected.classList.add("open");
+
+}
+
+}
+
+
+/* =========================
+   LANGUES
+========================= */
+
+function changeLanguage(lang) {
+
+currentLanguage = lang;
+
+localStorage.setItem(
+"language",
+lang
+);
+
+document.documentElement.lang =
+lang;
+
+const t =
+translations[lang];
+
+
+document.getElementById("pageTitle").textContent =
+t.pageTitle;
+
+document.getElementById("headerText").textContent =
+t.headerText;
+
+document.getElementById("intro").textContent =
+t.intro;
+
+document.getElementById("babyTitle").textContent =
+t.babyTitle;
+
+document.getElementById("babyText").textContent =
+t.babyText;
+
+document.getElementById("homeButton").textContent =
+t.home;
+
+
+renderItems();
+
+}
+
+
+/* =========================
+   LANGUE AUTOMATIQUE
+========================= */
+
+let savedLanguage =
+localStorage.getItem("language");
+
+
+if (
+savedLanguage &&
+translations[savedLanguage]
+) {
+
+changeLanguage(savedLanguage);
+
+}
+
+else {
+
+let browserLanguage =
+navigator.language ||
+navigator.userLanguage ||
+"fr";
+
+
+browserLanguage =
+browserLanguage
+.substring(0,2)
+.toLowerCase();
+
+
+if (
+!["fr","en","de","nl"]
+.includes(browserLanguage)
+) {
+
+browserLanguage = "en";
+
+}
+
+
+changeLanguage(browserLanguage);
+
+}
+
+</script>
+
+</body>
+</html>
