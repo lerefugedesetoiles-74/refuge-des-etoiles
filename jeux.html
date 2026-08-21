@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Jeux & loisirs - Le Refuge des Étoiles</title>
+
+<style>
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f2ed;
+  color: #2f2f2f;
+}
+
+header {
+  background: linear-gradient(135deg, #5a6378, #8c95ab);
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+header p {
+  max-width: 650px;
+  margin: 12px auto 0;
+  line-height: 1.5;
+}
+
+.language-selector {
+  margin-top: 18px;
+}
+
+.language-selector button {
+  border: none;
+  background: white;
+  padding: 9px 12px;
+  margin: 3px;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 22px;
+  margin-bottom: 18px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+}
+
+.card h2 {
+  margin-top: 0;
+  color: #5a6378;
+}
+
+.card p {
+  line-height: 1.65;
+}
+
+.location {
+  background: #eef0f5;
+  border-left: 5px solid #5a6378;
+}
+
+.reminder {
+  background: #fff4d8;
+  border-left: 5px solid #d6a23d;
+}
+
+.home-button {
+  display: block;
+  width: fit-content;
+  margin: 25px auto;
+  padding: 13px 20px;
+  background: #5a6378;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  padding: 25px 20px;
+  color: #777;
+  font-size: 14px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>🎲 <span id="pageTitle">Jeux & loisirs</span></h1>
+
+<p id="headerText">
+De quoi partager de bons moments pendant votre séjour.
+</p>
+
+<div class="language-selector">
+  <button onclick="changeLanguage('fr')">🇫🇷</button>
+  <button onclick="changeLanguage('en')">🇬🇧</button>
+  <button onclick="changeLanguage('de')">🇩🇪</button>
+  <button onclick="changeLanguage('nl')">🇳🇱</button>
+</div>
+
+</header>
+
+
+<div class="container">
+
+<div class="card">
+
+<h2 id="gamesTitle">
+🎲 Jeux de société
+</h2>
+
+<p id="gamesText">
+Des jeux de société sont à votre disposition pour profiter d'un moment convivial en famille ou entre amis.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h2 id="drawingTitle">
+🎨 Dessin & créativité
+</h2>
+
+<p id="drawingText">
+Du matériel de dessin est également mis à votre disposition pour les petits comme pour les grands.
+</p>
+
+</div>
+
+
+<div class="card location">
+
+<h2 id="locationTitle">
+📍 Où les trouver ?
+</h2>
+
+<p id="locationText">
+Les jeux de société et le matériel de dessin se trouvent dans le meuble du salon.
+</p>
+
+</div>
+
+
+<div class="card reminder">
+
+<h2 id="reminderTitle">
+😊 Merci !
+</h2>
+
+<p id="reminderText">
+Merci de prendre soin du matériel mis à votre disposition et de ranger les jeux et accessoires à leur place après utilisation.
+</p>
+
+</div>
+
+
+<a
+class="home-button"
+href="index.html"
+id="homeButton">
+← Retour au livret d'accueil
+</a>
+
+</div>
+
+
+<footer>
+✨ Le Refuge des Étoiles ✨<br>
+Le Sappey — Haute-Savoie
+</footer>
+
+
+<script>
+
+const translations = {
+
+fr: {
+
+pageTitle:
+"Jeux & loisirs",
+
+headerText:
+"De quoi partager de bons moments pendant votre séjour.",
+
+gamesTitle:
+"🎲 Jeux de société",
+
+gamesText:
+"Des jeux de société sont à votre disposition pour profiter d'un moment convivial en famille ou entre amis.",
+
+drawingTitle:
+"🎨 Dessin & créativité",
+
+drawingText:
+"Du matériel de dessin est également mis à votre disposition pour les petits comme pour les grands.",
+
+locationTitle:
+"📍 Où les trouver ?",
+
+locationText:
+"Les jeux de société et le matériel de dessin se trouvent dans le meuble du salon.",
+
+reminderTitle:
+"😊 Merci !",
+
+reminderText:
+"Merci de prendre soin du matériel mis à votre disposition et de ranger les jeux et accessoires à leur place après utilisation.",
+
+home:
+"← Retour au livret d'accueil"
+
+},
+
+
+en: {
+
+pageTitle:
+"Games & leisure",
+
+headerText:
+"Everything you need to enjoy some fun moments during your stay.",
+
+gamesTitle:
+"🎲 Board games",
+
+gamesText:
+"Board games are available for you to enjoy with family or friends.",
+
+drawingTitle:
+"🎨 Drawing & creativity",
+
+drawingText:
+"Drawing materials are also available for children and adults.",
+
+locationTitle:
+"📍 Where can you find them?",
+
+locationText:
+"Board games and drawing materials are located in the living room cabinet.",
+
+reminderTitle:
+"😊 Thank you!",
+
+reminderText:
+"Please take care of the equipment provided and return games and accessories to their place after use.",
+
+home:
+"← Back to the guest guide"
+
+},
+
+
+de: {
+
+pageTitle:
+"Spiele & Freizeit",
+
+headerText:
+"Alles für schöne gemeinsame Momente während Ihres Aufenthalts.",
+
+gamesTitle:
+"🎲 Gesellschaftsspiele",
+
+gamesText:
+"Gesellschaftsspiele stehen Ihnen für gemütliche Stunden mit Familie oder Freunden zur Verfügung.",
+
+drawingTitle:
+"🎨 Malen & Kreativität",
+
+drawingText:
+"Auch Zeichenmaterial steht Kindern und Erwachsenen zur Verfügung.",
+
+locationTitle:
+"📍 Wo finden Sie alles?",
+
+locationText:
+"Die Gesellschaftsspiele und das Zeichenmaterial befinden sich im Schrank im Wohnzimmer.",
+
+reminderTitle:
+"😊 Vielen Dank!",
+
+reminderText:
+"Bitte gehen Sie sorgfältig mit dem bereitgestellten Material um und räumen Sie Spiele und Zubehör nach Gebrauch wieder an ihren Platz.",
+
+home:
+"← Zurück zum Gästeführer"
+
+},
+
+
+nl: {
+
+pageTitle:
+"Spellen & ontspanning",
+
+headerText:
+"Alles voor gezellige momenten tijdens uw verblijf.",
+
+gamesTitle:
+"🎲 Bordspellen",
+
+gamesText:
+"Bordspellen zijn beschikbaar om samen met familie of vrienden van te genieten.",
+
+drawingTitle:
+"🎨 Tekenen & creativiteit",
+
+drawingText:
+"Ook tekenmateriaal is beschikbaar voor jong en oud.",
+
+locationTitle:
+"📍 Waar vindt u alles?",
+
+locationText:
+"De bordspellen en het tekenmateriaal bevinden zich in de kast in de woonkamer.",
+
+reminderTitle:
+"😊 Bedankt!",
+
+reminderText:
+"Ga zorgvuldig om met het beschikbare materiaal en berg spellen en accessoires na gebruik weer op hun plaats op.",
+
+home:
+"← Terug naar de gastenhandleiding"
+
+}
+
+};
+
+
+function changeLanguage(lang) {
+
+localStorage.setItem(
+"language",
+lang
+);
+
+document.documentElement.lang =
+lang;
+
+const t =
+translations[lang];
+
+document.getElementById("pageTitle").textContent =
+t.pageTitle;
+
+document.getElementById("headerText").textContent =
+t.headerText;
+
+document.getElementById("gamesTitle").textContent =
+t.gamesTitle;
+
+document.getElementById("gamesText").textContent =
+t.gamesText;
+
+document.getElementById("drawingTitle").textContent =
+t.drawingTitle;
+
+document.getElementById("drawingText").textContent =
+t.drawingText;
+
+document.getElementById("locationTitle").textContent =
+t.locationTitle;
+
+document.getElementById("locationText").textContent =
+t.locationText;
+
+document.getElementById("reminderTitle").textContent =
+t.reminderTitle;
+
+document.getElementById("reminderText").textContent =
+t.reminderText;
+
+document.getElementById("homeButton").textContent =
+t.home;
+
+}
+
+
+let savedLanguage =
+localStorage.getItem("language");
+
+
+if (
+savedLanguage &&
+translations[savedLanguage]
+) {
+
+changeLanguage(savedLanguage);
+
+}
+
+else {
+
+let browserLanguage =
+
+navigator.language ||
+
+navigator.userLanguage ||
+
+"fr";
+
+
+browserLanguage =
+browserLanguage.substring(0,2).toLowerCase();
+
+
+if (
+!["fr","en","de","nl"]
+.includes(browserLanguage)
+) {
+
+browserLanguage = "en";
+
+}
+
+
+changeLanguage(browserLanguage);
+
+}
+
+</script>
+
+</body>
+</html>
