@@ -106,7 +106,14 @@
 
     <h2 id="title">Informations Wi-Fi</h2>
 
-    <iframe id="pdfViewer" src="wifi-fr.pdf"></iframe>
+    <img id="documentViewer"
+     src="wifi-fr.jpg"
+     style="
+       width:100%;
+       height:auto;
+       border-radius:12px;
+       display:block;
+     ">
 
     <a id="pdfButton"
        class="button"
@@ -134,6 +141,7 @@ const translations = {
 
   fr: {
     title: "Informations Wi-Fi",
+    image: "wifi-fr.jpg",
     pdf: "wifi-fr.pdf",
     open: "📄 Ouvrir en plein écran",
     home: "← Retour au livret d'accueil"
@@ -141,6 +149,7 @@ const translations = {
 
   en: {
     title: "Wi-Fi information",
+    image: "wifi-en.jpg",
     pdf: "wifi-en.pdf",
     open: "📄 Open full screen",
     home: "← Back to the guest guide"
@@ -148,6 +157,7 @@ const translations = {
 
   de: {
     title: "WLAN-Informationen",
+    image: "wifi-de.jpg",
     pdf: "wifi-de.pdf",
     open: "📄 Im Vollbild öffnen",
     home: "← Zurück zum Gästeführer"
@@ -155,6 +165,7 @@ const translations = {
 
   nl: {
     title: "Wi-Fi-informatie",
+    image: "wifi-nl.jpg",
     pdf: "wifi-nl.pdf",
     open: "📄 Volledig scherm openen",
     home: "← Terug naar de gastenhandleiding"
@@ -172,8 +183,8 @@ function changeLanguage(lang) {
   document.getElementById("title").textContent =
     translations[lang].title;
 
-  document.getElementById("pdfViewer").src =
-    translations[lang].pdf;
+  document.getElementById("documentViewer").src =
+  translations[lang].image;
 
   document.getElementById("pdfButton").href =
     translations[lang].pdf;
