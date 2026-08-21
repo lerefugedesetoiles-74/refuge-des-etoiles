@@ -106,7 +106,14 @@
 
     <h2 id="title">Informations d'arrivée et de départ</h2>
 
-    <iframe id="pdfViewer" src="arrivee-fr.pdf"></iframe>
+    <img id="documentViewer"
+     src="arrivee-fr.jpg"
+     style="
+       width:100%;
+       height:auto;
+       border-radius:12px;
+       display:block;
+     ">
 
     <a id="pdfButton"
        class="button"
@@ -135,6 +142,7 @@ const translations = {
   fr: {
     pageTitle: "Arrivée & Départ",
     title: "Informations d'arrivée et de départ",
+    image: "arrivee-fr.jpg",
     pdf: "arrivee-fr.pdf",
     open: "📄 Ouvrir en plein écran",
     home: "← Retour au livret d'accueil"
@@ -143,6 +151,7 @@ const translations = {
   en: {
     pageTitle: "Arrival & Departure",
     title: "Arrival and departure information",
+    image: "arrivee-en.jpg",
     pdf: "arrivee-en.pdf",
     open: "📄 Open full screen",
     home: "← Back to the guest guide"
@@ -151,6 +160,7 @@ const translations = {
   de: {
     pageTitle: "Ankunft & Abreise",
     title: "Informationen zu Ankunft und Abreise",
+    image: "arrivee-de.jpg",
     pdf: "arrivee-de.pdf",
     open: "📄 Im Vollbild öffnen",
     home: "← Zurück zum Gästeführer"
@@ -159,6 +169,7 @@ const translations = {
   nl: {
     pageTitle: "Aankomst & Vertrek",
     title: "Informatie over aankomst en vertrek",
+    image: "arrivee-nl.jpg",
     pdf: "arrivee-nl.pdf",
     open: "📄 Volledig scherm openen",
     home: "← Terug naar de gastenhandleiding"
@@ -179,8 +190,8 @@ function changeLanguage(lang) {
   document.getElementById("title").textContent =
     translations[lang].title;
 
-  document.getElementById("pdfViewer").src =
-    translations[lang].pdf;
+  document.getElementById("documentViewer").src =
+  translations[lang].image;
 
   document.getElementById("pdfButton").href =
     translations[lang].pdf;
