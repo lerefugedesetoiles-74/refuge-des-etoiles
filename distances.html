@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>À découvrir - Le Refuge des Étoiles</title>
+
+<style>
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f2ed;
+  color: #2f2f2f;
+}
+
+header {
+  background: linear-gradient(135deg, #263d2c, #667653);
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+header p {
+  max-width: 650px;
+  margin: 12px auto 0;
+  line-height: 1.5;
+}
+
+.language-selector {
+  margin-top: 18px;
+}
+
+.language-selector button {
+  border: none;
+  background: white;
+  padding: 9px 12px;
+  margin: 3px;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* CONTENU */
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+.intro {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  line-height: 1.6;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+}
+
+/* AFFICHE */
+
+.poster {
+  background: white;
+  border-radius: 16px;
+  padding: 10px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.10);
+}
+
+.poster img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* CONSEIL */
+
+.tip {
+  background: #eef3e9;
+  border-left: 5px solid #667653;
+  border-radius: 12px;
+  padding: 18px;
+  margin-top: 20px;
+  line-height: 1.6;
+}
+
+/* RETOUR */
+
+.home-button {
+  display: block;
+  width: fit-content;
+  margin: 25px auto;
+  padding: 13px 20px;
+  background: #263d2c;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  padding: 25px 20px;
+  color: #777;
+  font-size: 14px;
+}
+
+/* MOBILE */
+
+@media(max-width:600px) {
+
+  .container {
+    padding: 10px;
+  }
+
+  header {
+    padding: 28px 15px;
+  }
+
+  header h1 {
+    font-size: 26px;
+  }
+
+  .poster {
+    padding: 5px;
+    border-radius: 10px;
+  }
+
+  .poster img {
+    border-radius: 7px;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<header>
+
+<h1>
+📍 <span id="pageTitle">À découvrir autour de nous</span>
+</h1>
+
+<p id="headerText">
+Quelques-uns des plus beaux sites de Haute-Savoie et des environs, à seulement quelques kilomètres du Refuge des Étoiles.
+</p>
+
+<div class="language-selector">
+
+<button onclick="changeLanguage('fr')">🇫🇷</button>
+<button onclick="changeLanguage('en')">🇬🇧</button>
+<button onclick="changeLanguage('de')">🇩🇪</button>
+<button onclick="changeLanguage('nl')">🇳🇱</button>
+
+</div>
+
+</header>
+
+
+<div class="container">
+
+<div class="intro" id="introText">
+🏔️ Entre lac et montagne, profitez de votre séjour pour découvrir les nombreux sites incontournables de la région.
+</div>
+
+
+<div class="poster">
+
+<img
+id="lieuxImage"
+src="lieux-fr.png"
+alt="Lieux à découvrir autour du Refuge des Étoiles">
+
+</div>
+
+
+<div class="tip">
+
+<strong id="tipTitle">
+💡 Une idée de sortie ?
+</strong>
+
+<p id="tipText">
+Les temps de trajet sont donnés à titre indicatif et peuvent varier selon la circulation et les conditions météorologiques.
+</p>
+
+</div>
+
+
+<a
+href="index.html"
+class="home-button"
+id="homeButton">
+
+← Retour au livret d'accueil
+
+</a>
+
+</div>
+
+
+<footer>
+
+✨ Le Refuge des Étoiles ✨<br>
+Le Sappey — Haute-Savoie
+
+</footer>
+
+
+<script>
+
+const translations = {
+
+fr: {
+
+pageTitle:
+"À découvrir autour de nous",
+
+headerText:
+"Quelques-uns des plus beaux sites de Haute-Savoie et des environs, à seulement quelques kilomètres du Refuge des Étoiles.",
+
+intro:
+"🏔️ Entre lac et montagne, profitez de votre séjour pour découvrir les nombreux sites incontournables de la région.",
+
+tipTitle:
+"💡 Une idée de sortie ?",
+
+tipText:
+"Les temps de trajet sont donnés à titre indicatif et peuvent varier selon la circulation et les conditions météorologiques.",
+
+home:
+"← Retour au livret d'accueil",
+
+image:
+"lieux-fr.png"
+
+},
+
+
+en: {
+
+pageTitle:
+"Discover the surrounding area",
+
+headerText:
+"Discover some of the most beautiful places in Haute-Savoie and the surrounding area, just a short drive from Le Refuge des Étoiles.",
+
+intro:
+"🏔️ Between lakes and mountains, make the most of your stay and discover the many must-see places in the region.",
+
+tipTitle:
+"💡 Looking for somewhere to visit?",
+
+tipText:
+"Travel times are approximate and may vary depending on traffic and weather conditions.",
+
+home:
+"← Back to the guest guide",
+
+image:
+"lieux-en.png"
+
+},
+
+
+de: {
+
+pageTitle:
+"Entdecken Sie die Umgebung",
+
+headerText:
+"Entdecken Sie einige der schönsten Orte in Haute-Savoie und der Umgebung, nur wenige Kilometer vom Refuge des Étoiles entfernt.",
+
+intro:
+"🏔️ Zwischen Seen und Bergen gibt es während Ihres Aufenthalts zahlreiche sehenswerte Orte in der Region zu entdecken.",
+
+tipTitle:
+"💡 Lust auf einen Ausflug?",
+
+tipText:
+"Die angegebenen Fahrzeiten sind Richtwerte und können je nach Verkehr und Wetterbedingungen variieren.",
+
+home:
+"← Zurück zum Gästeführer",
+
+image:
+"lieux-de.png"
+
+},
+
+
+nl: {
+
+pageTitle:
+"Ontdek de omgeving",
+
+headerText:
+"Ontdek enkele van de mooiste plekken van Haute-Savoie en omgeving, op slechts enkele kilometers van Le Refuge des Étoiles.",
+
+intro:
+"🏔️ Tussen meren en bergen kunt u tijdens uw verblijf de vele bijzondere plekken in de regio ontdekken.",
+
+tipTitle:
+"💡 Zin in een uitstapje?",
+
+tipText:
+"De aangegeven reistijden zijn indicatief en kunnen variëren afhankelijk van verkeer en weersomstandigheden.",
+
+home:
+"← Terug naar de gastenhandleiding",
+
+image:
+"lieux-nl.png"
+
+}
+
+};
+
+
+function changeLanguage(lang) {
+
+localStorage.setItem("language", lang);
+
+document.documentElement.lang = lang;
+
+const t = translations[lang];
+
+document.getElementById("pageTitle").textContent =
+t.pageTitle;
+
+document.getElementById("headerText").textContent =
+t.headerText;
+
+document.getElementById("introText").textContent =
+t.intro;
+
+document.getElementById("tipTitle").textContent =
+t.tipTitle;
+
+document.getElementById("tipText").textContent =
+t.tipText;
+
+document.getElementById("homeButton").textContent =
+t.home;
+
+
+/* IMAGE SELON LA LANGUE */
+
+const image =
+document.getElementById("lieuxImage");
+
+image.src = t.image;
+
+image.onerror = function() {
+
+  /* Si la traduction de l'image
+     n'existe pas encore,
+     on affiche la version française */
+
+  this.onerror = null;
+
+  this.src = "lieux-fr.png";
+
+};
+
+}
+
+
+/* LANGUE AUTOMATIQUE */
+
+let savedLanguage =
+localStorage.getItem("language");
+
+
+if (
+savedLanguage &&
+translations[savedLanguage]
+) {
+
+changeLanguage(savedLanguage);
+
+}
+
+else {
+
+let browserLanguage =
+navigator.language ||
+navigator.userLanguage ||
+"fr";
+
+
+browserLanguage =
+browserLanguage
+.substring(0,2)
+.toLowerCase();
+
+
+if (
+!["fr","en","de","nl"]
+.includes(browserLanguage)
+) {
+
+browserLanguage = "en";
+
+}
+
+
+changeLanguage(browserLanguage);
+
+}
+
+</script>
+
+</body>
+</html>
