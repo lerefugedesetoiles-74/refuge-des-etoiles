@@ -122,7 +122,16 @@
       📄 Ouvrir en plein écran
     </a>
 
-  </div>
+    <div class="card" style="margin-top:20px;">
+  <h2 id="wifiInfoTitle">À savoir sur le Wi-Fi</h2>
+
+  <p id="wifiInfoText" style="line-height:1.6;">
+    Le logement dispose d’un accès Wi-Fi ainsi que de plusieurs services connectés.
+    Vous pouvez utiliser vos propres comptes Netflix, YouTube, Amazon Prime Video ou autres services compatibles avec les équipements présents dans le logement.
+    Merci de ne pas modifier les paramètres des appareils ou du réseau.
+    Avant votre départ, pensez impérativement à vous déconnecter de vos comptes personnels afin de protéger vos données et éviter qu’ils restent accessibles aux voyageurs suivants.
+  </p>
+</div>
 
   <a class="button" href="index.html" id="homeButton">
     ← Retour au livret d'accueil
@@ -144,15 +153,23 @@ const translations = {
     image: "wifi-fr.jpg",
     pdf: "wifi-fr.pdf",
     open: "📄 Ouvrir en plein écran",
-    home: "← Retour au livret d'accueil"
-  },
+    home: "← Retour au livret d'accueil",
+
+    wifiInfoTitle: "À savoir sur le Wi-Fi",
+    wifiInfoText:
+    "Le logement dispose d’un accès Wi-Fi ainsi que de plusieurs services connectés. Vous pouvez utiliser vos propres comptes Netflix, YouTube, Amazon Prime Video ou autres services compatibles avec les équipements présents dans le logement. Merci de ne pas modifier les paramètres des appareils ou du réseau. Avant votre départ, pensez impérativement à vous déconnecter de vos comptes personnels afin de protéger vos données et éviter qu’ils restent accessibles aux voyageurs suivants."
+},
 
   en: {
     title: "Wi-Fi information",
     image: "wifi-en.jpg",
     pdf: "wifi-en.pdf",
     open: "📄 Open full screen",
-    home: "← Back to the guest guide"
+    home: "← Back to the guest guide",
+
+    wifiInfoTitle: "What to know about Wi-Fi",
+    wifiInfoText:
+    "The accommodation has Wi-Fi access as well as several connected services. You can use your own Netflix, YouTube, Amazon Prime Video, or other accounts compatible with the equipment provided in the accommodation. Please do not change the settings of the devices or the network. Before you leave, make sure to log out of your personal accounts to protect your data and prevent them from being accessible to the next guests."
   },
 
   de: {
@@ -160,7 +177,10 @@ const translations = {
     image: "wifi-de.jpg",
     pdf: "wifi-de.pdf",
     open: "📄 Im Vollbild öffnen",
-    home: "← Zurück zum Gästeführer"
+    home: "← Zurück zum Gästeführer",
+    wifiInfoTitle: "Zu wissen über WLAN",
+    wifiInfoText:
+    "Die Unterkunft verfügt über WLAN sowie verschiedene vernetzte Dienste. Sie können Ihre eigenen Konten bei Netflix, YouTube, Amazon Prime Video oder anderen Diensten nutzen, die mit der Ausstattung in der Unterkunft kompatibel sind. Bitte ändern Sie nicht die Einstellungen der Geräte oder des Netzwerks. Vor Ihrer Abreise denken Sie unbedingt daran, sich von Ihren persönlichen Konten abzumelden, um Ihre Daten zu schützen und zu verhindern, dass sie für nachfolgende Gäste zugänglich bleiben."
   },
 
   nl: {
@@ -168,7 +188,10 @@ const translations = {
     image: "wifi-nl.jpg",
     pdf: "wifi-nl.pdf",
     open: "📄 Volledig scherm openen",
-    home: "← Terug naar de gastenhandleiding"
+    home: "← Terug naar de gastenhandleiding",
+    wifiInfoTitle: "Wat je moet weten over Wi-Fi",
+    wifiInfoText:
+      "De accommodatie heeft toegang tot Wi-Fi en verschillende verbonden diensten. Je kunt je eigen Netflix-, YouTube-, Amazon Prime Video-accounts of andere services gebruiken die compatibel zijn met de beschikbare apparatuur in de accommodatie. Gelieve de instellingen van de apparaten of het netwerk niet te wijzigen. Vergeet voor je vertrek zeker niet uit te loggen van je persoonlijke accounts om je gegevens te beschermen en te voorkomen dat ze toegankelijk blijven voor de volgende gasten."
   }
 
 };
@@ -194,6 +217,11 @@ function changeLanguage(lang) {
 
   document.getElementById("homeButton").textContent =
     translations[lang].home;
+  document.getElementById("wifiInfoTitle").textContent =
+    translations[lang].wifiInfoTitle;
+
+  document.getElementById("wifiInfoText").textContent =
+    translations[lang].wifiInfoText;
 }
 
 
