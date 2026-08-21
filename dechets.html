@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Déchets & Tri - Le Refuge des Étoiles</title>
+
+<style>
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f2ed;
+  color: #2f2f2f;
+}
+
+header {
+  background: linear-gradient(135deg, #4f6b4f, #7fa27f);
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+.language-selector {
+  margin-top: 18px;
+}
+
+.language-selector button {
+  border: none;
+  background: white;
+  padding: 9px 12px;
+  margin: 3px;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+}
+
+.card h2 {
+  margin-top: 0;
+  color: #4f6b4f;
+}
+
+.card p {
+  line-height: 1.65;
+}
+
+#documentViewer {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+.household {
+  background: #fff4d8;
+  border-left: 5px solid #d6a23d;
+}
+
+.recycling {
+  background: #edf7ed;
+  border-left: 5px solid #5f8d5f;
+}
+
+.info {
+  background: #eef4f7;
+  border-left: 5px solid #6d8b99;
+}
+
+.home-button {
+  display: block;
+  width: fit-content;
+  margin: 25px auto;
+  padding: 13px 20px;
+  background: #4f6b4f;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+  padding: 25px 20px;
+  color: #777;
+  font-size: 14px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>
+♻️ <span id="pageTitle">Déchets & Tri</span>
+</h1>
+
+<div class="language-selector">
+
+<button onclick="changeLanguage('fr')">🇫🇷</button>
+<button onclick="changeLanguage('en')">🇬🇧</button>
+<button onclick="changeLanguage('de')">🇩🇪</button>
+<button onclick="changeLanguage('nl')">🇳🇱</button>
+
+</div>
+
+</header>
+
+<div class="container">
+
+<!-- AFFICHE -->
+
+<div class="card">
+
+<img
+id="documentViewer"
+src="dechets-fr.png"
+alt="Déchets et tri sélectif">
+
+</div>
+
+<!-- ORDURES MENAGERES -->
+
+<div class="card household">
+
+<h2 id="householdTitle">
+🗑️ Ordures ménagères
+</h2>
+
+<p id="householdText">
+Les ordures ménagères doivent être déposées dans les points de collecte situés au bord de la route. Un point de collecte se trouve à proximité de la maison.
+</p>
+
+</div>
+
+<!-- TRI SELECTIF -->
+
+<div class="card recycling">
+
+<h2 id="recyclingTitle">
+♻️ Tri sélectif
+</h2>
+
+<p id="recyclingText">
+Le tri sélectif se fait également dans des points de collecte dédiés. Les conteneurs pour le verre, le plastique, le papier et les cartons se trouvent à moins d'un kilomètre de la maison.
+</p>
+
+</div>
+
+<!-- RAPPEL -->
+
+<div class="card info">
+
+<h2 id="reminderTitle">
+🌿 Merci pour votre participation
+</h2>
+
+<p id="reminderText">
+Nous vous remercions de respecter les consignes de tri et de ne pas laisser de sacs-poubelle à l'extérieur de la maison ou à proximité des conteneurs lorsqu'ils sont pleins.
+</p>
+
+</div>
+
+<a
+class="home-button"
+href="index.html"
+id="homeButton">
+
+← Retour au livret d'accueil
+
+</a>
+
+</div>
+
+<footer>
+
+✨ Le Refuge des Étoiles ✨
+<br>
+Le Sappey — Haute-Savoie
+
+</footer>
+
+<script>
+
+const translations = {
+
+fr: {
+
+pageTitle:
+"Déchets & Tri",
+
+image:
+"dechets-fr.png",
+
+householdTitle:
+"🗑️ Ordures ménagères",
+
+householdText:
+"Les ordures ménagères doivent être déposées dans les points de collecte situés au bord de la route. Un point de collecte se trouve à proximité de la maison.",
+
+recyclingTitle:
+"♻️ Tri sélectif",
+
+recyclingText:
+"Le tri sélectif se fait également dans des points de collecte dédiés. Les conteneurs pour le verre, le plastique, le papier et les cartons se trouvent à moins d'un kilomètre de la maison.",
+
+reminderTitle:
+"🌿 Merci pour votre participation",
+
+reminderText:
+"Nous vous remercions de respecter les consignes de tri et de ne pas laisser de sacs-poubelle à l'extérieur de la maison ou à proximité des conteneurs lorsqu'ils sont pleins.",
+
+home:
+"← Retour au livret d'accueil"
+
+},
+
+en: {
+
+pageTitle:
+"Waste & Recycling",
+
+image:
+"dechets-en.png",
+
+householdTitle:
+"🗑️ Household waste",
+
+householdText:
+"Household waste must be taken to the collection points located along the roadside. One collection point is located close to the house.",
+
+recyclingTitle:
+"♻️ Recycling",
+
+recyclingText:
+"Recycling is also carried out at dedicated collection points. Containers for glass, plastic, paper and cardboard are located less than one kilometre from the house.",
+
+reminderTitle:
+"🌿 Thank you for helping",
+
+reminderText:
+"Thank you for following the recycling instructions and for not leaving rubbish bags outside the house or next to full collection containers.",
+
+home:
+"← Back to the guest guide"
+
+},
+
+de: {
+
+pageTitle:
+"Abfall & Recycling",
+
+image:
+"dechets-de.png",
+
+householdTitle:
+"🗑️ Hausmüll",
+
+householdText:
+"Hausmüll muss zu den Sammelstellen am Straßenrand gebracht werden. Eine Sammelstelle befindet sich in der Nähe des Hauses.",
+
+recyclingTitle:
+"♻️ Mülltrennung",
+
+recyclingText:
+"Auch Wertstoffe werden an dafür vorgesehenen Sammelstellen entsorgt. Container für Glas, Kunststoff, Papier und Karton befinden sich weniger als einen Kilometer vom Haus entfernt.",
+
+reminderTitle:
+"🌿 Vielen Dank für Ihre Mithilfe",
+
+reminderText:
+"Vielen Dank, dass Sie die Hinweise zur Mülltrennung beachten und keine Müllsäcke vor dem Haus oder neben vollen Sammelcontainern abstellen.",
+
+home:
+"← Zurück zum Gästeführer"
+
+},
+
+nl: {
+
+pageTitle:
+"Afval & Recycling",
+
+image:
+"dechets-nl.png",
+
+householdTitle:
+"🗑️ Huishoudelijk afval",
+
+householdText:
+"Huishoudelijk afval moet naar de inzamelpunten langs de weg worden gebracht. Eén inzamelpunt bevindt zich vlak bij het huis.",
+
+recyclingTitle:
+"♻️ Afval scheiden",
+
+recyclingText:
+"Ook recyclebaar afval wordt naar speciale inzamelpunten gebracht. Containers voor glas, plastic, papier en karton bevinden zich op minder dan één kilometer van de woning.",
+
+reminderTitle:
+"🌿 Bedankt voor uw medewerking",
+
+reminderText:
+"Bedankt dat u de sorteervoorschriften respecteert en geen vuilniszakken buiten de woning of naast volle containers achterlaat.",
+
+home:
+"← Terug naar de gastenhandleiding"
+
+}
+
+};
+
+function changeLanguage(lang) {
+
+localStorage.setItem("language", lang);
+
+document.documentElement.lang = lang;
+
+document.getElementById("pageTitle").textContent =
+translations[lang].pageTitle;
+
+document.getElementById("documentViewer").src =
+translations[lang].image;
+
+document.getElementById("householdTitle").textContent =
+translations[lang].householdTitle;
+
+document.getElementById("householdText").textContent =
+translations[lang].householdText;
+
+document.getElementById("recyclingTitle").textContent =
+translations[lang].recyclingTitle;
+
+document.getElementById("recyclingText").textContent =
+translations[lang].recyclingText;
+
+document.getElementById("reminderTitle").textContent =
+translations[lang].reminderTitle;
+
+document.getElementById("reminderText").textContent =
+translations[lang].reminderText;
+
+document.getElementById("homeButton").textContent =
+translations[lang].home;
+
+}
+
+let savedLanguage =
+localStorage.getItem("language");
+
+if (
+savedLanguage &&
+translations[savedLanguage]
+) {
+
+changeLanguage(savedLanguage);
+
+}
+
+else {
+
+let browserLanguage =
+navigator.language ||
+navigator.userLanguage ||
+"fr";
+
+browserLanguage =
+browserLanguage.substring(0,2).toLowerCase();
+
+if (
+!["fr","en","de","nl"].includes(browserLanguage)
+) {
+
+browserLanguage = "en";
+
+}
+
+changeLanguage(browserLanguage);
+
+}
+
+</script>
+
+</body>
+</html>
