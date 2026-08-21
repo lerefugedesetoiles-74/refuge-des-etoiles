@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Salle de bain - Le Refuge des Étoiles</title>
+
+<style>
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f2ed;
+  color: #2f2f2f;
+}
+
+header {
+  background: linear-gradient(135deg, #557c83, #8fb8bd);
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+header p {
+  max-width: 650px;
+  margin: 12px auto 0;
+  line-height: 1.5;
+}
+
+.language-selector {
+  margin-top: 18px;
+}
+
+.language-selector button {
+  border: none;
+  background: white;
+  padding: 9px 12px;
+  margin: 3px;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+.intro {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+  line-height: 1.6;
+}
+
+/* CARTES */
+
+.item {
+  background: white;
+  border-radius: 16px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+}
+
+.item-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 18px;
+  cursor: pointer;
+}
+
+.item-header:hover {
+  background: #f7faf9;
+}
+
+.icon {
+  min-width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #e7f1f2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+
+.item-info {
+  flex: 1;
+}
+
+.item-info h2 {
+  color: #557c83;
+  margin: 0 0 5px;
+  font-size: 20px;
+}
+
+.subtitle {
+  color: #777;
+  font-size: 14px;
+}
+
+.arrow {
+  font-size: 20px;
+  color: #557c83;
+  transition: transform 0.25s;
+}
+
+.item.open .arrow {
+  transform: rotate(180deg);
+}
+
+.instructions {
+  display: none;
+  padding: 0 20px 20px 93px;
+  line-height: 1.65;
+  color: #555;
+}
+
+.item.open .instructions {
+  display: block;
+}
+
+.instructions p {
+  margin: 8px 0;
+}
+
+/* INFO */
+
+.info-box {
+  background: #eef6f7;
+  border-left: 5px solid #557c83;
+  border-radius: 12px;
+  padding: 18px;
+  margin-top: 20px;
+  line-height: 1.6;
+}
+
+/* RETOUR */
+
+.home-button {
+  display: block;
+  width: fit-content;
+  margin: 25px auto;
+  padding: 13px 20px;
+  background: #557c83;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  padding: 25px 20px;
+  color: #777;
+  font-size: 14px;
+}
+
+@media(max-width:600px) {
+
+  .container {
+    padding: 12px;
+  }
+
+  .instructions {
+    padding: 0 18px 18px 18px;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<header>
+
+<h1>🛁 <span id="pageTitle">Salle de bain</span></h1>
+
+<p id="headerText">
+Retrouvez ici les informations concernant le linge de toilette et les équipements à votre disposition.
+</p>
+
+<div class="language-selector">
+
+<button onclick="changeLanguage('fr')">🇫🇷</button>
+<button onclick="changeLanguage('en')">🇬🇧</button>
+<button onclick="changeLanguage('de')">🇩🇪</button>
+<button onclick="changeLanguage('nl')">🇳🇱</button>
+
+</div>
+
+</header>
+
+
+<div class="container">
+
+
+<div class="intro" id="intro">
+
+👆 Sélectionnez une rubrique pour afficher les informations.
+
+</div>
+
+
+<div id="itemsContainer"></div>
+
+
+<div class="info-box">
+
+<strong id="infoTitle">
+💡 Bon à savoir
+</strong>
+
+<p id="infoText">
+Merci de prendre soin du linge et des équipements mis à votre disposition pendant votre séjour.
+</p>
+
+</div>
+
+
+<a
+href="index.html"
+class="home-button"
+id="homeButton">
+
+← Retour au livret d'accueil
+
+</a>
+
+
+</div>
+
+
+<footer>
+
+✨ Le Refuge des Étoiles ✨<br>
+Le Sappey — Haute-Savoie
+
+</footer>
+
+
+<script>
+
+/* =========================
+   RUBRIQUES
+========================= */
+
+const items = [
+
+{
+  icon:"🧺",
+  type:"washing"
+},
+
+{
+  icon:"🛁",
+  type:"towels"
+},
+
+{
+  icon:"💨",
+  type:"dryer"
+}
+
+];
+
+
+/* =========================
+   TRADUCTIONS
+========================= */
+
+const translations = {
+
+
+/* FRANÇAIS */
+
+fr: {
+
+pageTitle:
+"Salle de bain",
+
+headerText:
+"Retrouvez ici les informations concernant le linge de toilette et les équipements à votre disposition.",
+
+intro:
+"👆 Sélectionnez une rubrique pour afficher les informations.",
+
+infoTitle:
+"💡 Bon à savoir",
+
+infoText:
+"Merci de prendre soin du linge et des équipements mis à votre disposition pendant votre séjour.",
+
+home:
+"← Retour au livret d'accueil",
+
+
+washing: {
+
+name:
+"Lave-linge",
+
+subtitle:
+"VALBERG WF 1014 A-10 W566C – 10 kg",
+
+text:`
+
+<p>
+🧺 Un lave-linge hublot VALBERG de 10 kg est à votre disposition pendant votre séjour.
+</p>
+
+<p>
+👕 Veillez à respecter la capacité maximale de 10 kg et à vérifier les poches avant chaque lavage.
+</p>
+
+<p>
+🧴 Utilisez uniquement un produit adapté au lave-linge.
+</p>
+
+<p>
+⚠️ En cas de problème ou de message d'erreur, merci de ne pas démonter l'appareil et de nous contacter.
+</p>
+
+`
+
+},
+
+
+towels: {
+
+name:
+"Linge de toilette",
+
+subtitle:
+"Petites et grandes serviettes",
+
+text:`
+
+<p>
+🛁 Des petites et grandes serviettes sont mises à votre disposition pendant votre séjour.
+</p>
+
+<p>
+🧺 Merci de réserver ce linge exclusivement à un usage dans la maison.
+</p>
+
+<p>
+🏊 Le linge de toilette de la maison ne doit pas être utilisé pour la piscine.
+</p>
+
+<p>
+✨ Merci de prendre soin du linge mis à votre disposition.
+</p>
+
+`
+
+},
+
+
+dryer: {
+
+name:
+"Sèche-cheveux",
+
+subtitle:
+"À votre disposition",
+
+text:`
+
+<p>
+💨 Un sèche-cheveux est à votre disposition dans la maison.
+</p>
+
+<p>
+⚠️ Pour votre sécurité, ne l'utilisez jamais à proximité immédiate de l'eau.
+</p>
+
+<p>
+🔌 Après utilisation, pensez à l'éteindre et à le débrancher.
+</p>
+
+`
+
+}
+
+},
+
+
+/* ANGLAIS */
+
+en: {
+
+pageTitle:
+"Bathroom",
+
+headerText:
+"Here you will find useful information about towels and the bathroom equipment available during your stay.",
+
+intro:
+"👆 Select a section to view the information.",
+
+infoTitle:
+"💡 Good to know",
+
+infoText:
+"Please take care of the towels and equipment provided during your stay.",
+
+home:
+"← Back to the guest guide",
+
+
+washing: {
+
+name:
+"Washing machine",
+
+subtitle:
+"VALBERG WF 1014 A-10 W566C – 10 kg",
+
+text:`
+
+<p>
+🧺 A washing machine is available for you during your stay.
+</p>
+
+<p>
+👕 Please respect the machine's capacity and check all pockets before washing.
+</p>
+
+<p>
+🧴 Only use detergent suitable for washing machines.
+</p>
+
+<p>
+⚠️ If you experience a problem or an error message, please do not dismantle the appliance and contact us.
+</p>
+
+`
+
+},
+
+
+towels: {
+
+name:
+"Bathroom towels",
+
+subtitle:
+"Hand towels and bath towels",
+
+text:`
+
+<p>
+🛁 Hand towels and bath towels are provided for you during your stay.
+</p>
+
+<p>
+🧺 Please use these towels inside the house only.
+</p>
+
+<p>
+🏊 The bathroom towels provided in the house must not be used at the swimming pool.
+</p>
+
+<p>
+✨ Please take care of the linen provided.
+</p>
+
+`
+
+},
+
+
+dryer: {
+
+name:
+"Hair dryer",
+
+subtitle:
+"Available for your use",
+
+text:`
+
+<p>
+💨 A hair dryer is available for you in the house.
+</p>
+
+<p>
+⚠️ For your safety, never use it close to water.
+</p>
+
+<p>
+🔌 After use, please switch it off and unplug it.
+</p>
+
+`
+
+}
+
+},
+
+
+/* ALLEMAND */
+
+de: {
+
+pageTitle:
+"Badezimmer",
+
+headerText:
+"Hier finden Sie nützliche Informationen zu Handtüchern und den verfügbaren Badezimmergeräten.",
+
+intro:
+"👆 Wählen Sie eine Rubrik aus, um die Informationen anzuzeigen.",
+
+infoTitle:
+"💡 Gut zu wissen",
+
+infoText:
+"Bitte gehen Sie sorgfältig mit den bereitgestellten Handtüchern und Geräten um.",
+
+home:
+"← Zurück zum Gästeführer",
+
+
+washing: {
+
+name:
+"Waschmaschine",
+
+subtitle:
+"VALBERG WF 1014 A-10 W566C – 10 kg",
+
+text:`
+
+<p>
+🧺 Während Ihres Aufenthalts steht Ihnen eine Waschmaschine zur Verfügung.
+</p>
+
+<p>
+👕 Beachten Sie bitte die maximale Beladung und kontrollieren Sie vor dem Waschen alle Taschen.
+</p>
+
+<p>
+🧴 Verwenden Sie ausschließlich Waschmittel, das für Waschmaschinen geeignet ist.
+</p>
+
+<p>
+⚠️ Bei einer Störung oder Fehlermeldung versuchen Sie bitte nicht, das Gerät selbst zu zerlegen. Kontaktieren Sie uns.
+</p>
+
+`
+
+},
+
+
+towels: {
+
+name:
+"Handtücher",
+
+subtitle:
+"Hand- und Badetücher",
+
+text:`
+
+<p>
+🛁 Hand- und Badetücher stehen Ihnen während Ihres Aufenthalts zur Verfügung.
+</p>
+
+<p>
+🧺 Bitte verwenden Sie diese Handtücher ausschließlich im Haus.
+</p>
+
+<p>
+🏊 Die Handtücher aus dem Haus dürfen nicht für den Swimmingpool verwendet werden.
+</p>
+
+<p>
+✨ Bitte gehen Sie sorgfältig mit der bereitgestellten Wäsche um.
+</p>
+
+`
+
+},
+
+
+dryer: {
+
+name:
+"Haartrockner",
+
+subtitle:
+"Steht Ihnen zur Verfügung",
+
+text:`
+
+<p>
+💨 Im Haus steht Ihnen ein Haartrockner zur Verfügung.
+</p>
+
+<p>
+⚠️ Verwenden Sie ihn zu Ihrer Sicherheit niemals in unmittelbarer Nähe von Wasser.
+</p>
+
+<p>
+🔌 Schalten Sie das Gerät nach Gebrauch aus und ziehen Sie den Netzstecker.
+</p>
+
+`
+
+}
+
+},
+
+
+/* NÉERLANDAIS */
+
+nl: {
+
+pageTitle:
+"Badkamer",
+
+headerText:
+"Hier vindt u nuttige informatie over de handdoeken en badkamerapparatuur.",
+
+intro:
+"👆 Selecteer een onderdeel om de informatie te bekijken.",
+
+infoTitle:
+"💡 Goed om te weten",
+
+infoText:
+"Ga zorgvuldig om met de handdoeken en apparatuur die tijdens uw verblijf beschikbaar zijn.",
+
+home:
+"← Terug naar de gastenhandleiding",
+
+
+washing: {
+
+name:
+"Wasmachine",
+
+subtitle:
+"VALBERG WF 1014 A-10 W566C – 10 kg",
+
+text:`
+
+<p>
+🧺 Tijdens uw verblijf kunt u gebruikmaken van een wasmachine.
+</p>
+
+<p>
+👕 Respecteer de maximale capaciteit van de machine en controleer de zakken vóór het wassen.
+</p>
+
+<p>
+🧴 Gebruik uitsluitend wasmiddel dat geschikt is voor wasmachines.
+</p>
+
+<p>
+⚠️ Probeer het apparaat bij een storing of foutmelding niet zelf te demonteren. Neem contact met ons op.
+</p>
+
+`
+
+},
+
+
+towels: {
+
+name:
+"Badkamerhanddoeken",
+
+subtitle:
+"Handdoeken en badhanddoeken",
+
+text:`
+
+<p>
+🛁 Tijdens uw verblijf zijn handdoeken en badhanddoeken beschikbaar.
+</p>
+
+<p>
+🧺 Gebruik deze handdoeken uitsluitend in de woning.
+</p>
+
+<p>
+🏊 De handdoeken van de woning mogen niet bij het zwembad worden gebruikt.
+</p>
+
+<p>
+✨ Ga zorgvuldig om met het beschikbare linnengoed.
+</p>
+
+`
+
+},
+
+
+dryer: {
+
+name:
+"Haardroger",
+
+subtitle:
+"Tot uw beschikking",
+
+text:`
+
+<p>
+💨 Er is een haardroger beschikbaar in de woning.
+</p>
+
+<p>
+⚠️ Gebruik deze voor uw veiligheid nooit vlak bij water.
+</p>
+
+<p>
+🔌 Schakel het apparaat na gebruik uit en haal de stekker uit het stopcontact.
+</p>
+
+`
+
+}
+
+}
+
+};
+
+
+/* =========================
+   AFFICHAGE
+========================= */
+
+let currentLanguage = "fr";
+
+
+function renderItems() {
+
+const container =
+document.getElementById("itemsContainer");
+
+container.innerHTML = "";
+
+const t =
+translations[currentLanguage];
+
+
+items.forEach((item,index) => {
+
+const content =
+t[item.type];
+
+
+const card =
+document.createElement("div");
+
+card.className =
+"item";
+
+card.id =
+"item-" + index;
+
+
+card.innerHTML = `
+
+<div
+class="item-header"
+onclick="toggleItem(${index})">
+
+<div class="icon">
+${item.icon}
+</div>
+
+
+<div class="item-info">
+
+<h2>
+${content.name}
+</h2>
+
+<div class="subtitle">
+${content.subtitle}
+</div>
+
+</div>
+
+
+<div class="arrow">
+⌄
+</div>
+
+</div>
+
+
+<div class="instructions">
+
+${content.text}
+
+</div>
+
+`;
+
+
+container.appendChild(card);
+
+});
+
+}
+
+
+/* =========================
+   OUVERTURE DES CARTES
+========================= */
+
+function toggleItem(index) {
+
+const selected =
+document.getElementById(
+"item-" + index
+);
+
+
+const wasOpen =
+selected.classList.contains("open");
+
+
+document
+.querySelectorAll(".item")
+.forEach(card => {
+
+card.classList.remove("open");
+
+});
+
+
+if (!wasOpen) {
+
+selected.classList.add("open");
+
+}
+
+}
+
+
+/* =========================
+   LANGUES
+========================= */
+
+function changeLanguage(lang) {
+
+currentLanguage = lang;
+
+
+localStorage.setItem(
+"language",
+lang
+);
+
+
+document.documentElement.lang =
+lang;
+
+
+const t =
+translations[lang];
+
+
+document.getElementById("pageTitle").textContent =
+t.pageTitle;
+
+document.getElementById("headerText").textContent =
+t.headerText;
+
+document.getElementById("intro").textContent =
+t.intro;
+
+document.getElementById("infoTitle").textContent =
+t.infoTitle;
+
+document.getElementById("infoText").textContent =
+t.infoText;
+
+document.getElementById("homeButton").textContent =
+t.home;
+
+
+renderItems();
+
+}
+
+
+/* =========================
+   LANGUE AUTOMATIQUE
+========================= */
+
+let savedLanguage =
+localStorage.getItem("language");
+
+
+if (
+savedLanguage &&
+translations[savedLanguage]
+) {
+
+changeLanguage(savedLanguage);
+
+}
+
+else {
+
+let browserLanguage =
+
+navigator.language ||
+
+navigator.userLanguage ||
+
+"fr";
+
+
+browserLanguage =
+
+browserLanguage
+.substring(0,2)
+.toLowerCase();
+
+
+if (
+!["fr","en","de","nl"]
+.includes(browserLanguage)
+) {
+
+browserLanguage = "en";
+
+}
+
+
+changeLanguage(browserLanguage);
+
+}
+
+</script>
+
+</body>
+</html>
