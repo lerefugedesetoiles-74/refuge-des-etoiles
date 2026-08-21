@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nature - Le Refuge des Étoiles</title>
+
+<style>
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f2ed;
+  color: #2f2f2f;
+}
+
+header {
+  background: linear-gradient(135deg, #3f694d, #81a979);
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+header p {
+  max-width: 650px;
+  margin: 12px auto 0;
+  line-height: 1.5;
+}
+
+.language-selector {
+  margin-top: 18px;
+}
+
+.language-selector button {
+  border: none;
+  background: white;
+  padding: 9px 12px;
+  margin: 3px;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.container {
+  max-width: 850px;
+  margin: auto;
+  padding: 20px;
+}
+
+.filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.filter-button {
+  border: none;
+  background: white;
+  padding: 10px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 2px 7px rgba(0,0,0,0.08);
+  font-weight: bold;
+}
+
+.filter-button.active {
+  background: #3f694d;
+  color: white;
+}
+
+.place-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+}
+
+.place-header {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+}
+
+.place-icon {
+  min-width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #edf4ea;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+
+.place-info {
+  flex: 1;
+}
+
+.place-card h2 {
+  color: #3f694d;
+  margin: 0 0 8px 0;
+  font-size: 21px;
+}
+
+.travel {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.address,
+.phone {
+  line-height: 1.5;
+  margin: 4px 0;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-top: 15px;
+}
+
+.action-button {
+  display: block;
+  text-align: center;
+  padding: 12px 8px;
+  border-radius: 9px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.map-button {
+  background: #3f694d;
+  color: white;
+}
+
+.website-button {
+  background: #eaf1e8;
+  color: #3f694d;
+}
+
+.back-button {
+  display: block;
+  width: fit-content;
+  margin: 25px auto 10px;
+  padding: 13px 20px;
+  background: #3f694d;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.home-button {
+  display: block;
+  width: fit-content;
+  margin: 10px auto 25px;
+  padding: 11px 18px;
+  background: #777;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  padding: 25px 20px;
+  color: #777;
+  font-size: 14px;
+}
+
+@media (max-width:600px) {
+
+  .container {
+    padding: 12px;
+  }
+
+  .place-card {
+    padding: 16px;
+  }
+
+  .buttons {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<header>
+
+<h1>🌿 <span id="pageTitle">Nature</span></h1>
+
+<p id="headerText">
+Lacs, montagnes, jardins et paysages à découvrir autour du Refuge des Étoiles.
+</p>
+
+<div class="language-selector">
+  <button onclick="changeLanguage('fr')">🇫🇷</button>
+  <button onclick="changeLanguage('en')">🇬🇧</button>
+  <button onclick="changeLanguage('de')">🇩🇪</button>
+  <button onclick="changeLanguage('nl')">🇳🇱</button>
+</div>
+
+</header>
+
+
+<div class="container">
+
+<div class="filters">
+
+<button
+class="filter-button active"
+id="filterAll"
+onclick="filterPlaces('all', this)">
+Tous
+</button>
+
+<button
+class="filter-button"
+id="filterNear"
+onclick="filterPlaces('near', this)">
+📍 Moins de 30 min
+</button>
+
+<button
+class="filter-button"
+id="filterMountain"
+onclick="filterPlaces('mountain', this)">
+🏔️ Montagne
+</button>
+
+<button
+class="filter-button"
+id="filterWaterGarden"
+onclick="filterPlaces('watergarden', this)">
+💧 Eau & jardins
+</button>
+
+</div>
+
+
+<div id="placesContainer"></div>
+
+
+<a
+class="back-button"
+href="sorties.html"
+id="backButton">
+← Retour aux sorties
+</a>
+
+<a
+class="home-button"
+href="index.html"
+id="homeButton">
+🏡 Accueil du livret
+</a>
+
+</div>
+
+
+<footer>
+✨ Le Refuge des Étoiles ✨<br>
+Le Sappey — Haute-Savoie
+</footer>
+
+
+<script>
+
+/* =============================
+   LIEUX NATURE
+============================= */
+
+const places = [
+
+{
+  name: "Le lac des Dronières",
+  icon: "🌊",
+  km: 6,
+  minutes: 10,
+  timeText: "10 min",
+  address: "1050 Route des Dronières, 74350 Cruseilles",
+  phone: "+33 (0)4 50 32 10 33",
+  website: "https://www.cruseilles.fr",
+  categories: ["watergarden"]
+},
+
+{
+  name: "La ferme de Chosal",
+  icon: "🌾",
+  km: 12,
+  minutes: 20,
+  timeText: "20 min",
+  address: "98 Route de l’Usine, Chosal, 74350 Copponex",
+  phone: "+33 (0)4 50 44 12 82",
+  website: "https://fermedechosal.org/",
+  categories: ["farm"]
+},
+
+{
+  name: "Le Grand Piton",
+  icon: "🏔️",
+  km: 12,
+  minutes: 20,
+  timeText: "20 min",
+  address: "Le Grand Piton, D41A, 74160 Beaumont",
+  phone: "",
+  website: "https://www.altituderando.com/Le-Grand-Piton-du-Saleve-1379m-promenade-de-piton-en-piton-sur-les-cretes",
+  categories: ["mountain"]
+},
+
+{
+  name: "Le Salève – L’Observatoire",
+  icon: "🥾",
+  km: 14,
+  minutes: 20,
+  timeText: "20 min",
+  address: "8200 Route des 3 Lacs, 74560 Monnetier-Mornex",
+  phone: "",
+  website: "",
+  categories: ["mountain"]
+},
+
+{
+  name: "La Maison du Salève",
+  icon: "🏡",
+  km: 17,
+  minutes: 20,
+  timeText: "20 min",
+  address: "775 Route de Mikerne, 74160 Présilly",
+  phone: "+33 (0)4 50 95 92 16",
+  website: "https://maisondusaleve.com/",
+  categories: ["activity"]
+},
+
+{
+  name: "Le Téléphérique du Salève",
+  icon: "🚠",
+  km: 20,
+  minutes: 30,
+  timeText: "30 min",
+  address: "Route du Téléphérique, 74100 Étrembières",
+  phone: "+33 (0)4 50 94 95 68",
+  website: "https://www.telepherique-du-saleve.com/",
+  categories: ["mountain"]
+},
+
+{
+  name: "Les Jardins de la Haute-Savoie",
+  icon: "🌷",
+  km: 23,
+  minutes: 35,
+  timeText: "35 min",
+  address: "165 Route de Paris, 74330 La Balme-de-Sillingy",
+  phone: "+33 (0)6 89 06 76 73",
+  website: "https://tourisme.fier-et-usses.com/le-parc-des-jardins-de-haute-savoie-1-1-1-1.html",
+  categories: ["watergarden"]
+},
+
+{
+  name: "Les Gorges du Fier",
+  icon: "💧",
+  km: 31,
+  minutes: 40,
+  timeText: "40 min",
+  address: "Site officiel des Gorges du Fier, 74330 Lovagny",
+  phone: "+33 (0)4 50 46 23 07",
+  website: "https://www.gorgesdufier.com/",
+  categories: ["watergarden"]
+},
+
+{
+  name: "Plateau des Glières",
+  icon: "⛰️",
+  km: 32,
+  minutes: 50,
+  timeText: "50 min",
+  address: "Plateau des Glières, Route des Glières, 74570 Thorens-Glières",
+  phone: "+33 (0)4 50 22 45 63",
+  website: "https://www.plateaudesglieres.fr/",
+  categories: ["mountain"]
+},
+
+{
+  name: "Jardins Secrets",
+  icon: "🌺",
+  km: 33,
+  minutes: 50,
+  timeText: "50 min",
+  address: "1561 Route de Lagnat, 74150 Vaulx",
+  phone: "+33 (0)4 50 60 53 18",
+  website: "https://www.jardins-secrets.com/",
+  categories: ["watergarden"]
+}
+
+];
+
+
+/* =============================
+   TRADUCTIONS
+============================= */
+
+const translations = {
+
+fr: {
+
+  pageTitle:
+  "Nature",
+
+  headerText:
+  "Lacs, montagnes, jardins et paysages à découvrir autour du Refuge des Étoiles.",
+
+  filterAll:
+  "Tous",
+
+  filterNear:
+  "📍 Moins de 30 min",
+
+  filterMountain:
+  "🏔️ Montagne",
+
+  filterWaterGarden:
+  "💧 Eau & jardins",
+
+  travel:
+  "environ",
+
+  map:
+  "📍 Itinéraire",
+
+  website:
+  "🌐 Site internet",
+
+  back:
+  "← Retour aux sorties",
+
+  home:
+  "🏡 Accueil du livret"
+
+},
+
+
+en: {
+
+  pageTitle:
+  "Nature",
+
+  headerText:
+  "Discover lakes, mountains, gardens and beautiful landscapes around Le Refuge des Étoiles.",
+
+  filterAll:
+  "All",
+
+  filterNear:
+  "📍 Less than 30 min",
+
+  filterMountain:
+  "🏔️ Mountains",
+
+  filterWaterGarden:
+  "💧 Water & gardens",
+
+  travel:
+  "about",
+
+  map:
+  "📍 Directions",
+
+  website:
+  "🌐 Website",
+
+  back:
+  "← Back to activities",
+
+  home:
+  "🏡 Guest guide home"
+
+},
+
+
+de: {
+
+  pageTitle:
+  "Natur",
+
+  headerText:
+  "Entdecken Sie Seen, Berge, Gärten und wunderschöne Landschaften rund um das Refuge des Étoiles.",
+
+  filterAll:
+  "Alle",
+
+  filterNear:
+  "📍 Unter 30 Min.",
+
+  filterMountain:
+  "🏔️ Berge",
+
+  filterWaterGarden:
+  "💧 Wasser & Gärten",
+
+  travel:
+  "ca.",
+
+  map:
+  "📍 Route",
+
+  website:
+  "🌐 Webseite",
+
+  back:
+  "← Zurück zu den Ausflügen",
+
+  home:
+  "🏡 Gästeführer"
+
+},
+
+
+nl: {
+
+  pageTitle:
+  "Natuur",
+
+  headerText:
+  "Ontdek meren, bergen, tuinen en prachtige landschappen rond Le Refuge des Étoiles.",
+
+  filterAll:
+  "Alles",
+
+  filterNear:
+  "📍 Minder dan 30 min",
+
+  filterMountain:
+  "🏔️ Bergen",
+
+  filterWaterGarden:
+  "💧 Water & tuinen",
+
+  travel:
+  "ongeveer",
+
+  map:
+  "📍 Route",
+
+  website:
+  "🌐 Website",
+
+  back:
+  "← Terug naar uitstapjes",
+
+  home:
+  "🏡 Gastenhandleiding"
+
+}
+
+};
+
+
+let currentLanguage = "fr";
+
+
+/* =============================
+   AFFICHAGE
+============================= */
+
+function renderPlaces(filter = "all") {
+
+  const container =
+  document.getElementById("placesContainer");
+
+  container.innerHTML = "";
+
+  const t =
+  translations[currentLanguage];
+
+
+  places.forEach(place => {
+
+
+    if (
+      filter === "near" &&
+      place.minutes >= 30
+    ) {
+      return;
+    }
+
+
+    if (
+      filter === "mountain" &&
+      !place.categories.includes("mountain")
+    ) {
+      return;
+    }
+
+
+    if (
+      filter === "watergarden" &&
+      !place.categories.includes("watergarden")
+    ) {
+      return;
+    }
+
+
+    const card =
+    document.createElement("div");
+
+    card.className =
+    "place-card";
+
+
+    const mapsUrl =
+    "https://www.google.com/maps/search/?api=1&query=" +
+    encodeURIComponent(place.address);
+
+
+    let phoneHtml = "";
+
+
+    if (place.phone) {
+
+      phoneHtml = `
+
+      <div class="phone">
+
+      ☎️
+
+      <a href="tel:${place.phone.replace(/\s/g,'')}">
+      ${place.phone}
+      </a>
+
+      </div>
+
+      `;
+
+    }
+
+
+    let websiteButton = "";
+
+
+    if (place.website) {
+
+      websiteButton = `
+
+      <a
+      class="action-button website-button"
+      href="${place.website}"
+      target="_blank">
+
+      ${t.website}
+
+      </a>
+
+      `;
+
+    }
+
+
+    card.innerHTML = `
+
+    <div class="place-header">
+
+      <div class="place-icon">
+      ${place.icon}
+      </div>
+
+
+      <div class="place-info">
+
+        <h2>
+        ${place.name}
+        </h2>
+
+
+        <div class="travel">
+
+        🚗 ${place.km} km
+        •
+        ${t.travel} ${place.timeText}
+
+        </div>
+
+
+        <div class="address">
+
+        📍 ${place.address}
+
+        </div>
+
+
+        ${phoneHtml}
+
+      </div>
+
+    </div>
+
+
+    <div class="buttons">
+
+      <a
+      class="action-button map-button"
+      href="${mapsUrl}"
+      target="_blank">
+
+      ${t.map}
+
+      </a>
+
+      ${websiteButton}
+
+    </div>
+
+    `;
+
+
+    container.appendChild(card);
+
+  });
+
+}
+
+
+/* =============================
+   FILTRES
+============================= */
+
+function filterPlaces(filter, button) {
+
+  document
+  .querySelectorAll(".filter-button")
+  .forEach(btn => {
+
+    btn.classList.remove("active");
+
+  });
+
+
+  button.classList.add("active");
+
+
+  renderPlaces(filter);
+
+}
+
+
+/* =============================
+   LANGUE
+============================= */
+
+function changeLanguage(lang) {
+
+  currentLanguage = lang;
+
+
+  localStorage.setItem(
+  "language",
+  lang
+  );
+
+
+  document.documentElement.lang =
+  lang;
+
+
+  const t =
+  translations[lang];
+
+
+  document.getElementById("pageTitle").textContent =
+  t.pageTitle;
+
+
+  document.getElementById("headerText").textContent =
+  t.headerText;
+
+
+  document.getElementById("filterAll").textContent =
+  t.filterAll;
+
+
+  document.getElementById("filterNear").textContent =
+  t.filterNear;
+
+
+  document.getElementById("filterMountain").textContent =
+  t.filterMountain;
+
+
+  document.getElementById("filterWaterGarden").textContent =
+  t.filterWaterGarden;
+
+
+  document.getElementById("backButton").textContent =
+  t.back;
+
+
+  document.getElementById("homeButton").textContent =
+  t.home;
+
+
+  renderPlaces();
+
+}
+
+
+/* =============================
+   LANGUE AUTOMATIQUE
+============================= */
+
+let savedLanguage =
+localStorage.getItem("language");
+
+
+if (
+savedLanguage &&
+translations[savedLanguage]
+) {
+
+  changeLanguage(savedLanguage);
+
+}
+
+else {
+
+  let browserLanguage =
+
+  navigator.language ||
+
+  navigator.userLanguage ||
+
+  "fr";
+
+
+  browserLanguage =
+
+  browserLanguage
+  .substring(0,2)
+  .toLowerCase();
+
+
+  if (
+  !["fr","en","de","nl"]
+  .includes(browserLanguage)
+  ) {
+
+    browserLanguage = "en";
+
+  }
+
+
+  changeLanguage(browserLanguage);
+
+}
+
+</script>
+
+</body>
+</html>
