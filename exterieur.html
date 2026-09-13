@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Extérieur - Le Refuge des Étoiles</title>
+
+<style>
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f2ed;
+  color: #2f2f2f;
+}
+
+header {
+  background: linear-gradient(135deg, #36583c, #78956b);
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+header p {
+  max-width: 650px;
+  margin: 12px auto 0;
+  line-height: 1.5;
+}
+
+.language-selector {
+  margin-top: 18px;
+}
+
+.language-selector button {
+  border: none;
+  background: white;
+  padding: 9px 12px;
+  margin: 3px;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+.intro {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+}
+
+/* CARTES */
+
+.item {
+  background: white;
+  border-radius: 16px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+}
+
+.item-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 18px;
+  cursor: pointer;
+}
+
+.item-header:hover {
+  background: #f7faf6;
+}
+
+.icon {
+  min-width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #e9f1e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+
+.item-info {
+  flex: 1;
+}
+
+.item-info h2 {
+  color: #36583c;
+  margin: 0 0 5px;
+  font-size: 20px;
+}
+
+.subtitle {
+  color: #777;
+  font-size: 14px;
+}
+
+.arrow {
+  font-size: 20px;
+  color: #36583c;
+  transition: transform 0.25s;
+}
+
+.item.open .arrow {
+  transform: rotate(180deg);
+}
+
+.instructions {
+  display: none;
+  padding: 0 20px 20px 93px;
+  line-height: 1.65;
+  color: #555;
+}
+
+.item.open .instructions {
+  display: block;
+}
+
+.instructions p {
+  margin: 8px 0;
+}
+
+/* BOUTONS */
+
+.detail-button {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 11px 16px;
+  background: #36583c;
+  color: white;
+  text-decoration: none;
+  border-radius: 9px;
+  font-weight: bold;
+}
+
+/* RESPECT */
+
+.respect-box {
+  background: #eef3e9;
+  border-left: 5px solid #78956b;
+  border-radius: 12px;
+  padding: 18px;
+  margin-top: 20px;
+  line-height: 1.6;
+}
+
+.respect-box strong {
+  color: #36583c;
+  font-size: 18px;
+}
+
+/* RETOUR */
+
+.home-button {
+  display: block;
+  width: fit-content;
+  margin: 25px auto;
+  padding: 13px 20px;
+  background: #36583c;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  padding: 25px 20px;
+  color: #777;
+  font-size: 14px;
+}
+
+@media(max-width:600px) {
+
+  .container {
+    padding: 12px;
+  }
+
+  .instructions {
+    padding: 0 18px 18px 18px;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<header>
+
+<h1>
+🌿 <span id="pageTitle">Extérieur</span>
+</h1>
+
+<p id="headerText">
+Profitez pleinement des espaces extérieurs du Refuge des Étoiles.
+</p>
+
+<div class="language-selector">
+
+<button onclick="changeLanguage('fr')">🇫🇷</button>
+<button onclick="changeLanguage('en')">🇬🇧</button>
+<button onclick="changeLanguage('de')">🇩🇪</button>
+<button onclick="changeLanguage('nl')">🇳🇱</button>
+
+</div>
+
+</header>
+
+
+<div class="container">
+
+<div class="intro" id="intro">
+👆 Sélectionnez un équipement pour retrouver les informations et consignes utiles.
+</div>
+
+<div id="itemsContainer"></div>
+
+
+<div class="respect-box">
+
+<strong id="respectTitle">
+🌙 Profitons des lieux dans le respect de tous
+</strong>
+
+<p id="respectText">
+Merci de prendre soin des espaces extérieurs et de respecter la tranquillité du voisinage, particulièrement en soirée.
+</p>
+
+</div>
+
+
+<a
+href="index.html"
+class="home-button"
+id="homeButton">
+
+← Retour au livret d'accueil
+
+</a>
+
+</div>
+
+
+<footer>
+
+✨ Le Refuge des Étoiles ✨<br>
+Le Sappey — Haute-Savoie
+
+</footer>
+
+
+<script>
+
+/* =========================
+   RUBRIQUES
+========================= */
+
+const items = [
+
+{
+  icon:"🏊",
+  type:"pool"
+},
+
+{
+  icon:"♨️",
+  type:"spa"
+},
+
+{
+  icon:"🍳",
+  type:"plancha"
+},
+
+{
+  icon:"🌳",
+  type:"garden"
+}
+
+];
+
+
+/* =========================
+   TRADUCTIONS
+========================= */
+
+const translations = {
+
+
+/* FRANÇAIS */
+
+fr: {
+
+pageTitle:
+"Extérieur",
+
+headerText:
+"Profitez pleinement des espaces extérieurs du Refuge des Étoiles.",
+
+intro:
+"👆 Sélectionnez un équipement pour retrouver les informations et consignes utiles.",
+
+respectTitle:
+"🌙 Profitons des lieux dans le respect de tous",
+
+respectText:
+"Merci de prendre soin des espaces extérieurs et de respecter la tranquillité du voisinage, particulièrement en soirée.",
+
+home:
+"← Retour au livret d'accueil",
+
+
+pool: {
+
+name:
+"Piscine",
+
+subtitle:
+"Profitez d'un moment de fraîcheur",
+
+text:`
+
+<p>
+🏊 Une piscine extérieure est accessible pendant sa période d'ouverture.
+</p>
+
+<p>
+👨‍👩‍👧‍👦 Les enfants restent sous la surveillance et la responsabilité d'un adulte.
+</p>
+
+<p>
+📅 L'ouverture de la piscine dépend de la saison, des conditions météorologiques et des éventuels arrêtés locaux en vigueur.
+</p>
+
+<a href="piscine.html" class="detail-button">
+🏊 Voir les consignes de la piscine
+</a>
+
+`
+
+},
+
+
+spa: {
+
+name:
+"Spa",
+
+subtitle:
+"Un moment de détente",
+
+text:`
+
+<p>
+♨️ Le spa est à votre disposition pour profiter d'un moment de détente pendant votre séjour.
+</p>
+
+<p>
+💧 Merci de respecter les consignes d'utilisation et d'hygiène afin de préserver la qualité de l'eau.
+</p>
+
+<a href="spa.html" class="detail-button">
+♨️ Voir les consignes du spa
+</a>
+
+`
+
+},
+
+
+plancha: {
+
+name:
+"Plancha",
+
+subtitle:
+"Pour vos repas en extérieur",
+
+text:`
+
+<p>
+🍳 Une plancha est à votre disposition pour profiter de vos repas en extérieur.
+</p>
+
+<p>
+🔥 Ne laissez jamais la plancha allumée sans surveillance.
+</p>
+
+<p>
+🧽 Merci de la laisser propre après utilisation.
+</p>
+
+`
+
+},
+
+
+garden: {
+
+name:
+"Espaces extérieurs",
+
+subtitle:
+"Profitez du grand air",
+
+text:`
+
+<p>
+🌳 Les espaces extérieurs sont à votre disposition pendant votre séjour.
+</p>
+
+<p>
+🪑 Profitez-en pour vous détendre, partager un repas ou simplement admirer les environs.
+</p>
+
+<p>
+🧹 Merci de laisser les lieux propres et rangés après utilisation.
+</p>
+
+`
+
+}
+
+},
+
+
+/* ENGLISH */
+
+en: {
+
+pageTitle:
+"Outdoor areas",
+
+headerText:
+"Make the most of the outdoor areas at Le Refuge des Étoiles.",
+
+intro:
+"👆 Select an item to view useful information and instructions.",
+
+respectTitle:
+"🌙 Enjoy the surroundings while respecting everyone",
+
+respectText:
+"Please take care of the outdoor areas and respect the peace and quiet of the neighbourhood, especially in the evening.",
+
+home:
+"← Back to the guest guide",
+
+pool: {
+
+name:"Swimming pool",
+subtitle:"Enjoy a refreshing moment",
+
+text:`
+
+<p>🏊 The outdoor swimming pool is available during its opening season.</p>
+
+<p>👨‍👩‍👧‍👦 Children must remain under adult supervision and responsibility.</p>
+
+<p>📅 Pool availability depends on the season, weather conditions and any applicable local restrictions.</p>
+
+<a href="piscine.html" class="detail-button">
+🏊 View swimming pool instructions
+</a>
+
+`
+
+},
+
+spa: {
+
+name:"Spa",
+subtitle:"Time to relax",
+
+text:`
+
+<p>♨️ The spa is available for you to enjoy a relaxing moment during your stay.</p>
+
+<p>💧 Please follow the hygiene and usage instructions to help maintain water quality.</p>
+
+<a href="spa.html" class="detail-button">
+♨️ View spa instructions
+</a>
+
+`
+
+},
+
+plancha: {
+
+name:"Plancha grill",
+subtitle:"For outdoor meals",
+
+text:`
+
+<p>🍳 A plancha grill is available for your outdoor meals.</p>
+
+<p>🔥 Never leave the plancha unattended while it is switched on.</p>
+
+<p>🧽 Please leave it clean after use.</p>
+
+`
+
+},
+
+garden: {
+
+name:"Outdoor areas",
+subtitle:"Enjoy the fresh air",
+
+text:`
+
+<p>🌳 The outdoor areas are available for you throughout your stay.</p>
+
+<p>🪑 Relax, enjoy a meal or simply take in the surroundings.</p>
+
+<p>🧹 Please leave the area clean and tidy after use.</p>
+
+`
+
+}
+
+},
+
+
+/* DEUTSCH */
+
+de: {
+
+pageTitle:"Außenbereich",
+
+headerText:
+"Genießen Sie die Außenbereiche des Refuge des Étoiles.",
+
+intro:
+"👆 Wählen Sie einen Bereich aus, um Informationen und Hinweise anzuzeigen.",
+
+respectTitle:
+"🌙 Genießen Sie die Umgebung mit Rücksicht auf andere",
+
+respectText:
+"Bitte gehen Sie sorgfältig mit den Außenbereichen um und respektieren Sie besonders am Abend die Ruhe der Nachbarschaft.",
+
+home:
+"← Zurück zum Gästeführer",
+
+pool: {
+
+name:"Swimmingpool",
+subtitle:"Eine erfrischende Auszeit",
+
+text:`
+
+<p>🏊 Der Außenpool steht während seiner Öffnungszeit zur Verfügung.</p>
+
+<p>👨‍👩‍👧‍👦 Kinder müssen stets von einem Erwachsenen beaufsichtigt werden.</p>
+
+<p>📅 Die Verfügbarkeit des Pools hängt von der Saison, den Wetterbedingungen und den geltenden örtlichen Bestimmungen ab.</p>
+
+<a href="piscine.html" class="detail-button">
+🏊 Hinweise zum Swimmingpool
+</a>
+
+`
+
+},
+
+spa: {
+
+name:"Spa",
+subtitle:"Zeit zum Entspannen",
+
+text:`
+
+<p>♨️ Der Spa-Bereich steht Ihnen während Ihres Aufenthalts zur Entspannung zur Verfügung.</p>
+
+<p>💧 Bitte beachten Sie die Hygiene- und Nutzungshinweise.</p>
+
+<a href="spa.html" class="detail-button">
+♨️ Hinweise zum Spa
+</a>
+
+`
+
+},
+
+plancha: {
+
+name:"Plancha-Grill",
+subtitle:"Für Mahlzeiten im Freien",
+
+text:`
+
+<p>🍳 Ein Plancha-Grill steht Ihnen für Mahlzeiten im Freien zur Verfügung.</p>
+
+<p>🔥 Lassen Sie den eingeschalteten Grill niemals unbeaufsichtigt.</p>
+
+<p>🧽 Bitte hinterlassen Sie ihn nach Gebrauch sauber.</p>
+
+`
+
+},
+
+garden: {
+
+name:"Außenbereiche",
+subtitle:"Genießen Sie die frische Luft",
+
+text:`
+
+<p>🌳 Die Außenbereiche stehen Ihnen während Ihres Aufenthalts zur Verfügung.</p>
+
+<p>🪑 Entspannen Sie sich, genießen Sie eine Mahlzeit oder die Umgebung.</p>
+
+<p>🧹 Bitte hinterlassen Sie die Bereiche sauber und ordentlich.</p>
+
+`
+
+}
+
+},
+
+
+/* NEDERLANDS */
+
+nl: {
+
+pageTitle:"Buitenruimte",
+
+headerText:
+"Geniet volop van de buitenruimte van Le Refuge des Étoiles.",
+
+intro:
+"👆 Selecteer een onderdeel om de informatie en instructies te bekijken.",
+
+respectTitle:
+"🌙 Geniet van de omgeving met respect voor iedereen",
+
+respectText:
+"Ga zorgvuldig om met de buitenruimte en respecteer de rust van de buurt, vooral 's avonds.",
+
+home:
+"← Terug naar de gastenhandleiding",
+
+pool: {
+
+name:"Zwembad",
+subtitle:"Geniet van wat verkoeling",
+
+text:`
+
+<p>🏊 Het buitenzwembad is tijdens de openingsperiode toegankelijk.</p>
+
+<p>👨‍👩‍👧‍👦 Kinderen moeten altijd onder toezicht en verantwoordelijkheid van een volwassene blijven.</p>
+
+<p>📅 De beschikbaarheid van het zwembad is afhankelijk van het seizoen, de weersomstandigheden en eventuele lokale voorschriften.</p>
+
+<a href="piscine.html" class="detail-button">
+🏊 Bekijk de zwembadregels
+</a>
+
+`
+
+},
+
+spa: {
+
+name:"Spa",
+subtitle:"Tijd om te ontspannen",
+
+text:`
+
+<p>♨️ De spa staat tijdens uw verblijf tot uw beschikking voor een ontspannend moment.</p>
+
+<p>💧 Volg de gebruiks- en hygiënevoorschriften om de waterkwaliteit te behouden.</p>
+
+<a href="spa.html" class="detail-button">
+♨️ Bekijk de spa-instructies
+</a>
+
+`
+
+},
+
+plancha: {
+
+name:"Plancha",
+subtitle:"Voor maaltijden buiten",
+
+text:`
+
+<p>🍳 Er is een plancha beschikbaar voor uw maaltijden buiten.</p>
+
+<p>🔥 Laat de plancha nooit onbeheerd achter wanneer deze aanstaat.</p>
+
+<p>🧽 Laat de plancha na gebruik schoon achter.</p>
+
+`
+
+},
+
+garden: {
+
+name:"Buitenruimte",
+subtitle:"Geniet van de buitenlucht",
+
+text:`
+
+<p>🌳 De buitenruimte staat tijdens uw verblijf tot uw beschikking.</p>
+
+<p>🪑 Ontspan, geniet van een maaltijd of bewonder gewoon de omgeving.</p>
+
+<p>🧹 Laat de buitenruimte na gebruik schoon en netjes achter.</p>
+
+`
+
+}
+
+}
+
+};
+
+
+/* =========================
+   AFFICHAGE
+========================= */
+
+let currentLanguage = "fr";
+
+
+function renderItems() {
+
+const container =
+document.getElementById("itemsContainer");
+
+container.innerHTML = "";
+
+const t =
+translations[currentLanguage];
+
+
+items.forEach((item,index) => {
+
+const content =
+t[item.type];
+
+const card =
+document.createElement("div");
+
+card.className = "item";
+card.id = "item-" + index;
+
+card.innerHTML = `
+
+<div
+class="item-header"
+onclick="toggleItem(${index})">
+
+<div class="icon">
+${item.icon}
+</div>
+
+<div class="item-info">
+
+<h2>
+${content.name}
+</h2>
+
+<div class="subtitle">
+${content.subtitle}
+</div>
+
+</div>
+
+<div class="arrow">
+⌄
+</div>
+
+</div>
+
+<div class="instructions">
+${content.text}
+</div>
+
+`;
+
+container.appendChild(card);
+
+});
+
+}
+
+
+/* OUVERTURE CARTES */
+
+function toggleItem(index) {
+
+const selected =
+document.getElementById("item-" + index);
+
+const wasOpen =
+selected.classList.contains("open");
+
+document
+.querySelectorAll(".item")
+.forEach(card => {
+  card.classList.remove("open");
+});
+
+if (!wasOpen) {
+  selected.classList.add("open");
+}
+
+}
+
+
+/* LANGUES */
+
+function changeLanguage(lang) {
+
+currentLanguage = lang;
+
+localStorage.setItem(
+"language",
+lang
+);
+
+document.documentElement.lang =
+lang;
+
+const t =
+translations[lang];
+
+document.getElementById("pageTitle").textContent =
+t.pageTitle;
+
+document.getElementById("headerText").textContent =
+t.headerText;
+
+document.getElementById("intro").textContent =
+t.intro;
+
+document.getElementById("respectTitle").textContent =
+t.respectTitle;
+
+document.getElementById("respectText").textContent =
+t.respectText;
+
+document.getElementById("homeButton").textContent =
+t.home;
+
+renderItems();
+
+}
+
+
+/* LANGUE AUTOMATIQUE */
+
+let savedLanguage =
+localStorage.getItem("language");
+
+if (
+savedLanguage &&
+translations[savedLanguage]
+) {
+
+changeLanguage(savedLanguage);
+
+}
+
+else {
+
+let browserLanguage =
+navigator.language ||
+navigator.userLanguage ||
+"fr";
+
+browserLanguage =
+browserLanguage
+.substring(0,2)
+.toLowerCase();
+
+if (
+!["fr","en","de","nl"]
+.includes(browserLanguage)
+) {
+
+browserLanguage = "en";
+
+}
+
+changeLanguage(browserLanguage);
+
+}
+
+</script>
+
+</body>
+</html>
