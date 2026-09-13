@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bébé - Le Refuge des Étoiles</title>
+
+<style>
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f2ed;
+  color: #2f2f2f;
+}
+
+header {
+  background: linear-gradient(135deg, #c99a6b, #e2c3a5);
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+header p {
+  max-width: 650px;
+  margin: 12px auto 0;
+  line-height: 1.5;
+}
+
+.language-selector {
+  margin-top: 18px;
+}
+
+.language-selector button {
+  border: none;
+  background: white;
+  padding: 9px 12px;
+  margin: 3px;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+.intro {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+}
+
+.item {
+  background: white;
+  border-radius: 16px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+}
+
+.item-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 18px;
+  cursor: pointer;
+}
+
+.item-header:hover {
+  background: #fbf7f2;
+}
+
+.icon {
+  min-width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #f4e6d7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+
+.item-info {
+  flex: 1;
+}
+
+.item-info h2 {
+  color: #8a5b35;
+  margin: 0 0 5px;
+  font-size: 20px;
+}
+
+.subtitle {
+  color: #777;
+  font-size: 14px;
+}
+
+.arrow {
+  font-size: 20px;
+  color: #8a5b35;
+  transition: transform 0.25s;
+}
+
+.item.open .arrow {
+  transform: rotate(180deg);
+}
+
+.instructions {
+  display: none;
+  padding: 0 20px 20px 93px;
+  line-height: 1.65;
+  color: #555;
+}
+
+.item.open .instructions {
+  display: block;
+}
+
+.info-box {
+  background: #fff7ed;
+  border-left: 5px solid #c99a6b;
+  border-radius: 12px;
+  padding: 18px;
+  margin-top: 20px;
+  line-height: 1.6;
+}
+
+.info-box strong {
+  color: #8a5b35;
+}
+
+.home-button {
+  display: block;
+  width: fit-content;
+  margin: 25px auto;
+  padding: 13px 20px;
+  background: #8a5b35;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  padding: 25px 20px;
+  color: #777;
+  font-size: 14px;
+}
+
+@media(max-width:600px) {
+
+  .container {
+    padding: 12px;
+  }
+
+  .instructions {
+    padding: 0 18px 18px 18px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>
+👶 <span id="pageTitle">Bébé</span>
+</h1>
+
+<p id="headerText">
+Des équipements sont disponibles pour faciliter votre séjour avec un jeune enfant.
+</p>
+
+<div class="language-selector">
+  <button onclick="changeLanguage('fr')">🇫🇷</button>
+  <button onclick="changeLanguage('en')">🇬🇧</button>
+  <button onclick="changeLanguage('de')">🇩🇪</button>
+  <button onclick="changeLanguage('nl')">🇳🇱</button>
+</div>
+
+</header>
+
+<div class="container">
+
+<div class="intro" id="intro">
+👆 Sélectionnez un équipement pour afficher les informations utiles.
+</div>
+
+<div id="itemsContainer"></div>
+
+<div class="info-box">
+
+<strong id="infoTitle">
+ℹ️ Bon à savoir
+</strong>
+
+<p id="infoText">
+Merci de nous prévenir avant votre arrivée si vous souhaitez utiliser le lit parapluie, afin que nous puissions le préparer.
+</p>
+
+</div>
+
+<a href="index.html" class="home-button" id="homeButton">
+← Retour au livret d'accueil
+</a>
+
+</div>
+
+<footer>
+✨ Le Refuge des Étoiles ✨<br>
+Le Sappey — Haute-Savoie
+</footer>
+
+
+<script>
+
+const items = [
+
+{
+  icon:"🛏️",
+  type:"cot"
+},
+
+{
+  icon:"🧴",
+  type:"changing"
+},
+
+{
+  icon:"🛁",
+  type:"bath"
+},
+
+{
+  icon:"🚽",
+  type:"potty"
+}
+
+];
+
+
+const translations = {
+
+/* =========================
+   FRANÇAIS
+========================= */
+
+fr: {
+
+pageTitle:
+"Bébé",
+
+headerText:
+"Des équipements sont disponibles pour faciliter votre séjour avec un jeune enfant.",
+
+intro:
+"👆 Sélectionnez un équipement pour afficher les informations utiles.",
+
+infoTitle:
+"ℹ️ Bon à savoir",
+
+infoText:
+"Merci de nous prévenir avant votre arrivée si vous souhaitez utiliser le lit parapluie, afin que nous puissions le préparer.",
+
+home:
+"← Retour au livret d'accueil",
+
+cot: {
+
+name:
+"Lit parapluie",
+
+subtitle:
+"Disponible sur demande",
+
+text:`
+
+<p>
+🛏️ Un lit parapluie est disponible pour les jeunes enfants.
+</p>
+
+<p>
+📩 Merci de nous prévenir avant votre arrivée si vous souhaitez l'utiliser.
+</p>
+
+<p>
+👶 Installez toujours le lit sur une surface plane et stable et vérifiez qu'il est correctement déplié et verrouillé avant utilisation.
+</p>
+
+`
+
+},
+
+changing: {
+
+name:
+"Table à langer",
+
+subtitle:
+"Pour les soins de bébé",
+
+text:`
+
+<p>
+🧴 Une table à langer est mise à votre disposition.
+</p>
+
+<p>
+👶 Ne laissez jamais un enfant sans surveillance sur la table à langer, même quelques secondes.
+</p>
+
+<p>
+🧽 Merci de laisser l'équipement propre après utilisation.
+</p>
+
+`
+
+},
+
+bath: {
+
+name:
+"Baignoire bébé",
+
+subtitle:
+"Pour le bain des tout-petits",
+
+text:`
+
+<p>
+🛁 Une baignoire adaptée aux bébés est disponible.
+</p>
+
+<p>
+💧 Vérifiez toujours la température de l'eau avant d'y installer votre enfant.
+</p>
+
+<p>
+👶 Un bébé ne doit jamais rester seul dans l'eau, même pendant un très court instant.
+</p>
+
+<p>
+🧽 Merci de vider, rincer et laisser sécher la baignoire après utilisation.
+</p>
+
+`
+
+},
+
+potty: {
+
+name:
+"Pot",
+
+subtitle:
+"Pour les jeunes enfants",
+
+text:`
+
+<p>
+🚽 Un pot est disponible pour les jeunes enfants.
+</p>
+
+<p>
+🧼 Merci de le vider, le nettoyer et le rincer soigneusement après chaque utilisation.
+</p>
+
+`
+
+}
+
+},
+
+
+/* =========================
+   ENGLISH
+========================= */
+
+en: {
+
+pageTitle:
+"Baby",
+
+headerText:
+"Equipment is available to make your stay easier when travelling with a young child.",
+
+intro:
+"👆 Select an item to view useful information.",
+
+infoTitle:
+"ℹ️ Good to know",
+
+infoText:
+"Please let us know before your arrival if you would like to use the travel cot so that we can prepare it for you.",
+
+home:
+"← Back to the guest guide",
+
+cot: {
+
+name:
+"Travel cot",
+
+subtitle:
+"Available on request",
+
+text:`
+
+<p>
+🛏️ A travel cot is available for young children.
+</p>
+
+<p>
+📩 Please let us know before your arrival if you would like to use it.
+</p>
+
+<p>
+👶 Always place the cot on a flat, stable surface and make sure it is fully unfolded and securely locked before use.
+</p>
+
+`
+
+},
+
+changing: {
+
+name:
+"Changing table",
+
+subtitle:
+"For baby care",
+
+text:`
+
+<p>
+🧴 A changing table is available for your use.
+</p>
+
+<p>
+👶 Never leave a child unattended on the changing table, even for a few seconds.
+</p>
+
+<p>
+🧽 Please leave the equipment clean after use.
+</p>
+
+`
+
+},
+
+bath: {
+
+name:
+"Baby bath",
+
+subtitle:
+"For little ones",
+
+text:`
+
+<p>
+🛁 A baby bath is available.
+</p>
+
+<p>
+💧 Always check the water temperature before placing your child in the bath.
+</p>
+
+<p>
+👶 Never leave a baby unattended in water, even for a very short time.
+</p>
+
+<p>
+🧽 Please empty, rinse and allow the baby bath to dry after use.
+</p>
+
+`
+
+},
+
+potty: {
+
+name:
+"Potty",
+
+subtitle:
+"For young children",
+
+text:`
+
+<p>
+🚽 A potty is available for young children.
+</p>
+
+<p>
+🧼 Please empty, clean and rinse it thoroughly after each use.
+</p>
+
+`
+
+}
+
+},
+
+
+/* =========================
+   DEUTSCH
+========================= */
+
+de: {
+
+pageTitle:
+"Baby",
+
+headerText:
+"Für einen angenehmen Aufenthalt mit kleinen Kindern stehen verschiedene Babyausstattungen zur Verfügung.",
+
+intro:
+"👆 Wählen Sie einen Artikel aus, um weitere Informationen anzuzeigen.",
+
+infoTitle:
+"ℹ️ Gut zu wissen",
+
+infoText:
+"Bitte informieren Sie uns vor Ihrer Ankunft, wenn Sie das Reisebett nutzen möchten, damit wir es vorbereiten können.",
+
+home:
+"← Zurück zum Gästeführer",
+
+cot: {
+
+name:
+"Reisebett",
+
+subtitle:
+"Auf Anfrage verfügbar",
+
+text:`
+
+<p>
+🛏️ Für kleine Kinder steht ein Reisebett zur Verfügung.
+</p>
+
+<p>
+📩 Bitte informieren Sie uns vor Ihrer Ankunft, wenn Sie es nutzen möchten.
+</p>
+
+<p>
+👶 Stellen Sie das Bett immer auf eine ebene und stabile Fläche und überprüfen Sie vor der Nutzung, ob es vollständig aufgeklappt und verriegelt ist.
+</p>
+
+`
+
+},
+
+changing: {
+
+name:
+"Wickeltisch",
+
+subtitle:
+"Für die Babypflege",
+
+text:`
+
+<p>
+🧴 Ein Wickeltisch steht Ihnen zur Verfügung.
+</p>
+
+<p>
+👶 Lassen Sie ein Kind niemals unbeaufsichtigt auf dem Wickeltisch, auch nicht für wenige Sekunden.
+</p>
+
+<p>
+🧽 Bitte hinterlassen Sie die Ausstattung nach der Nutzung sauber.
+</p>
+
+`
+
+},
+
+bath: {
+
+name:
+"Babybadewanne",
+
+subtitle:
+"Für die Kleinsten",
+
+text:`
+
+<p>
+🛁 Eine Babybadewanne steht zur Verfügung.
+</p>
+
+<p>
+💧 Prüfen Sie immer die Wassertemperatur, bevor Sie Ihr Kind hineinsetzen.
+</p>
+
+<p>
+👶 Lassen Sie ein Baby niemals unbeaufsichtigt im Wasser, auch nicht für einen sehr kurzen Moment.
+</p>
+
+<p>
+🧽 Bitte leeren, ausspülen und trocknen Sie die Babybadewanne nach der Nutzung.
+</p>
+
+`
+
+},
+
+potty: {
+
+name:
+"Töpfchen",
+
+subtitle:
+"Für kleine Kinder",
+
+text:`
+
+<p>
+🚽 Für kleine Kinder steht ein Töpfchen zur Verfügung.
+</p>
+
+<p>
+🧼 Bitte leeren, reinigen und spülen Sie es nach jeder Nutzung gründlich aus.
+</p>
+
+`
+
+}
+
+},
+
+
+/* =========================
+   NEDERLANDS
+========================= */
+
+nl: {
+
+pageTitle:
+"Baby",
+
+headerText:
+"Er zijn verschillende voorzieningen beschikbaar om uw verblijf met een jong kind gemakkelijker te maken.",
+
+intro:
+"👆 Selecteer een onderdeel om de praktische informatie te bekijken.",
+
+infoTitle:
+"ℹ️ Goed om te weten",
+
+infoText:
+"Laat ons vóór aankomst weten als u het reisbedje wilt gebruiken, zodat wij het voor u kunnen klaarmaken.",
+
+home:
+"← Terug naar de gastenhandleiding",
+
+cot: {
+
+name:
+"Reisbedje",
+
+subtitle:
+"Beschikbaar op aanvraag",
+
+text:`
+
+<p>
+🛏️ Er is een reisbedje beschikbaar voor jonge kinderen.
+</p>
+
+<p>
+📩 Laat ons vóór aankomst weten als u het wilt gebruiken.
+</p>
+
+<p>
+👶 Plaats het bedje altijd op een vlakke en stabiele ondergrond en controleer voor gebruik of het volledig is uitgeklapt en goed vergrendeld.
+</p>
+
+`
+
+},
+
+changing: {
+
+name:
+"Verschoontafel",
+
+subtitle:
+"Voor de verzorging van uw baby",
+
+text:`
+
+<p>
+🧴 Er is een verschoontafel beschikbaar.
+</p>
+
+<p>
+👶 Laat een kind nooit zonder toezicht op de verschoontafel liggen, ook niet voor enkele seconden.
+</p>
+
+<p>
+🧽 Laat de voorziening na gebruik schoon achter.
+</p>
+
+`
+
+},
+
+bath: {
+
+name:
+"Babybadje",
+
+subtitle:
+"Voor de allerkleinsten",
+
+text:`
+
+<p>
+🛁 Er is een babybadje beschikbaar.
+</p>
+
+<p>
+💧 Controleer altijd de temperatuur van het water voordat u uw kind in bad doet.
+</p>
+
+<p>
+👶 Laat een baby nooit zonder toezicht in het water, ook niet voor een heel kort moment.
+</p>
+
+<p>
+🧽 Leeg en spoel het badje na gebruik en laat het drogen.
+</p>
+
+`
+
+},
+
+potty: {
+
+name:
+"Potje",
+
+subtitle:
+"Voor jonge kinderen",
+
+text:`
+
+<p>
+🚽 Er is een potje beschikbaar voor jonge kinderen.
+</p>
+
+<p>
+🧼 Leeg, reinig en spoel het na elk gebruik grondig.
+</p>
+
+`
+
+}
+
+}
+
+};
+
+
+/* =========================
+   AFFICHAGE
+========================= */
+
+let currentLanguage = "fr";
+
+
+function renderItems() {
+
+const container =
+document.getElementById("itemsContainer");
+
+container.innerHTML = "";
+
+const t =
+translations[currentLanguage];
+
+
+items.forEach((item,index) => {
+
+const content =
+t[item.type];
+
+const card =
+document.createElement("div");
+
+card.className = "item";
+card.id = "item-" + index;
+
+card.innerHTML = `
+
+<div
+class="item-header"
+onclick="toggleItem(${index})">
+
+<div class="icon">
+${item.icon}
+</div>
+
+<div class="item-info">
+
+<h2>
+${content.name}
+</h2>
+
+<div class="subtitle">
+${content.subtitle}
+</div>
+
+</div>
+
+<div class="arrow">
+⌄
+</div>
+
+</div>
+
+<div class="instructions">
+${content.text}
+</div>
+
+`;
+
+container.appendChild(card);
+
+});
+
+}
+
+
+function toggleItem(index) {
+
+const selected =
+document.getElementById("item-" + index);
+
+const wasOpen =
+selected.classList.contains("open");
+
+document
+.querySelectorAll(".item")
+.forEach(card => {
+  card.classList.remove("open");
+});
+
+if (!wasOpen) {
+  selected.classList.add("open");
+}
+
+}
+
+
+function changeLanguage(lang) {
+
+currentLanguage = lang;
+
+localStorage.setItem(
+"language",
+lang
+);
+
+document.documentElement.lang =
+lang;
+
+const t =
+translations[lang];
+
+document.getElementById("pageTitle").textContent =
+t.pageTitle;
+
+document.getElementById("headerText").textContent =
+t.headerText;
+
+document.getElementById("intro").textContent =
+t.intro;
+
+document.getElementById("infoTitle").textContent =
+t.infoTitle;
+
+document.getElementById("infoText").textContent =
+t.infoText;
+
+document.getElementById("homeButton").textContent =
+t.home;
+
+renderItems();
+
+}
+
+
+let savedLanguage =
+localStorage.getItem("language");
+
+if (
+savedLanguage &&
+translations[savedLanguage]
+) {
+
+changeLanguage(savedLanguage);
+
+}
+
+else {
+
+let browserLanguage =
+navigator.language ||
+navigator.userLanguage ||
+"fr";
+
+browserLanguage =
+browserLanguage
+.substring(0,2)
+.toLowerCase();
+
+if (
+!["fr","en","de","nl"]
+.includes(browserLanguage)
+) {
+
+browserLanguage = "en";
+
+}
+
+changeLanguage(browserLanguage);
+
+}
+
+</script>
+
+</body>
+</html>
